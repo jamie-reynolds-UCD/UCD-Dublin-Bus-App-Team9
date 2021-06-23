@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { GetRoute } from "./ApiFunctions";
+import Button from "@material-ui/core/Button";
 
 const OriginDestinInput = () => {
   //a state variable which is updated when the user changes the value in the autocomplete menu
@@ -38,10 +40,18 @@ const OriginDestinInput = () => {
   const updateOriginAddress = async (val) => {
     let coordinates = await GetCoordinates(val.value.place_id);
     //the ...placeDetails just copies over all the other values, but we update the origin_address
+
     setPlaceDetails({
       ...placeDetails,
       origin_address: val,
       origin_coords: coordinates,
+    });
+  };
+
+  const UpdateRoute = async () => {
+    let response = await GetRoute({
+      origin_coords: placeDetails.origin_coords,
+      dest_coords: placeDetails.dest_coords,
     });
   };
 
@@ -88,6 +98,9 @@ const OriginDestinInput = () => {
           />
         </div>
       </div>
+      <Button variant="contained" onClick={() => UpdateRoute()}>
+        Plan Route
+      </Button>
     </>
   );
 };
