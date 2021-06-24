@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { InputContainer } from './OriginDestinInput.elements';
+
 
 const OriginDestinInput = () => {
   //a state variable which is updated when the user changes the value in the autocomplete menu
@@ -59,6 +61,7 @@ const OriginDestinInput = () => {
     ///we can style these correctly at a later time I think
     //main thing here is just the GooglePlacesAutoComplete components which are updating the values in placeDetails
     <>
+    <InputContainer>
       <div
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
@@ -88,6 +91,7 @@ const OriginDestinInput = () => {
           />
         </div>
       </div>
+    </InputContainer>
     </>
   );
 };
