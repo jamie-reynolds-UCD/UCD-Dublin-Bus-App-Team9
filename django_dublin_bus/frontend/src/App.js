@@ -1,12 +1,18 @@
 import React from "react";
-import Home from "./Home";
+import Home from "./pages/Home/Home";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Navbar, Footer } from './components';
 
-const App = () => {
+function App() {
   return (
-    <>
-      <Home></Home>
-    </>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route path='/' exact component={Home} />
+      </Switch>
+      <Footer />
+    </Router>
   );
-};
+}
 
 export default App;
