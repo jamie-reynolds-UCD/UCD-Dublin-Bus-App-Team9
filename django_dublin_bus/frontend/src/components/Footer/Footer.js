@@ -4,8 +4,7 @@ import { FooterContainer } from './Footer.elements';
 const Footer = () => {
     return (
         <>
-            <FooterContainer>
-                
+            <FooterContainer> 
             </FooterContainer>
         </>
     );
