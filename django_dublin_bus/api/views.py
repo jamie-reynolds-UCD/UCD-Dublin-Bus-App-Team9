@@ -85,8 +85,13 @@ class GetRoute(View):
         #get the directions from google
         directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')  
 
-        #parse the directions 
-        parsed_directions = parse_directions(directions_result) 
 
-        #return to client
-        return HttpResponse(json.dumps({'route':parsed_directions}))
+
+        try:
+            #parse the directions  
+            parsed_directions = parse_directions(directions_result) 
+
+            #return to client
+            return HttpResponse(json.dumps({'route':parsed_directions})) 
+        except:
+            HttpResponseBadRequest(json.dumps({'error':'Could not find a valid route.'}))

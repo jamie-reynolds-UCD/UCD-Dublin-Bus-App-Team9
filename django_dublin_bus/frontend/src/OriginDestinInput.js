@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import MapContext from "./MapContext";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { GetRoute } from "./ApiFunctions";
 import Button from "@material-ui/core/Button";
 
 const OriginDestinInput = () => {
-  //a state variable which is updated when the user changes the value in the autocomplete menu
-  //in the GooglePlacesAutoComplete component there is an onChange parameter which calls the appropriate function
+  //access this function which allows us to update the markers that are rendered on the application
+  const { setMapDetails } = useContext(MapContext);
 
   const geocoder = new google.maps.Geocoder();
-
+  //a state variable which is updated when the user changes the value in the autocomplete menu
+  //in the GooglePlacesAutoComplete component there is an onChange parameter which calls the appropriate function
   const [placeDetails, setPlaceDetails] = useState({
     origin_address: null,
     destination_address: null,
@@ -53,6 +55,24 @@ const OriginDestinInput = () => {
       origin_coords: placeDetails.origin_coords,
       dest_coords: placeDetails.dest_coords,
     });
+
+    if (response.status == 200) {
+      let start_markers = response.data.route.map((leg) => leg.start_location);
+
+      let end_markers = response.data.route.map((leg) => leg.end_location);
+
+      let all_markers = start_markers.concat(end_markers);
+
+      let polylines = response.data.route.map((leg) =>
+        google.maps.geometry.encoding.decodePath(leg.polyline.points)
+      );
+
+      setMapDetails({
+        markers: all_markers,
+        polylines: polylines,
+        route_object: response.data.route,
+      });
+    }
   };
 
   //this is the onChange function for the destination autocomplete
