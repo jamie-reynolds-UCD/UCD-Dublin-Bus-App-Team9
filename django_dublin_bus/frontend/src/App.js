@@ -10,6 +10,7 @@ function App() {
     markers: [],
     polylines: [],
     route_object: [],
+    route_bounds: null,
   });
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
         value={{
           markers: mapDetails.markers,
           polylines: mapDetails.polylines,
+          route_bounds: mapDetails.route_bounds,
           setMapDetails: setMapDetails,
         }}
       >

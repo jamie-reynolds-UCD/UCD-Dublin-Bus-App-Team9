@@ -72,6 +72,7 @@ const OriginDestinInput = () => {
         markers: all_markers,
         polylines: polylines,
         route_object: response.data.route,
+        route_bounds: response.data.route_bounds,
       });
     }
   };
@@ -132,6 +133,16 @@ const OriginDestinInput = () => {
           </div>
           <div style={{ flex: "1", maxWidth: "300px" }}>
             <GooglePlacesAutocomplete
+              autocompletionRequest={{
+                componentRestrictions: {
+                  country: ["ie"],
+                },
+                bounds: [
+                  { lat: 53.25569243978568, lng: -6.406385543048432 },
+                  { lat: 53.410686449776236, lng: -6.1557599287484654 },
+                ],
+                strictBounds: true,
+              }}
               apiKey="AIzaSyA3pi7A-nqYC6wrN-i_pupw3_UCv8lHqzA"
               selectProps={{
                 value: placeDetails.destination_address,

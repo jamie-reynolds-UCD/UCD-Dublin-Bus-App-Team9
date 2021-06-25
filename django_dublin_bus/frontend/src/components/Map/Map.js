@@ -1,13 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import MapContext from "./MapContext";
 import { GoogleMap, withGoogleMap, Marker, Polyline } from "react-google-maps";
 import { MapContainer } from "./Map.elements";
 
 function Map() {
-  const { markers, polylines } = useContext(MapContext);
+  const { markers, polylines, route_bounds } = useContext(MapContext);
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    //when the map mounts check if the route_bounds object has been set (i.e. a route has been selected)
+    if (route_bounds == null) {
+      return;
+    }
+
+    //if they have then create the bounds object, set the parameters and fit it to the map
+    let bounds = new window.google.maps.LatLngBounds();
+    bounds.extend(route_bounds[0]);
+    bounds.extend(route_bounds[1]);
+    mapRef.current.fitBounds(bounds);
+  }, [route_bounds]);
 
   return (
-    <GoogleMap defaultZoom={12} defaultCenter={{ lat: 53.3498, lng: -6.26031 }}>
+    <GoogleMap
+      ref={mapRef}
+      defaultZoom={12}
+      defaultCenter={{ lat: 53.3498, lng: -6.26031 }}
+    >
       {markers.map((marker) => (
         <Marker position={{ lat: marker.lat, lng: marker.lng }} />
       ))}

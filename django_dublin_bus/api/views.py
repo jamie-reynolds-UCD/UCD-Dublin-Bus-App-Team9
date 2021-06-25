@@ -49,8 +49,24 @@ def parse_directions(response):
     for step in direction_steps:
         parsed_steps.append(parse_step(step)) 
 
-    return parsed_steps
+    return parsed_steps 
 
+def get_route_bounds(directions): 
+
+    lats = []
+    lngs = []
+
+    for direction in directions:
+        lats.append(direction['start_location']['lat'])
+        lats.append(direction['end_location']['lat'])
+
+        lngs.append(direction['start_location']['lng'])
+        lngs.append(direction['end_location']['lng']) 
+
+    bound_1 = {'lat':min(lats), 'lng':min(lngs)}
+    bound_2 = {'lat':max(lats), 'lng':max(lngs)} 
+
+    return [bound_1, bound_2]
 
 class GetRoute(View):
 
@@ -85,13 +101,13 @@ class GetRoute(View):
         #get the directions from google
         directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')  
 
-
-
         try:
             #parse the directions  
-            parsed_directions = parse_directions(directions_result) 
+            parsed_directions = parse_directions(directions_result)  
+
+            route_bounds = get_route_bounds(parsed_directions)
 
             #return to client
-            return HttpResponse(json.dumps({'route':parsed_directions})) 
+            return HttpResponse(json.dumps({'route':parsed_directions, 'route_bounds':route_bounds})) 
         except:
             HttpResponseBadRequest(json.dumps({'error':'Could not find a valid route.'}))
