@@ -1,12 +1,38 @@
-import React from "react";
-import Home from "./Home";
+import React, { useState } from "react";
+import Home from "./pages/Home/Home";
+import { MapContextProvider } from "./components/Map/MapContext.js";
+import GlobalStyle from "./globalStyles";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Navbar, Footer } from "./components";
 
-const App = () => {
+function App() {
+  const [mapDetails, setMapDetails] = useState({
+    markers: [],
+    polylines: [],
+    route_object: [],
+  });
   return (
-    <>
-      <Home></Home>
-    </>
+    <Router>
+      <MapContextProvider
+        value={{
+          markers: mapDetails.markers,
+          polylines: mapDetails.polylines,
+          setMapDetails: setMapDetails,
+        }}
+      >
+        <GlobalStyle />
+        <Navbar />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => <Home route_object={mapDetails.route_object}></Home>}
+          />
+        </Switch>
+        <Footer />
+      </MapContextProvider>
+    </Router>
   );
-};
+}
 
 export default App;
