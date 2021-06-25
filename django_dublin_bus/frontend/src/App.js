@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import Home from "./Home";
-import { MapContextProvider } from "./MapContext.js";
+import Home from "./pages/Home/Home";
+import { MapContextProvider } from "./components/Map/MapContext.js";
+import GlobalStyle from "./globalStyles";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Navbar, Footer } from "./components";
 
-const App = () => {
+function App() {
   const [mapDetails, setMapDetails] = useState({
     markers: [],
     polylines: [],
     route_object: [],
   });
-
-  //anything we put in the "value" section of the MapContextProvier we can access from any other component
-  //for e.g. if the user clicks plan route elsewhere and this returns some markers that we want to show, then
-  //we can call markerUpdater(markers) to update the markers and this gets passed all the way through the application
   return (
-    <>
+    <Router>
       <MapContextProvider
         value={{
           markers: mapDetails.markers,
@@ -21,10 +20,19 @@ const App = () => {
           setMapDetails: setMapDetails,
         }}
       >
-        <Home route_object={mapDetails.route_object}></Home>
+        <GlobalStyle />
+        <Navbar />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => <Home route_object={mapDetails.route_object}></Home>}
+          />
+        </Switch>
+        <Footer />
       </MapContextProvider>
-    </>
+    </Router>
   );
-};
+}
 
 export default App;

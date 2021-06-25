@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import MapContext from "./MapContext";
+import MapContext from "../Map/MapContext";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import { GetRoute } from "./ApiFunctions";
+import { GetRoute } from "../../Api/ApiFunctions";
 import Button from "@material-ui/core/Button";
+import { InputContainer } from "./OriginDestinInput.elements";
 
 const OriginDestinInput = () => {
   //access this function which allows us to update the markers that are rendered on the application
@@ -89,38 +90,50 @@ const OriginDestinInput = () => {
     ///we can style these correctly at a later time I think
     //main thing here is just the GooglePlacesAutoComplete components which are updating the values in placeDetails
     <>
-      <div
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-      >
-        <div style={{ width: "80px", marginRight: "10px" }}>Origin: </div>
-        <div style={{ flex: "1", maxWidth: "300px" }}>
-          <GooglePlacesAutocomplete
-            apiKey="AIzaSyA3pi7A-nqYC6wrN-i_pupw3_UCv8lHqzA"
-            selectProps={{
-              value: placeDetails.origin_address,
-              onChange: updateOriginAddress,
-            }}
-          />
+      <InputContainer>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ width: "80px", marginRight: "10px" }}>Origin: </div>
+          <div style={{ flex: "1", maxWidth: "300px" }}>
+            <GooglePlacesAutocomplete
+              apiKey="AIzaSyA3pi7A-nqYC6wrN-i_pupw3_UCv8lHqzA"
+              selectProps={{
+                value: placeDetails.origin_address,
+                onChange: updateOriginAddress,
+              }}
+            />
+          </div>
         </div>
-      </div>
 
-      <div
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-      >
-        <div style={{ width: "80px", marginRight: "10px" }}>Destination: </div>
-        <div style={{ flex: "1", maxWidth: "300px" }}>
-          <GooglePlacesAutocomplete
-            apiKey="AIzaSyA3pi7A-nqYC6wrN-i_pupw3_UCv8lHqzA"
-            selectProps={{
-              value: placeDetails.destination_address,
-              onChange: updateDestAddress,
-            }}
-          />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ width: "80px", marginRight: "10px" }}>
+            Destination:{" "}
+          </div>
+          <div style={{ flex: "1", maxWidth: "300px" }}>
+            <GooglePlacesAutocomplete
+              apiKey="AIzaSyA3pi7A-nqYC6wrN-i_pupw3_UCv8lHqzA"
+              selectProps={{
+                value: placeDetails.destination_address,
+                onChange: updateDestAddress,
+              }}
+            />
+          </div>
         </div>
-      </div>
-      <Button variant="contained" onClick={() => UpdateRoute()}>
-        Plan Route
-      </Button>
+        <Button variant="contained" onClick={() => UpdateRoute()}>
+          Plan Route
+        </Button>
+      </InputContainer>
     </>
   );
 };
