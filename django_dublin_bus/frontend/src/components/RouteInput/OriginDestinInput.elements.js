@@ -1,15 +1,10 @@
-import styled from 'styled-components';
-import { Container } from '../../globalStyles';
+import styled from "styled-components";
 
-export const InputContainer = styled(Container)`
-
-  display: block;
-  width: 30vw;
-  height: 50vh;
-  left: 5vw;
-  top: 20vh;
-  position: absolute;
-  align-items: left;
-
-  ${Container}
+export const InputContainer = styled.div`
+  width: 100%;
+  margin-left: 3px;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

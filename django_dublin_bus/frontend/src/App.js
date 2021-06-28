@@ -12,6 +12,7 @@ function App() {
     route_object: [],
     route_bounds: null,
   });
+
   return (
     <Router>
       <MapContextProvider

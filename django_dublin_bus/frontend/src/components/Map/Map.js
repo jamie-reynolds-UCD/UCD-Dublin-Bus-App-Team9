@@ -30,7 +30,14 @@ function Map() {
         <Marker position={{ lat: marker.lat, lng: marker.lng }} />
       ))}
       {polylines.map((polyline) => (
-        <Polyline path={polyline}></Polyline>
+        <Polyline
+          path={polyline.path}
+          options={{
+            strokeColor: polyline.travelmode == "WALKING" ? "blue" : "orange",
+            strokeOpacity: 0.8,
+            strokeWeight: 5,
+          }}
+        ></Polyline>
       ))}
     </GoogleMap>
   );

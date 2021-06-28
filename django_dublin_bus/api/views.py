@@ -79,7 +79,13 @@ class GetRoute(View):
         #get the origin and destination coordinates
         origin_coords = request.GET.get('origin_coords', None)
 
-        dest_coords = request.GET.get('dest_coords', None)
+        dest_coords = request.GET.get('dest_coords', None) 
+
+        time = request.GET["time"] 
+
+        date = request.GET["date"]  
+
+      
 
         #if either of the above or null then return a bad request code
         if origin_coords==None or dest_coords==None:
@@ -95,8 +101,13 @@ class GetRoute(View):
 
         end = "{0},{1}".format(dest_coords['latitude'], dest_coords['longitude'])  
 
-        #this will also be changed so that it is included in the get request params
-        departure_time = datetime.datetime.now()
+        #this will also be changed so that it is included in the get request params 
+
+
+        if time=="now":
+            departure_time = datetime.datetime.now() 
+        else:
+            departure_time = datetime.datetime.strptime("{0} {1}".format(date, time), "%Y-%m-%d %H:%M")
 
         #get the directions from google
         directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')  
