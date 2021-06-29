@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Home from "./pages/Home/Home";
+import SignUp from "./pages/SignUp/SignUp";
 import { MapContextProvider } from "./components/Map/MapContext.js";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -34,6 +35,9 @@ function App() {
             exact
             render={() => <Home route_object={mapDetails.route_object}></Home>}
           />
+          <Route path="/signup" exact>
+            <SignUp />
+          </Route>
         </Switch>
         <Weather />
         <Footer />

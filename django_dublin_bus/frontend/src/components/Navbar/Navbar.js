@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import { IconContext } from 'react-icons/lib';
-import { Button } from '../../globalStyles';
+import React, { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { IconContext } from "react-icons/lib";
+import { Button } from "../../globalStyles";
 import {
   Nav,
   NavbarContainer,
@@ -12,8 +12,8 @@ import {
   NavItem,
   NavItemBtn,
   NavLinks,
-  NavBtnLink
-} from './Navbar.elements';
+  NavBtnLink,
+} from "./Navbar.elements";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -34,14 +34,14 @@ function Navbar() {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
 
   return (
     <>
-      <IconContext.Provider value={{ color: '#fff' }}>
+      <IconContext.Provider value={{ color: "#fff" }}>
         <Nav>
           <NavbarContainer>
-            <NavLogo to='/' onClick={closeMobileMenu}>
+            <NavLogo to="/" onClick={closeMobileMenu}>
               <NavIcon />
               Dublin Bus
             </NavLogo>
@@ -50,27 +50,27 @@ function Navbar() {
             </MobileIcon>
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
-                <NavLinks to='/' onClick={closeMobileMenu}>
+                <NavLinks to="/" onClick={closeMobileMenu}>
                   Home
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/services' onClick={closeMobileMenu}>
+                <NavLinks to="/services" onClick={closeMobileMenu}>
                   Timetables
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/products' onClick={closeMobileMenu}>
+                <NavLinks to="/products" onClick={closeMobileMenu}>
                   Leap Card
                 </NavLinks>
               </NavItem>
               <NavItemBtn>
                 {button ? (
-                  <NavBtnLink to='/sign-up'>
+                  <NavBtnLink to="/signup">
                     <Button primary>SIGN UP</Button>
                   </NavBtnLink>
                 ) : (
-                  <NavBtnLink to='/sign-up'>
+                  <NavBtnLink to="/signup">
                     <Button onClick={closeMobileMenu} fontBig primary>
                       SIGN UP
                     </Button>
