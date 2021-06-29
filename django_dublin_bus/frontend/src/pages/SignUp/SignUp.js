@@ -1,23 +1,138 @@
-import React from "react";
-import { Box, Typography, TextField, Button } from "@material-ui/core";
-import { InputFieldContainer, VerticalSpacer } from "./SignUp.elements";
+import React, { useState } from "react";
+import { Typography, TextField, Button } from "@material-ui/core";
+import {
+  InputFieldContainer,
+  VerticalSpacer,
+  Underline,
+} from "./SignUp.elements";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const [SignUpDetails, setSignUpDetails] = useState({
+    email: null,
+    username: null,
+    password: null,
+    confirmpassword: null,
+    emailerror: null,
+    usernameerror: null,
+    passworderror: null,
+    confirmpassworderror: null,
+  });
+
+  const HandleChange = (ev) => {
+    let key = ev.target.id;
+    let value = ev.target.value;
+    let new_val = {};
+    new_val[key] = value;
+
+    setSignUpDetails({ ...SignUpDetails, ...new_val });
+  };
+
+  const SignIn = () => {
+    let emailerror;
+    let usernameerror;
+    let passworderror;
+    let confirmpassworderror;
+    let anyerror = false;
+
+    if (SignUpDetails.email == null) {
+      emailerror = "*Field is required*";
+      anyerror = true;
+    }
+
+    if (SignUpDetails.username == null) {
+      usernameerror = "*Field is required*";
+      anyerror = true;
+    } else {
+      if (SignUpDetails.username.length < 8) {
+        usernameerror = "*Must be at least 8 characters*";
+        anyerror = true;
+      }
+    }
+
+    if (SignUpDetails.password == null) {
+      passworderror = "*Field is required*";
+      anyerror = true;
+    } else {
+      if (SignUpDetails.password.length < 8) {
+        passworderror = "*Must be at least 8 characters*";
+        anyerror = true;
+      }
+    }
+
+    if (SignUpDetails.confirmpassword == null) {
+      confirmpassworderror = "*Field is required*";
+      anyerror = true;
+    } else {
+      if (SignUpDetails.confirmpassword != SignUpDetails.password) {
+        confirmpassworderror = "*Passwords do not match*";
+        anyerror = true;
+      }
+    }
+
+    if (anyerror) {
+      setSignUpDetails({
+        ...SignUpDetails,
+        emailerror,
+        usernameerror,
+        passworderror,
+        confirmpassworderror,
+      });
+    }
+    return;
+  };
+
   return (
     <>
+      <VerticalSpacer />
+      <Underline>
+        <Typography style={{ color: "#4B59F7" }}>Sign-Up</Typography>
+      </Underline>
       <InputFieldContainer>
         <VerticalSpacer />
-        <TextField style={{ width: "100%" }} label="Email"></TextField>
-        <TextField style={{ width: "100%" }} label="Username"></TextField>
-        <TextField style={{ width: "100%" }} label="Password"></TextField>
         <TextField
           style={{ width: "100%" }}
-          label="Confirm password"
+          error={SignUpDetails.emailerror != null}
+          label={`Email ${
+            SignUpDetails.emailerror ? SignUpDetails.emailerror : ""
+          }`}
+          id="email"
+          onChange={HandleChange}
+        ></TextField>
+        <TextField
+          style={{ width: "100%", marginTop: "5px" }}
+          label={`Username ${
+            SignUpDetails.usernameerror ? SignUpDetails.usernameerror : ""
+          }`}
+          error={SignUpDetails.usernameerror != null}
+          id="username"
+          onChange={HandleChange}
+        ></TextField>
+        <TextField
+          style={{ width: "100%", marginTop: "5px" }}
+          label={`Password ${
+            SignUpDetails.passworderror ? SignUpDetails.passworderror : ""
+          }`}
+          error={SignUpDetails.passworderror != null}
+          id="password"
+          onChange={HandleChange}
+          type="password"
+        ></TextField>
+        <TextField
+          style={{ width: "100%", marginTop: "5px" }}
+          error={SignUpDetails.confirmpassworderror != null}
+          label={`Confirm Password ${
+            SignUpDetails.confirmpassworderror
+              ? SignUpDetails.confirmpassworderror
+              : ""
+          }`}
+          id="confirmpassword"
+          onChange={HandleChange}
+          type="password"
         ></TextField>
         <Button
           variant="contained"
-          onClick={() => console.log("Sign in")}
+          onClick={() => SignIn()}
           variant="contained"
           style={{
             backgroundColor: "#4B59F7",

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/SignUp/SignUp";
+import Login from "./pages/Login/Login";
 import { MapContextProvider } from "./components/Map/MapContext.js";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -37,6 +38,9 @@ function App() {
           />
           <Route path="/signup" exact>
             <SignUp />
+          </Route>
+          <Route path="/login" exact>
+            <Login />
           </Route>
         </Switch>
         <Weather />

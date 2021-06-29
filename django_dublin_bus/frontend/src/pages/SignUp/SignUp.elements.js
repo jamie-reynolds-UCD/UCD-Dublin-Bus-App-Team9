@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const InputFieldContainer = styled.div`
   width: 90%;
-  max-width: 250px;
+  max-width: 270px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,4 +14,11 @@ export const InputFieldContainer = styled.div`
 
 export const VerticalSpacer = styled.div`
   height: 15px;
+`;
+
+export const Underline = styled.div`
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+  border-bottom: 1px solid #4b59f7;
 `;
