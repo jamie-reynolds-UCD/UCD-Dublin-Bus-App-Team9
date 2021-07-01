@@ -6,6 +6,7 @@ import {
   Underline,
 } from "./SignUp.elements";
 import { Link } from "react-router-dom";
+import { SignUpRequest } from "../../Api/ApiFunctions";
 
 const SignUp = () => {
   const [SignUpDetails, setSignUpDetails] = useState({
@@ -18,6 +19,14 @@ const SignUp = () => {
     passworderror: null,
     confirmpassworderror: null,
   });
+
+  const HandleSignUp = async () => {
+    let response = await SignUpRequest(SignUpDetails);
+
+    if (response.status != 200) {
+      setSignUpDetails({ ...SignUpDetails, ...response.data.errors });
+    }
+  };
 
   const HandleChange = (ev) => {
     let key = ev.target.id;
@@ -45,7 +54,7 @@ const SignUp = () => {
       anyerror = true;
     } else {
       if (SignUpDetails.username.length < 8) {
-        usernameerror = "*Must be at least 8 characters*";
+        usernameerror = "*Must be >= 8 characters*";
         anyerror = true;
       }
     }
@@ -55,7 +64,7 @@ const SignUp = () => {
       anyerror = true;
     } else {
       if (SignUpDetails.password.length < 8) {
-        passworderror = "*Must be at least 8 characters*";
+        passworderror = "*Must be >= 8 characters*";
         anyerror = true;
       }
     }
@@ -78,8 +87,12 @@ const SignUp = () => {
         passworderror,
         confirmpassworderror,
       });
+      return;
     }
-    return;
+
+    //if no errors detect then call the api route to sign the user up
+
+    HandleSignUp();
   };
 
   return (

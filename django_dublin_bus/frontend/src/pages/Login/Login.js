@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Typography, TextField, Button } from "@material-ui/core";
+import { Typography, TextField, Button, Box } from "@material-ui/core";
 import {
   InputFieldContainer,
   VerticalSpacer,
   Underline,
 } from "../SignUp/SignUp.elements";
 import { Link } from "react-router-dom";
+import { LoginRequest } from "../../Api/ApiFunctions";
 
 const Login = () => {
   const [LoginDetails, setLoginDetails] = useState({
@@ -13,9 +14,10 @@ const Login = () => {
     password: null,
     usernameerror: null,
     passworderror: null,
+    auth_error: null,
   });
 
-  const LoginUser = () => {
+  const LoginUser = async () => {
     let usernameerror;
     let passworderror;
     let anyerror;
@@ -30,8 +32,20 @@ const Login = () => {
       anyerror = true;
     }
 
+    //if any errors identified here then don't even send request to backend
     if (anyerror) {
       setLoginDetails({ ...LoginDetails, usernameerror, passworderror });
+      return;
+    }
+
+    //if no errors then try to login
+    let response = await LoginRequest(LoginDetails);
+
+    if (response.status != 200) {
+      setLoginDetails({ ...LoginDetails, auth_error: response.data.error });
+    } else {
+      console.log("successful!");
+      //on successful login do something here
     }
   };
 
@@ -44,8 +58,6 @@ const Login = () => {
     setLoginDetails({ ...LoginDetails, ...new_val });
   };
 
-  console.log(LoginDetails);
-
   return (
     <>
       <VerticalSpacer />
@@ -54,6 +66,20 @@ const Login = () => {
       </Underline>
       <InputFieldContainer>
         <VerticalSpacer />
+        <Box
+          style={{
+            width: "100",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
+          <Typography
+            style={{ color: "red", marginTop: "10px", marginBottom: "10px" }}
+          >
+            {LoginDetails.auth_error == null ? "" : LoginDetails.auth_error}
+          </Typography>
+        </Box>
 
         <TextField
           style={{ width: "100%" }}
@@ -72,6 +98,7 @@ const Login = () => {
           onChange={HandleChange}
           error={LoginDetails.passworderror !== null}
           id="password"
+          type="password"
         ></TextField>
 
         <Button

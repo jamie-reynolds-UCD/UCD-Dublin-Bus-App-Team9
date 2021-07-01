@@ -14,4 +14,28 @@ const GetRoute = async (params) => {
   return response;
 };
 
-export { GetRoute };
+const SignUpRequest = async (params) => {
+  let response;
+
+  try {
+    response = await axios.post("/api/signup/", params);
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+const LoginRequest = async (params) => {
+  let response;
+
+  try {
+    response = await axios.post("/api/login/", params);
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+export { GetRoute, SignUpRequest, LoginRequest };
