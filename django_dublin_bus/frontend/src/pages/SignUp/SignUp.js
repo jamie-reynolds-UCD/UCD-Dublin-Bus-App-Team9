@@ -7,8 +7,10 @@ import {
 } from "./SignUp.elements";
 import { Link } from "react-router-dom";
 import { SignUpRequest } from "../../Api/ApiFunctions";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
+  const history = useHistory();
   const [SignUpDetails, setSignUpDetails] = useState({
     email: null,
     username: null,
@@ -25,6 +27,8 @@ const SignUp = () => {
 
     if (response.status != 200) {
       setSignUpDetails({ ...SignUpDetails, ...response.data.errors });
+    } else {
+      history.push({ pathname: "/login", state: { initial_login: true } });
     }
   };
 

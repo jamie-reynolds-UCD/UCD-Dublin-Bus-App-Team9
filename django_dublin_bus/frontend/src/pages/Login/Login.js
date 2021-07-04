@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Typography, TextField, Button, Box } from "@material-ui/core";
 import {
   InputFieldContainer,
@@ -7,8 +7,11 @@ import {
 } from "../SignUp/SignUp.elements";
 import { Link } from "react-router-dom";
 import { LoginRequest } from "../../Api/ApiFunctions";
+import { useLocation, useHistory } from "react-router-dom";
+import AuthContext from "../../components/Auth/AuthContext";
 
 const Login = () => {
+  const { updatecredentials } = useContext(AuthContext);
   const [LoginDetails, setLoginDetails] = useState({
     username: null,
     password: null,
@@ -16,6 +19,18 @@ const Login = () => {
     passworderror: null,
     auth_error: null,
   });
+
+  const location = useLocation();
+
+  const history = useHistory();
+
+  var initial_login = false;
+
+  try {
+    initial_login = location.state.initial_login;
+  } catch (error) {
+    initial_login = false;
+  }
 
   const LoginUser = async () => {
     let usernameerror;
@@ -44,7 +59,8 @@ const Login = () => {
     if (response.status != 200) {
       setLoginDetails({ ...LoginDetails, auth_error: response.data.error });
     } else {
-      console.log("successful!");
+      updatecredentials();
+      history.push("/");
       //on successful login do something here
     }
   };
@@ -62,7 +78,9 @@ const Login = () => {
     <>
       <VerticalSpacer />
       <Underline>
-        <Typography style={{ color: "#4B59F7" }}>Login</Typography>
+        <Typography style={{ color: "#4B59F7" }}>
+          {initial_login == true ? "Sign-up successful - login below" : "Login"}
+        </Typography>
       </Underline>
       <InputFieldContainer>
         <VerticalSpacer />

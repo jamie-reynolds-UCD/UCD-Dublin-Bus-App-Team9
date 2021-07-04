@@ -38,4 +38,16 @@ const LoginRequest = async (params) => {
   return response;
 };
 
-export { GetRoute, SignUpRequest, LoginRequest };
+const GetUserCredentials = async () => {
+  let response;
+
+  try {
+    response = await axios.get("/api/usercredentials/");
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+export { GetRoute, SignUpRequest, LoginRequest, GetUserCredentials };

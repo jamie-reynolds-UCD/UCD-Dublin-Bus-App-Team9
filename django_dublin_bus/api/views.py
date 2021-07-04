@@ -4,7 +4,7 @@ import datetime
 from django.http import HttpResponse, HttpResponseBadRequest
 import json
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
@@ -127,6 +127,20 @@ class GetRoute(View):
 
 
 
+class UserCredentials(View):
+
+    """Returns whether or not the client is logged in, and what their user id is (if logged in)""" 
+
+    def get(self, request):
+
+        loggedin = request.user.is_authenticated 
+
+        if loggedin:
+            userid = request.user.id 
+        else:
+            userid = None 
+
+        return HttpResponse(json.dumps({'loggedin':loggedin, 'userid':userid}))
 
 @method_decorator(csrf_exempt, name='dispatch')
 class SignUp(View): 
@@ -198,7 +212,10 @@ class Login(View):
         if user==None:
             return HttpResponseBadRequest(json.dumps({'error':'Invalid login credentials'})) 
         else:
-            return HttpResponse(json.dumps({'success':True})) 
+            login(request, user) 
+
+            return HttpResponse(json.dumps({'success':True}))  
+
 
 
 
