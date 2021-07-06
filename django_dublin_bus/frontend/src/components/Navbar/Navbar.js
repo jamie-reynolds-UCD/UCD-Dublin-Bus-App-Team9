@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { Button } from "../../globalStyles";
@@ -14,6 +14,8 @@ import {
   NavLinks,
   NavBtnLink,
 } from "./Navbar.elements";
+import AuthContext from "../Auth/AuthContext";
+import { Logout } from "../../Api/ApiFunctions";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -33,6 +35,17 @@ function Navbar() {
   useEffect(() => {
     showButton();
   }, []);
+
+  let { loggedin, updatecredentials } = useContext(AuthContext);
+
+  let profile_button_text = loggedin ? "PROFILE" : "SIGN UP";
+
+  let button_link = loggedin ? "/profile" : "/signup";
+
+  const LogoutUser = async () => {
+    await Logout();
+    updatecredentials();
+  };
 
   window.addEventListener("resize", showButton);
 
@@ -64,15 +77,23 @@ function Navbar() {
                   Leap Card
                 </NavLinks>
               </NavItem>
+
+              {loggedin ? (
+                <NavItem>
+                  <NavLinks to="/" onClick={LogoutUser}>
+                    Logout
+                  </NavLinks>
+                </NavItem>
+              ) : null}
               <NavItemBtn>
                 {button ? (
-                  <NavBtnLink to="/signup">
-                    <Button primary>SIGN UP</Button>
+                  <NavBtnLink to={button_link}>
+                    <Button primary>{profile_button_text}</Button>
                   </NavBtnLink>
                 ) : (
-                  <NavBtnLink to="/signup">
+                  <NavBtnLink to={button_link}>
                     <Button onClick={closeMobileMenu} fontBig primary>
-                      SIGN UP
+                      {profile_button_text}
                     </Button>
                   </NavBtnLink>
                 )}

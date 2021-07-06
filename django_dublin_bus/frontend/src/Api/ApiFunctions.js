@@ -50,4 +50,16 @@ const GetUserCredentials = async () => {
   return response;
 };
 
-export { GetRoute, SignUpRequest, LoginRequest, GetUserCredentials };
+const Logout = async () => {
+  let response;
+
+  try {
+    response = await axios.post("/api/logout/");
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+export { GetRoute, SignUpRequest, LoginRequest, GetUserCredentials, Logout };

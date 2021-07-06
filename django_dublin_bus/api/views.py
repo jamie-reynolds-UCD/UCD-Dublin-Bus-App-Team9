@@ -4,7 +4,7 @@ import datetime
 from django.http import HttpResponse, HttpResponseBadRequest
 import json
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
@@ -213,8 +213,21 @@ class Login(View):
             return HttpResponseBadRequest(json.dumps({'error':'Invalid login credentials'})) 
         else:
             login(request, user) 
+            return HttpResponse(json.dumps({'success':True}))   
 
-            return HttpResponse(json.dumps({'success':True}))  
+@method_decorator(csrf_exempt, name='dispatch')
+class Logout(View): 
+
+    def post(self, request):
+        logout(request) 
+        return HttpResponse(json.dumps({'success':True}))   
+
+
+
+
+
+
+
 
 
 
