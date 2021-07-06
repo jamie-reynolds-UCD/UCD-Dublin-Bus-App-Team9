@@ -3,6 +3,10 @@ import googlemaps
 import datetime
 from django.http import HttpResponse, HttpResponseBadRequest
 import json
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 gmaps = googlemaps.Client(key='AIzaSyBdUcgbXHzxHB_UbYZmd7R2R6XaEO078WA')
 
@@ -85,8 +89,6 @@ class GetRoute(View):
 
         date = request.GET["date"]  
 
-      
-
         #if either of the above or null then return a bad request code
         if origin_coords==None or dest_coords==None:
             return HttpResponseBadRequest(json.dumps({'error':'Origin and destination coordinates required.'}))
@@ -121,4 +123,119 @@ class GetRoute(View):
             #return to client
             return HttpResponse(json.dumps({'route':parsed_directions, 'route_bounds':route_bounds})) 
         except:
-            HttpResponseBadRequest(json.dumps({'error':'Could not find a valid route.'}))
+            HttpResponseBadRequest(json.dumps({'error':'Could not find a valid route.'})) 
+
+
+
+class UserCredentials(View):
+
+    """Returns whether or not the client is logged in, and what their user id is (if logged in)""" 
+
+    def get(self, request):
+
+        loggedin = request.user.is_authenticated 
+
+        if loggedin:
+            userid = request.user.id 
+        else:
+            userid = None 
+
+        return HttpResponse(json.dumps({'loggedin':loggedin, 'userid':userid}))
+
+@method_decorator(csrf_exempt, name='dispatch')
+class SignUp(View): 
+
+    def post(self, request): 
+        
+        #get email, password and username from request 
+
+        body = json.loads(request.body)
+        email = body.get('email', None) 
+        password = body.get('password', None) 
+        username = body.get('username', None)  
+
+        #need to check requirements (e.g. not null/password and username length etc here)
+        emailerror, passworderror, usernameerror = None, None, None 
+        anyerror = False
+        
+        if email==None:
+            emailerror = "*Field is required*"  
+            anyerror = True
+
+        if password==None:
+            passworderror="*Field is required*"   
+            anyerror = True
+        else: 
+            if len(password)<8:
+                passworderror="*Must be >= 8 characters*" 
+                anyerror = True
+
+        if username==None:
+            usernameerror="*Field is required*" 
+            anyerror=True
+        else:
+            if len(username)<8:
+                usernameerror="*Must be >= 8 characters*"  
+                anyerror = True
+
+        try:
+            username_exists = User.objects.get(username=username) 
+            username_exists = True 
+        except:
+            username_exists = False 
+
+        if username_exists:
+            usernameerror="*Username already in use*" 
+            anyerror = True 
+
+        if anyerror:
+            return HttpResponseBadRequest(json.dumps({'errors':{'emailerror':emailerror, 'passworderror':passworderror, 'usernameerror':usernameerror}})) 
+
+        else:
+            User.objects.create_user(username, email, password) 
+            return HttpResponse(json.dumps({'success':True})) 
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class Login(View):
+
+    def post(self, request): 
+        
+        body = json.loads(request.body)
+
+        username = body.get("username", None) 
+
+        password = body.get("password", None) 
+
+        user = authenticate(username=username, password=password) 
+
+        if user==None:
+            return HttpResponseBadRequest(json.dumps({'error':'Invalid login credentials'})) 
+        else:
+            login(request, user) 
+            return HttpResponse(json.dumps({'success':True}))   
+
+@method_decorator(csrf_exempt, name='dispatch')
+class Logout(View): 
+
+    def post(self, request):
+        logout(request) 
+        return HttpResponse(json.dumps({'success':True}))   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
