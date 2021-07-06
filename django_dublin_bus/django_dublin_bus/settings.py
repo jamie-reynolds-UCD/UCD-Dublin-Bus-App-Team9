@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+CSRF_COOKIE_NAME="dubbuscsrf"
+
 # Application definition
 
 INSTALLED_APPS = [
