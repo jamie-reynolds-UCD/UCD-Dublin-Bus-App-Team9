@@ -6,6 +6,7 @@ import {
   MapRouteContainer,
   RouteInputDirectionsContainer,
 } from "../../components/MapRouteContainer/MapRouteContainer.elements";
+import Weather from "../../components/Weather/Weather";
 
 const Home = ({ route_object }) => {
   return (
@@ -17,9 +18,9 @@ const Home = ({ route_object }) => {
             <OriginDestinInput />
             <RouteDescription route_object={route_object} />
           </RouteInputDirectionsContainer>
-
           <FinalMap />
         </MapRouteContainer>
+        <Weather />
       </div>
     </>
   );

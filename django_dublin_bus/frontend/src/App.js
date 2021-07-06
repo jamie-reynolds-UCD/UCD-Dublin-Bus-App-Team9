@@ -9,7 +9,7 @@ import { AuthContextProvider } from "./components/Auth/AuthContext.js";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar, Footer } from "./components";
-import { Weather } from "./components";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   const [mapDetails, setMapDetails] = useState({
@@ -22,6 +22,7 @@ function App() {
   const [userCredentials, setUserCredentials] = useState({
     loggedin: false,
     userid: null,
+    username: null,
   });
 
   const UpdateUserCredentials = async () => {
@@ -39,6 +40,7 @@ function App() {
         value={{
           loggedin: userCredentials.loggedin,
           userid: userCredentials.userid,
+          username: userCredentials.username,
           updatecredentials: UpdateUserCredentials,
         }}
       >
@@ -71,8 +73,11 @@ function App() {
             <Route path="/login" exact>
               <Login />
             </Route>
+            <Route path="/profile" exact>
+              <Profile />
+            </Route>
           </Switch>
-          <Weather />
+
           <Footer />
         </MapContextProvider>
       </AuthContextProvider>

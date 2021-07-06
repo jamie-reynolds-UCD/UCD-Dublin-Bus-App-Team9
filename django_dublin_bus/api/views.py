@@ -137,10 +137,12 @@ class UserCredentials(View):
 
         if loggedin:
             userid = request.user.id 
+            username = User.objects.get(id=userid).username
         else:
-            userid = None 
+            userid = None  
+            username = None
 
-        return HttpResponse(json.dumps({'loggedin':loggedin, 'userid':userid}))
+        return HttpResponse(json.dumps({'loggedin':loggedin, 'userid':userid, 'username':username}))
 
 @method_decorator(csrf_exempt, name='dispatch')
 class SignUp(View): 
