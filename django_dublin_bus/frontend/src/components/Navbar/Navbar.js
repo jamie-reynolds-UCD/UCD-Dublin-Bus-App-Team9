@@ -60,8 +60,8 @@ function Navbar() {
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/products' onClick={closeMobileMenu}>
-                  Leap Card
+                <NavLinks to='/Events' onClick={closeMobileMenu}>
+                  Events
                 </NavLinks>
               </NavItem>
               <NavItemBtn>

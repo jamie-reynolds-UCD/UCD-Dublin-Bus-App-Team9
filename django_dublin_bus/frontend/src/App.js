@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Home from "./pages/Home/Home";
+import Events from "./pages/EventsPage/Events";
 import { MapContextProvider } from "./components/Map/MapContext.js";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -30,6 +31,11 @@ function App() {
             path="/"
             exact
             render={() => <Home route_object={mapDetails.route_object}></Home>}
+          />
+           <Route
+            path="/Events"
+            exact
+            render={() => <Events></Events>}
           />
         </Switch>
         <Footer />
