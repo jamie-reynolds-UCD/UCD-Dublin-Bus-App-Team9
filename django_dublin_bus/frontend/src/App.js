@@ -4,6 +4,8 @@ import { MapContextProvider } from "./components/Map/MapContext.js";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar, Footer } from "./components";
+import {Weather} from "./components";
+
 
 function App() {
   const [mapDetails, setMapDetails] = useState({
@@ -14,6 +16,7 @@ function App() {
   });
 
   return (
+    
     <Router>
       <MapContextProvider
         value={{
@@ -32,9 +35,12 @@ function App() {
             render={() => <Home route_object={mapDetails.route_object}></Home>}
           />
         </Switch>
+        <Weather />
         <Footer />
       </MapContextProvider>
+
     </Router>
+    
   );
 }
 
