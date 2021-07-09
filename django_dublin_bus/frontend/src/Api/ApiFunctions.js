@@ -62,4 +62,36 @@ const Logout = async () => {
   return response;
 };
 
-export { GetRoute, SignUpRequest, LoginRequest, GetUserCredentials, Logout };
+const LoadUserLocations = async () => {
+  let response;
+
+  try {
+    response = await axios.get("/api/userlocations/");
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+const SaveNewLocation = async (params) => {
+  let response;
+
+  try {
+    response = await axios.post("/api/savelocation/", params);
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+export {
+  GetRoute,
+  SignUpRequest,
+  LoginRequest,
+  GetUserCredentials,
+  Logout,
+  LoadUserLocations,
+  SaveNewLocation,
+};
