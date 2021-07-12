@@ -86,6 +86,18 @@ const SaveNewLocation = async (params) => {
   return response;
 };
 
+const DeleteLocation = async (location_id) => {
+  let response;
+
+  try {
+    response = await axios.post("/api/deletelocation/", { id: location_id });
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
 export {
   GetRoute,
   SignUpRequest,
@@ -94,4 +106,5 @@ export {
   Logout,
   LoadUserLocations,
   SaveNewLocation,
+  DeleteLocation,
 };

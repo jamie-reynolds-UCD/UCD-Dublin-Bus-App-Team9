@@ -236,7 +236,17 @@ class SaveLocation(View):
 
         new_location.save() 
 
-        return HttpResponse(json.dumps({'success':True}))
+        return HttpResponse(json.dumps({'success':True})) 
+
+@method_decorator(csrf_exempt, name='dispatch')
+class DeleteLocation(View):
+
+    def post(self, request):
+        body = json.loads(request.body) 
+        id = body['id'] 
+        SavedLocations.objects.get(id=id).delete() 
+        return HttpResponse(json.dumps({'success':True})) 
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class Logout(View): 

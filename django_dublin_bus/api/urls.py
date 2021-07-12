@@ -9,5 +9,6 @@ urlpatterns = [
     path('usercredentials/', UserCredentials.as_view()), 
     path('logout/', Logout.as_view()),
     path('userlocations/', UserLocations.as_view()),
-    path('savelocation/', SaveLocation.as_view())
+    path('savelocation/', SaveLocation.as_view()),
+    path('deletelocation/', DeleteLocation.as_view())
 ]
