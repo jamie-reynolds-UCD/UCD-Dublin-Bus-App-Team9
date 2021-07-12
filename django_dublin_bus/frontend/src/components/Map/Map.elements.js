@@ -10,8 +10,8 @@ export const MapContainer = styled(Container)`
     width: 100%;
     margin: auto;
     flex: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   ${Container}

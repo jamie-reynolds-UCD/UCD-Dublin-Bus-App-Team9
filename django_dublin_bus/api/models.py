@@ -1,6 +1,17 @@
 from django.db import models
 from django.db.models.fields import IntegerField
+from django.contrib.auth.models import User
 
+
+
+class SavedLocations(models.Model):
+
+    """This table contains the saved locations of each user. User field is a foreign key on 
+    the id field of the User table."""
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+    full_address = models.CharField(max_length=700) 
+    location_name = models.CharField(max_length=100)
 
 class BusStationsStatic(models.Model): 
 
@@ -11,7 +22,6 @@ class BusStationsStatic(models.Model):
     stop_name = models.CharField(max_length=150) 
     stop_lat = models.DecimalField(max_digits=17, decimal_places=13) 
     stop_long = models.DecimalField(max_digits=17, decimal_places=13)   
-
 
 class RoutesStatic(models.Model):  
 
