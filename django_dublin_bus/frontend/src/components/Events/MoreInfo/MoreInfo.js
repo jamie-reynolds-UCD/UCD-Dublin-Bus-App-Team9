@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from "react";
 import {
   withGoogleMap,
   GoogleMap,
@@ -6,25 +6,35 @@ import {
 } from "react-google-maps";
 import { InfoWindow, InfoContainer, TextWrapper, TopLine, TimeDate, Venue, MapContainer, Buttons } from "./MoreInfo.elements";
 import { Link } from 'react-router-dom';
+import QuickLocationContext from "../../SavedLocations/QuickLocationContext";
 
 
 export default function MoreInfo(SelEvent) {
 
+  const { quick_location_updater } = useContext(QuickLocationContext); 
+  const venuelat = parseFloat(SelEvent._embedded.venues[0].location.latitude);
+  const venuelong = parseFloat(SelEvent._embedded.venues[0].location.longitude);
+  const venue = SelEvent._embedded.venues[0].name;
+
+  
+  //Google Map marker of selected event
   const EventMap = withGoogleMap(props =>
     <GoogleMap
       defaultZoom={14}
-      defaultCenter={{ lat: parseFloat(SelEvent._embedded.venues[0].location.latitude), lng: parseFloat(SelEvent._embedded.venues[0].location.longitude) }}
+      defaultCenter={{ lat: venuelat, lng: venuelong }}
     >
       <Marker
-        position={{ lat: parseFloat(SelEvent._embedded.venues[0].location.latitude), lng: parseFloat(SelEvent._embedded.venues[0].location.longitude) }}
+        position={{ lat: venuelat, lng: venuelong }}
       />
     </GoogleMap>
   );
 
+  //OnClick of 'PlanRoute' bring user backt to the homepage with the selected venue entered as destination
   const HandleClick = () => {
-    console.log("Need to send",SelEvent._embedded.venues[0].location, "to destination input" )
-}
-  
+    console.log(lat, long, venue);
+    quick_location_updater({address_string: venue, latitude: venuelat, longitude: venuelong}) 
+  }
+
   
     return (
       <InfoContainer>
