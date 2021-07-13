@@ -6,20 +6,26 @@ import {
   MapRouteContainer,
   RouteInputDirectionsContainer,
 } from "../../components/MapRouteContainer/MapRouteContainer.elements";
+import Weather from "../../components/Weather/Weather";
+import SavedLocationOptions from "../../components/SavedLocations/SavedLocationOptions";
 
-const Home = ({ route_object }) => {
+const Home = ({ route_object, quick_location, current_location }) => {
   return (
     <>
       {" "}
       <div style={{ width: "100vw", height: "100vh" }}>
         <MapRouteContainer>
           <RouteInputDirectionsContainer>
-            <OriginDestinInput />
+            <OriginDestinInput
+              quick_location={quick_location}
+              current_location={current_location}
+            />
             <RouteDescription route_object={route_object} />
           </RouteInputDirectionsContainer>
-
+          <SavedLocationOptions />
           <FinalMap />
         </MapRouteContainer>
+        <Weather />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import MapContext from "../Map/MapContext";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { GetRoute } from "../../Api/ApiFunctions";
@@ -7,8 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import { InputContainer } from "./OriginDestinInput.elements";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import AuthContext from "../Auth/AuthContext";
 
-const OriginDestinInput = () => {
+const OriginDestinInput = ({ quick_location, current_location }) => {
   //access this function which allows us to update the markers that are rendered on the application
   const { setMapDetails } = useContext(MapContext);
 
@@ -21,6 +22,41 @@ const OriginDestinInput = () => {
     origin_coords: null,
     dest_coords: null,
   });
+
+  const SetDestinationToQuickLocation = () => {
+    if (quick_location.latitude != null) {
+      setPlaceDetails({
+        ...placeDetails,
+        destination_address: {
+          label: quick_location.address_string,
+          value: {},
+        },
+        dest_coords: {
+          latitude: quick_location.latitude,
+          longitude: quick_location.longitude,
+        },
+      });
+
+      UpdateRoute({
+        latitude: quick_location.latitude,
+        longitude: quick_location.longitude,
+      });
+    }
+  };
+
+  const SetOriginToCurrentLocation = () => {
+    if (current_location.latitude != null) {
+      setPlaceDetails({
+        ...placeDetails,
+        origin_address: { label: "Current Location", value: {} },
+        origin_coords: current_location,
+      });
+    }
+  };
+
+  //any time the quick location changes set it as the destination in the route planner
+  useEffect(SetDestinationToQuickLocation, [quick_location]);
+  useEffect(SetOriginToCurrentLocation, [current_location]);
 
   const GetTodaysDate = () => {
     var today = new Date();
@@ -81,10 +117,10 @@ const OriginDestinInput = () => {
     });
   };
 
-  const UpdateRoute = async () => {
+  const UpdateRoute = async (dest_coords) => {
     let response = await GetRoute({
       origin_coords: placeDetails.origin_coords,
-      dest_coords: placeDetails.dest_coords,
+      dest_coords: dest_coords != null ? dest_coords : placeDetails.dest_coords,
       time: timeDetails.use_now ? "now" : timeDetails.chosentime,
       date: timeDetails.date,
     });

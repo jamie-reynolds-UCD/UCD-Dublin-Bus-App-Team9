@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from api.models import SavedLocations
+from api.serializers import *
 
 gmaps = googlemaps.Client(key='AIzaSyBdUcgbXHzxHB_UbYZmd7R2R6XaEO078WA')
 
@@ -137,10 +139,12 @@ class UserCredentials(View):
 
         if loggedin:
             userid = request.user.id 
+            username = User.objects.get(id=userid).username
         else:
-            userid = None 
+            userid = None  
+            username = None
 
-        return HttpResponse(json.dumps({'loggedin':loggedin, 'userid':userid}))
+        return HttpResponse(json.dumps({'loggedin':loggedin, 'userid':userid, 'username':username}))
 
 @method_decorator(csrf_exempt, name='dispatch')
 class SignUp(View): 
@@ -216,11 +220,64 @@ class Login(View):
             return HttpResponse(json.dumps({'success':True}))   
 
 @method_decorator(csrf_exempt, name='dispatch')
+class SaveLocation(View):
+
+    def post(self, request):
+
+        body = json.loads(request.body) 
+
+        full_address = body.get("full_address") 
+
+        location_name = body.get("location_name")  
+
+        user_id = request.user.id 
+
+        new_location = SavedLocations(full_address=full_address, location_name=location_name, user_id=user_id) 
+
+        new_location.save() 
+
+        return HttpResponse(json.dumps({'success':True})) 
+
+@method_decorator(csrf_exempt, name='dispatch')
+class DeleteLocation(View):
+
+    def post(self, request):
+        body = json.loads(request.body) 
+        id = body['id'] 
+        SavedLocations.objects.get(id=id).delete() 
+        return HttpResponse(json.dumps({'success':True})) 
+
+
+@method_decorator(csrf_exempt, name='dispatch')
 class Logout(View): 
 
     def post(self, request):
         logout(request) 
-        return HttpResponse(json.dumps({'success':True}))   
+        return HttpResponse(json.dumps({'success':True}))    
+
+class UserLocations(View):
+
+    def get(self, request):
+
+        if request.user.is_authenticated==False:
+            return HttpResponseBadRequest(json.dumps({'error':'Invalid login credentials'}))   
+
+        #get the query set of all locations saved by this user
+        saved_locations = SavedLocations.objects.filter(user_id = request.user.id)  
+
+        serialized_locations = [serialize_saved_location(x) for x in saved_locations] 
+
+        return HttpResponse(json.dumps({'locations':serialized_locations})) 
+
+
+
+
+
+
+        
+
+         
+
 
 
 
