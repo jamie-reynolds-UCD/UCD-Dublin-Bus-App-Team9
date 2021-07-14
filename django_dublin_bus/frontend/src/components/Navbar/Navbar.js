@@ -77,6 +77,11 @@ function Navbar() {
                   Events
                 </NavLinks>
               </NavItem>
+              <NavItem>
+                <NavLinks to='/Attractions' onClick={closeMobileMenu}>
+                  Attractions
+                </NavLinks>
+              </NavItem>
 
               {loggedin ? (
                 <NavItem>

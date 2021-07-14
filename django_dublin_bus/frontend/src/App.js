@@ -3,6 +3,7 @@ import Home from "./pages/Home/Home";
 import Events from "./pages/EventsPage/Events";
 import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
+import Attractions from "./pages/Attractions/Attractions";
 import { GetUserCredentials } from "./Api/ApiFunctions";
 import { MapContextProvider } from "./components/Map/MapContext.js";
 import { AuthContextProvider } from "./components/Auth/AuthContext.js";
@@ -113,7 +114,7 @@ function App() {
             <GlobalStyle />
             <Navbar />
             <Switch>
-              <Route path="/Events" exact render={() => <Events></Events>} />
+              <Route path="/Events" exact render={() => <Events />} />
               <Route
                 path="/"
                 exact
@@ -133,6 +134,9 @@ function App() {
               </Route>
               <Route path="/profile" exact>
                 <Profile />
+              </Route>
+                <Route path="/attractions" exact>
+              <Attractions />
               </Route>
             </Switch>
 
