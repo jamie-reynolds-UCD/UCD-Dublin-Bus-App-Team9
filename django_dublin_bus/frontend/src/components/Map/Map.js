@@ -2,10 +2,20 @@ import React, { useContext, useRef, useEffect } from "react";
 import MapContext from "./MapContext";
 import { GoogleMap, withGoogleMap, Marker, Polyline } from "react-google-maps";
 import { MapContainer } from "./Map.elements";
+import { MAP } from "react-google-maps/lib/constants";
 
 function Map() {
-  const { markers, polylines, route_bounds } = useContext(MapContext);
+  const { markers, polylines, route_bounds, place_service_updater } =
+    useContext(MapContext);
   const mapRef = useRef(null);
+
+  useEffect(() => {
+    let places_service = new google.maps.places.PlacesService(
+      mapRef.current.context[MAP]
+    );
+
+    place_service_updater(places_service);
+  }, []);
 
   useEffect(() => {
     //when the map mounts check if the route_bounds object has been set (i.e. a route has been selected)
