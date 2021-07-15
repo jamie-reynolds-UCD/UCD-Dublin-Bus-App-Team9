@@ -5,7 +5,7 @@ import AuthContext from "../Auth/AuthContext";
 import SavedLocationButton from "./SavedLocationButton";
 import { Typography, Box } from "@material-ui/core";
 
-const SavedLocationOptions = () => {
+const SavedLocationOptions = ({ display }) => {
   const [locDetails, setLocDetails] = useState({ saved_locations: [] });
   let { loggedin } = useContext(AuthContext);
 
@@ -21,8 +21,6 @@ const SavedLocationOptions = () => {
   };
 
   useEffect(LoadSavedLocations, []);
-
-  let display = loggedin & (locDetails.saved_locations.length > 0);
 
   return (
     <OptionsContainer

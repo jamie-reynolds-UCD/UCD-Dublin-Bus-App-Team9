@@ -48,14 +48,14 @@ const ActivitySuggestion = ({ activity_suggestion }) => {
     >
       <div>
         <img
-          width="50"
-          height="50"
+          width="30"
+          height="30"
           src={photo}
           style={{ borderRadius: "5px" }}
         />
       </div>
       <Box style={{ marginLeft: "3px", flex: 1 }}>
-        <Typography>{name}</Typography>
+        <Typography style={{ fontSize: "10px" }}>{name}</Typography>
         <div
           style={{
             display: "flex",
@@ -94,8 +94,16 @@ const ActivitySuggestion = ({ activity_suggestion }) => {
           }}
         >
           {" "}
-          <Button style={{ textTransform: "none" }} onClick={GetDirections}>
-            <Typography>Get there</Typography>
+          <Button
+            style={{
+              textTransform: "none",
+              minHeight: "0px",
+              minWidth: "0px",
+              padding: "1px",
+            }}
+            onClick={GetDirections}
+          >
+            <Typography style={{ fontSize: "10px" }}>Get there</Typography>
           </Button>
         </div>
       </Box>

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button, Typography, Box } from "@material-ui/core";
 import ActivitySuggestionList from "./ActivitySuggestionList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
-const ActivityOption = ({ activity_object, place_service }) => {
+const ActivityOption = ({ activity_object, place_service, icon }) => {
   const [suggestionDetails, setSuggestionDetails] = useState({
     suggestions: [],
     display_suggestions: false,
@@ -38,7 +40,23 @@ const ActivityOption = ({ activity_object, place_service }) => {
   return (
     <>
       <Button
-        onClick={() => FindSuggestions()}
+        onClick={() => {
+          if (suggestionDetails.display_suggestions) {
+            setSuggestionDetails({
+              ...suggestionDetails,
+              display_suggestions: false,
+            });
+          } else {
+            if (suggestionDetails.suggestions.length > 0) {
+              setSuggestionDetails({
+                ...suggestionDetails,
+                display_suggestions: true,
+              });
+            } else {
+              FindSuggestions();
+            }
+          }
+        }}
         variant="contained"
         style={{
           width: "100%",
@@ -46,9 +64,41 @@ const ActivityOption = ({ activity_object, place_service }) => {
           marginTop: "5px",
           backgroundColor: "rgba(75, 89, 247, 1)",
           fontSize: "12px",
+          textTransform: "none",
         }}
       >
-        <Typography>{activity_object}</Typography>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          <div style={{ flex: 1 }}>
+            <Typography>
+              <FontAwesomeIcon style={{ marginRight: "5px" }} icon={icon} />
+              {activity_object}
+            </Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+
+              alignItems: "center",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={
+                suggestionDetails.display_suggestions
+                  ? faChevronUp
+                  : faChevronDown
+              }
+            />
+          </div>
+        </div>
       </Button>
 
       <ActivitySuggestionList

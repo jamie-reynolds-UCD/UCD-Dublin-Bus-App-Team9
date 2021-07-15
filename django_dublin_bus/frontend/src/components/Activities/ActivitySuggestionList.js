@@ -16,12 +16,7 @@ const ActivitySuggestionList = ({ activity_type, suggestions, display }) => {
           displaysuggestions == false
             ? { width: "0px", height: "0px", overflow: "hidden" }
             : {
-                position: "fixed",
-                top: "30%",
-                left: "50%",
-                transform: "translate(-50%, 0)",
-                zIndex: "10000",
-                maxHeight: "50%",
+                maxHeight: "200px",
                 maxWidth: "280px",
                 overflowY: "scroll",
                 overflowX: "scroll",
@@ -31,7 +26,7 @@ const ActivitySuggestionList = ({ activity_type, suggestions, display }) => {
         <Box
           borderRadius={5}
           style={{ backgroundColor: "white", padding: "8px" }}
-          boxShadow={1}
+          boxShadow={2}
         >
           <Typography>{activity_type}</Typography>
           {suggestions.map((suggestion) => (
