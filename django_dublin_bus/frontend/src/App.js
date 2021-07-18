@@ -28,6 +28,8 @@ function App() {
     address_string: null,
   });
 
+  const [placeService, setPlaceService] = useState(null);
+
   const UpdateQuickLocation = (new_loc) => {
     setQuickLocation({ ...quickLocation, ...new_loc });
   };
@@ -108,6 +110,8 @@ function App() {
               polylines: mapDetails.polylines,
               route_bounds: mapDetails.route_bounds,
               setMapDetails: setMapDetails,
+              place_service_updater: (new_service) =>
+                setPlaceService(new_service),
             }}
           >
             <ScrollToTop />
@@ -123,6 +127,7 @@ function App() {
                     route_object={mapDetails.route_object}
                     quick_location={quickLocation}
                     current_location={userCredentials.current_location}
+                    place_service={placeService}
                   ></Home>
                 )}
               />
