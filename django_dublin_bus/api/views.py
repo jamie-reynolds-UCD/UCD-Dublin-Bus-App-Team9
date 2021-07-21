@@ -15,14 +15,35 @@ gmaps = googlemaps.Client(key='AIzaSyBdUcgbXHzxHB_UbYZmd7R2R6XaEO078WA')
 # Create your views here.
 
 def parse_step(step):
-    """Helper function - Parses a 'step' from within the directions response"""
+    """Helper function - Parses a 'step' from within the directions response""" 
 
+
+  
     #these steps are common to both walking and taking the bus
     parsed_step = {} 
     parsed_step['distance'] = step['distance']['text'] 
     parsed_step['duration'] = step['duration']['text']
     parsed_step['travel_mode'] = step['travel_mode'] 
-    parsed_step['description'] = step['html_instructions'] 
+
+    first_comma = step['html_instructions'].find(",")  
+
+    if first_comma==-1:
+        parsed_step['short_instructions'] = step['html_instructions'] 
+    else:
+        parsed_step['short_instructions'] = step['html_instructions'][:first_comma] 
+
+
+    if parsed_step['short_instructions'][:4]=='Walk':
+        parsed_step['short_instructions'] = 'Walk' 
+    
+    if parsed_step['short_instructions'][:3]=='Bus':
+        parsed_step['short_instructions'] = 'Bus'  
+
+    parsed_step['short_instructions'] = parsed_step['short_instructions'] + " " + parsed_step['duration']
+
+
+
+    parsed_step['description'] = step['html_instructions']
     parsed_step['polyline'] = step['polyline'] 
     parsed_step['start_location'] = step['start_location'] 
     parsed_step['end_location'] = step['end_location']  
@@ -52,8 +73,28 @@ def parse_directions(response):
 
     parsed_steps = []
 
-    for step in direction_steps:
+
+    i = 0
+    for step in direction_steps: 
+
         parsed_steps.append(parse_step(step)) 
+
+        if parsed_steps[-1]['travel_mode']=='WALKING': 
+            try:
+                end = direction_steps[i+1]['transit_details']['departure_stop']['name'] 
+                parsed_steps[-1]['end_name'] = end
+            except:
+                pass 
+
+        if parsed_steps[-1]['travel_mode']=='TRANSIT':
+            try:
+                end = direction_steps[i]['transit_details']['arrival_stop']['name'] 
+                parsed_steps[-1]['end_name'] = end
+            except:
+                pass 
+        i += 1
+
+
 
     return parsed_steps 
 
@@ -85,7 +126,11 @@ class GetRoute(View):
         #get the origin and destination coordinates
         origin_coords = request.GET.get('origin_coords', None)
 
-        dest_coords = request.GET.get('dest_coords', None) 
+        dest_coords = request.GET.get('dest_coords', None)  
+
+        origin_string = request.GET.get('origin_string', None) 
+
+        destination_string = request.GET.get('destination_string', None)
 
         time = request.GET["time"] 
 
@@ -99,15 +144,13 @@ class GetRoute(View):
         #get and format the coordinates
         origin_coords = json.loads(origin_coords) 
 
-        dest_coords = json.loads(dest_coords)
+        dest_coords = json.loads(dest_coords) 
 
         start = "{0},{1}".format(origin_coords['latitude'], origin_coords['longitude']) 
 
         end = "{0},{1}".format(dest_coords['latitude'], dest_coords['longitude'])  
 
         #this will also be changed so that it is included in the get request params 
-
-
         if time=="now":
             departure_time = datetime.datetime.now() 
         else:
@@ -118,14 +161,31 @@ class GetRoute(View):
 
         try:
             #parse the directions  
-            parsed_directions = parse_directions(directions_result)  
+            parsed_directions = parse_directions(directions_result)    
+            route_bounds = get_route_bounds(parsed_directions)  
 
-            route_bounds = get_route_bounds(parsed_directions)
+            origin = directions_result[0]['legs'][0]['start_address'] 
+            if origin.find(",")!=-1:
+                origin = origin[:origin.find(",")] 
+            else:
+                pass 
 
+            destination = directions_result[0]['legs'][0]['end_address'] 
+            if destination.find(",")!=-1:
+                destination = destination[:destination.find(",")] 
+            else:
+                pass 
+
+            parsed_directions.insert(0, {'origin':origin}) 
+            parsed_directions.append({'destination':destination}) 
+
+            print("THESE ARE THE PARSED DIRECTIONS") 
+            print(parsed_directions)
             #return to client
             return HttpResponse(json.dumps({'route':parsed_directions, 'route_bounds':route_bounds})) 
-        except:
-            HttpResponseBadRequest(json.dumps({'error':'Could not find a valid route.'})) 
+        except: 
+     
+            return HttpResponseBadRequest(json.dumps({'error':'Could not find a valid route.'})) 
 
 
 

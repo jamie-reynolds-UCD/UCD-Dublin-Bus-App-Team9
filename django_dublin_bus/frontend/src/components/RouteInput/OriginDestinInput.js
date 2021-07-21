@@ -121,14 +121,20 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
     let response = await GetRoute({
       origin_coords: placeDetails.origin_coords,
       dest_coords: dest_coords != null ? dest_coords : placeDetails.dest_coords,
+      origin_string: placeDetails.origin_address.label,
+      destination_string: placeDetails.destination_address.label,
       time: timeDetails.use_now ? "now" : timeDetails.chosentime,
       date: timeDetails.date,
     });
 
     if (response.status == 200) {
-      let start_markers = response.data.route.map((leg) => leg.start_location);
+      let start_markers = response.data.route
+        .slice(1, -1)
+        .map((leg) => leg.start_location);
 
-      let end_markers = response.data.route.map((leg) => leg.end_location);
+      let end_markers = response.data.route
+        .slice(1, -1)
+        .map((leg) => leg.end_location);
 
       let all_markers = [];
 
@@ -137,7 +143,7 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
         all_markers.push(end_markers[i]);
       }
 
-      let polylines = response.data.route.map((leg) => {
+      let polylines = response.data.route.slice(1, -1).map((leg) => {
         return {
           travelmode: leg.travel_mode,
           path: google.maps.geometry.encoding.decodePath(leg.polyline.points),
