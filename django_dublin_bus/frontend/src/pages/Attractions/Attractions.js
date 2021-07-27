@@ -1,14 +1,12 @@
 import React from "react";
-import requests from "../../Api/Attractions/requests";
-import TouristMap from "../../components/Attractions/TouristMap/TouristMap";
+import AttractionCards from "../../components/Attractions/AttractionCards/AttractionCards";
 
 const Attractions = () => {
   return (
     <>
       {" "}
-      
       <div>
-        <TouristMap fetchUrl={requests.fetchAttractions} />
+      <AttractionCards />
       </div>
     </>
   );

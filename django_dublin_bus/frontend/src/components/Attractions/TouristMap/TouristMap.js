@@ -1,46 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleMap, withGoogleMap, Marker } from "react-google-maps";
-import { MapContainer } from "../../Map/Map.elements";
-import axios from "../../../Api/Attractions/axios";
+import React from 'react';
+import { compose, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
+import { MapContainer } from "./TouristMap.elements";
+import MarkerWithInfoWindow from "./Marker";
 
-function TouristMap({ fetchUrl }) {
+export default function TouristMap(AttractionList) {
 
-  const [attractions, setAttractions] = useState([]);
-
-  useEffect(() => {
-        
-      async function fetchData() {
-          const request = await axios.get(fetchUrl);
-          setAttractions(request.data.results);
-          return request;
-      }
-      fetchData();
-    }, [fetchUrl]);
-
-
-  const Map = withGoogleMap(props =>
+  const Map = compose(
+    
+    withProps({
+      googleMapURL: "https://maps.googleapis.com/maps/api/js?key=...&v=3.exp&libraries=geometry,drawing,places&key=AIzaSyA3pi7A-nqYC6wrN-i_pupw3_UCv8lHqzA",
+      loadingElement: <div style={{height: `100%`}}/>,
+      containerElement: <div style={{height: `400px`}}/>,
+      mapElement: <div style={{height: `100%`}}/>
+    }),
+    withScriptjs,
+    withGoogleMap
+  )(props =>
     <GoogleMap
-        defaultZoom={12}
-        defaultCenter={{ lat: 53.3498, lng: -6.26031 }}
+        defaultZoom={13}
+        defaultCenter={{ lat: AttractionList[0].latitude, lng: AttractionList[0].longitude }}
     >
-      {attractions.map(attraction => [
-          <Marker
-            key={attraction.name}
-            position={{ lat: attraction.geo.latitude, lng: attraction.geo.longitude }}
-          />
+      {AttractionList.map(attraction => [
+        <MarkerWithInfoWindow key={attraction.name}
+        position={{ lat: attraction.latitude, lng: attraction.longitude }} content={attraction.name} />
             ])}
     </GoogleMap>
   );
 
   return (
     <MapContainer>
-          <Map 
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyA3pi7A-nqYC6wrN-i_pupw3_UCv8lHqzA`} 
-            loadingElement={<div style={{ height: "100%" }} />}
-            containerElement={<div style={{ height: "100%" }} />}
-            mapElement={<div style={{ height: "100%" }} />}/>
-        </MapContainer>
+        <Map />
+    </MapContainer>
   );
-}
-
-export default TouristMap;
+};
