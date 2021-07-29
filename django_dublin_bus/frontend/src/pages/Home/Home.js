@@ -11,6 +11,7 @@ import SavedLocationOptions from "../../components/SavedLocations/SavedLocationO
 import ActivitiesList from "../../components/Activities/ActivitiesList";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ToggleButton from "@material-ui/lab/ToggleButton";
+import SpotifyWidget from "../../components/Spotify/SpotifyWidget";
 
 const Home = ({
   route_object,
@@ -22,7 +23,7 @@ const Home = ({
   return (
     <>
       {" "}
-      <div style={{ width: "100vw", height: "100vh" }}>
+      <div>
         <MapRouteContainer>
           <RouteInputDirectionsContainer>
             <OriginDestinInput
@@ -69,6 +70,7 @@ const Home = ({
           <FinalMap />
         </MapRouteContainer>
         <Weather />
+        <SpotifyWidget />
       </div>
     </>
   );

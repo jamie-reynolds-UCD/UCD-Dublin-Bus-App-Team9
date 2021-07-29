@@ -7,12 +7,16 @@ import Attractions from "./pages/Attractions/Attractions";
 import { GetUserCredentials } from "./Api/ApiFunctions";
 import { MapContextProvider } from "./components/Map/MapContext.js";
 import { AuthContextProvider } from "./components/Auth/AuthContext.js";
+import { SpotifyContextProvider } from "./components/Spotify/SpotifyContext.js";
 import { QuickLocationContextProvider } from "./components/SavedLocations/QuickLocationContext.js";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar, Footer } from "./components";
 import Profile from "./pages/Profile/Profile";
 import ScrollToTop from "./components/ScrollToTop";
+import InitialiseWebPlayer from "./components/Spotify/InitialiseWebPlayer";
+import { CurrentSongContextProvider } from "./components/Spotify/CurrentSongContext.js";
+import CurrentTrackUpdater from "./components/Spotify/CurrentTrackUpdater";
 
 function App() {
   const [mapDetails, setMapDetails] = useState({
@@ -27,6 +31,30 @@ function App() {
     longitude: null,
     address_string: null,
   });
+
+  const [SpotifyPlayerState, setSpotifyPlayerState] = useState({
+    authenticated: false,
+    player_ready: false,
+    failed_to_connect: false,
+    play_song: null,
+  });
+
+  const [currentSongDetails, setCurrentSongDetails] = useState({
+    current_song_name: null,
+    current_song_id: null,
+    progress: null,
+    is_playing: null,
+  });
+
+  const UpdateCurrentSongDetails = (new_details) => {
+    setCurrentSongDetails({ ...currentSongDetails, ...new_details });
+  };
+
+  const [sdk_ready, set_sdk_ready] = useState(false);
+
+  const UpdateSpotifyPlayerState = (new_state) => {
+    setSpotifyPlayerState({ ...SpotifyPlayerState, ...new_state });
+  };
 
   const [placeService, setPlaceService] = useState(null);
 
@@ -80,6 +108,8 @@ function App() {
     }
   };
 
+  window.onSpotifyWebPlaybackSDKReady = () => set_sdk_ready(true);
+
   useEffect(() => {
     UpdateUserCredentials();
     GetUserCoordinatesAndString();
@@ -114,38 +144,63 @@ function App() {
                 setPlaceService(new_service),
             }}
           >
-            <ScrollToTop />
-            <GlobalStyle />
-            <Navbar />
-            <Switch>
-              <Route path="/Events" exact render={() => <Events />} />
-              <Route
-                path="/"
-                exact
-                render={() => (
-                  <Home
-                    route_object={mapDetails.route_object}
-                    quick_location={quickLocation}
-                    current_location={userCredentials.current_location}
-                    place_service={placeService}
-                  ></Home>
-                )}
-              />
-              <Route path="/signup" exact>
-                <SignUp />
-              </Route>
-              <Route path="/login" exact>
-                <Login />
-              </Route>
-              <Route path="/profile" exact>
-                <Profile />
-              </Route>
-                <Route path="/attractions" exact>
-              <Attractions />
-              </Route>
-            </Switch>
+            <SpotifyContextProvider
+              value={{
+                update_spotify_state: UpdateSpotifyPlayerState,
+                play_song: SpotifyPlayerState.play_song,
+              }}
+            >
+              <CurrentSongContextProvider
+                value={{
+                  current_song_name: currentSongDetails.current_song_name,
+                  current_song_id: currentSongDetails.current_song_id,
+                  progress: currentSongDetails.progress,
+                  is_playing: currentSongDetails.is_playing,
+                  update_current_song_details: UpdateCurrentSongDetails,
+                }}
+              >
+                <ScrollToTop />
+                <GlobalStyle />
+                <Navbar />
+                <Switch>
+                  <Route path="/Events" exact render={() => <Events />} />
+                  <Route
+                    path="/"
+                    exact
+                    render={() => (
+                      <Home
+                        route_object={mapDetails.route_object}
+                        quick_location={quickLocation}
+                        current_location={userCredentials.current_location}
+                        place_service={placeService}
+                      ></Home>
+                    )}
+                  />
+                  <Route path="/signup" exact>
+                    <SignUp />
+                  </Route>
+                  <Route path="/login" exact>
+                    <Login />
+                  </Route>
+                  <Route path="/profile" exact>
+                    <Profile />
+                  </Route>
+                  <Route path="/attractions" exact>
+                    <Attractions />
+                  </Route>
+                </Switch>
 
-            <Footer />
+                <Footer />
+                <InitialiseWebPlayer
+                  authenticated={SpotifyPlayerState.authenticated}
+                  sdk_ready={sdk_ready}
+                />
+
+                <CurrentTrackUpdater
+                  authenticated={SpotifyPlayerState.authenticated}
+                />
+              </CurrentSongContextProvider>
+            </SpotifyContextProvider>
           </MapContextProvider>
         </AuthContextProvider>
       </QuickLocationContextProvider>

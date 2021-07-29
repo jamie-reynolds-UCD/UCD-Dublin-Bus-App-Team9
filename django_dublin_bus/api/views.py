@@ -179,8 +179,7 @@ class GetRoute(View):
             parsed_directions.insert(0, {'origin':origin}) 
             parsed_directions.append({'destination':destination}) 
 
-            print("THESE ARE THE PARSED DIRECTIONS") 
-            print(parsed_directions)
+
             #return to client
             return HttpResponse(json.dumps({'route':parsed_directions, 'route_bounds':route_bounds})) 
         except: 
