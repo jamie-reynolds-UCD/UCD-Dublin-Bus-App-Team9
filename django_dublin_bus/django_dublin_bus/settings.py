@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fr*pq4*x4i=zxjs_n__1pyqo&s+(c71anwu2#jf092gzh9(_c!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 CSRF_COOKIE_NAME="dubbuscsrf"
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig',
+    'api.apps.ApiConfig', 
+    'spotify.apps.SpotifyConfig',
     'frontend.apps.FrontendConfig',
     'rest_framework',
     'django_extensions'
@@ -121,7 +122,6 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
