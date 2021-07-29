@@ -15,7 +15,6 @@ import { Navbar, Footer } from "./components";
 import Profile from "./pages/Profile/Profile";
 import ScrollToTop from "./components/ScrollToTop";
 import InitialiseWebPlayer from "./components/Spotify/InitialiseWebPlayer";
-import PlaySong from "./components/Spotify/PlaySong";
 import { CurrentSongContextProvider } from "./components/Spotify/CurrentSongContext.js";
 import CurrentTrackUpdater from "./components/Spotify/CurrentTrackUpdater";
 
@@ -190,7 +189,6 @@ function App() {
                     <Attractions />
                   </Route>
                 </Switch>
-                <PlaySong song_object={{ songname: "hi" }} />
 
                 <Footer />
                 <InitialiseWebPlayer
