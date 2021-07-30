@@ -41,6 +41,7 @@ def get_artist_top_tracks(artist_id):
     endpoint = "https://api.spotify.com/v1/artists/" 
     url = "{0}{1}/top-tracks?market=ES".format(endpoint, artist_id) 
     response = requests.get(url, headers={'Authorization':"Bearer {0}".format(ACCESS_TOKEN)})
+    data = response.data()
     tracks = list(map(lambda x: {'name':x['name'], 'id':x['id'], 'image':x['album']['images'][-1]['url']}, data['tracks'])) 
     return tracks 
 

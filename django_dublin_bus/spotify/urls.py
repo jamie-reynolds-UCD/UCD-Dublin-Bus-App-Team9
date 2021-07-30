@@ -10,5 +10,6 @@ urlpatterns = [
     path('access-token/', GetAccessToken.as_view()),
     path('podcast-episodes/', GetPodcastEpisodes.as_view()),
     path('get-podcasts/', GetPodcasts.as_view()),
-    path('pause-song/', PauseSong.as_view())
+    path('pause-song/', PauseSong.as_view()),
+    path('artist-details/', GetArtistDetails.as_view())
 ]

@@ -148,6 +148,7 @@ function App() {
               value={{
                 update_spotify_state: UpdateSpotifyPlayerState,
                 play_song: SpotifyPlayerState.play_song,
+                authenticated: SpotifyPlayerState.authenticated,
               }}
             >
               <CurrentSongContextProvider

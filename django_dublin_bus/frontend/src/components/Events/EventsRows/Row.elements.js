@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const RowContainer = styled.div`
-    padding-top: 20px;
+  padding-top: 20px;
 `;
 
 export const RowHeading = styled.h1`
@@ -23,21 +23,20 @@ export const RowPosters = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-  background-color: transparent;
+    background-color: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
-  background-color: #d6dee1;
-  border-radius: 20px;
-  border: 6px solid transparent;
-  background-clip: content-box;
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-  background-color: #a8bbbf;
+    background-color: #a8bbbf;
   }
 `;
-
 
 export const PosterImg = styled.img`
   height: 170px;
@@ -46,56 +45,69 @@ export const PosterImg = styled.img`
   position: flex;
 `;
 
-
 export const PosterInfo = styled.div`
- height: 170px;
+  height: 170px;
   width: 300px;
   margin-right: 2%;
   position: relative;
-  display: inline-block; 
+  display: inline-block;
   transition: transform 450ms;
 
   &:hover {
-    transform: scale(1.07); 
+    transform: scale(1.07);
   }
 
   &::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-  background: linear-gradient(
-    to top,
-    black,
-    transparent
-  ); }
+    background: linear-gradient(to top, black, transparent);
+  }
 `;
 
 export const PosterHead = styled.h1`
   font-size: 15px;
   color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
   position: absolute;
   margin: 0 auto;
   left: 5%;
   right: 0;
-  bottom: 10%; 
+  bottom: 10%;
 `;
 
 export const PosterText = styled.h1`
   font-size: 12px;
   color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
   position: absolute;
   margin: 0 auto;
   font-family: sans-serif;
   left: 10%;
   right: 0;
-  bottom: 1%; 
+  bottom: 1%;
 `;
 
-
+export const SpotifyPreviewContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  width: 55px;
+  height: 40px;
+  border-radius: 0 0 0 100px;
+  -moz-border-radius: 0 0 0 100px;
+  -webkit-border-radius: 0 0 0 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`;

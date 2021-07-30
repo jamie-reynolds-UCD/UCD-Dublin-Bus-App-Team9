@@ -5,6 +5,7 @@ import SpotifyContext from "./SpotifyContext";
 const InitialiseWebPlayer = ({ authenticated, sdk_ready }) => {
   let { update_spotify_state } = useContext(SpotifyContext);
   useEffect(() => {
+    console.log("INITIALISING WEB PLAYER");
     if (authenticated == false || sdk_ready == false) {
       //if user has not authenticated spotify already then don't try to initialise the player
       return null;
