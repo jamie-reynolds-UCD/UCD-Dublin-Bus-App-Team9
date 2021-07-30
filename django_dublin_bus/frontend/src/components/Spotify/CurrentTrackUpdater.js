@@ -121,7 +121,7 @@ const CurrentTrackUpdater = ({ authenticated }) => {
 
     clearInterval(UpdateHandler);
 
-    UpdateHandler = setInterval(() => GetSongDetails(access_token), 500);
+    UpdateHandler = setInterval(() => GetSongDetails(access_token), 1000);
   };
 
   useEffect(async () => {

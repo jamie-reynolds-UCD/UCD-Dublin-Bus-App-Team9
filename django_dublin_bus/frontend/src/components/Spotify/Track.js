@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Button, Typography } from "@material-ui/core";
 import SpotifyContext from "./SpotifyContext";
 import CurrentSongContext from "./CurrentSongContext";
@@ -11,8 +11,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { PauseSong } from "../../Api/ApiFunctions";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 
-const Track = ({ key, track, type, GoBack, GoForward }) => {
+const Track = ({ key, track, type, GoBack, GoForward, preview }) => {
   const { play_song } = useContext(SpotifyContext);
 
   let current_song_details = useContext(CurrentSongContext);
@@ -25,11 +26,26 @@ const Track = ({ key, track, type, GoBack, GoForward }) => {
 
   if (type == "podcast") {
     uri = `spotify:episode:${track.id}`;
+  } else {
+    uri = `spotify:track:${track.id}`;
   }
 
   const playsong = () => {
     play_song(uri);
   };
+
+  const stop_prop = (ev) => {
+    //ev.stopPropagation();
+    //is_playing == false ? playsong() : pausesong();
+  };
+
+  useEffect(() => {
+    if (preview) {
+      document
+        .getElementById(`spotify-container-${track.id}`)
+        .addEventListener("click", stop_prop);
+    }
+  });
 
   const pausesong = () => {
     PauseSong();
@@ -128,6 +144,7 @@ const Track = ({ key, track, type, GoBack, GoForward }) => {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          zIndex: "10000000",
         }}
       >
         <div
@@ -138,30 +155,47 @@ const Track = ({ key, track, type, GoBack, GoForward }) => {
             justifyContent: "flex-start",
           }}
         >
-          <Button
-            style={{ minHeight: "0px", minWidth: "0px", padding: "3px" }}
-            onClick={() => {
-              PauseSong();
-              GoBack();
-            }}
-          >
-            {" "}
+          {preview ? null : (
+            <Button
+              style={{ minHeight: "0px", minWidth: "0px", padding: "3px" }}
+              onClick={(ev) => {
+                ev.stopPropagation();
+                PauseSong();
+                GoBack();
+              }}
+            >
+              {" "}
+              <FontAwesomeIcon
+                icon={faStepBackward}
+                style={{ color: "rgba(0, 0, 0, 0.7)" }}
+              />
+            </Button>
+          )}
+
+          {preview ? (
             <FontAwesomeIcon
-              icon={faStepBackward}
-              style={{ color: "rgba(0, 0, 0, 0.7)" }}
+              icon={faSpotify}
+              size="1x"
+              style={{ color: "#1DB954", marginRight: "8px" }}
             />
-          </Button>
+          ) : null}
         </div>
+
         <Button
-          onClick={is_playing == false ? playsong : pausesong}
+          onClick={(ev) => {
+            ev.stopPropagation();
+            is_playing == false ? playsong() : pausesong();
+          }}
           style={{ minHeight: "0px", minWidth: "0px", padding: "3px" }}
         >
           {" "}
           <FontAwesomeIcon
             icon={is_playing ? faPause : faPlay}
             style={{ color: "rgba(0, 0, 0, 0.7)" }}
+            size={preview ? "1x" : null}
           />{" "}
         </Button>
+
         <div
           style={{
             display: "flex",
@@ -170,46 +204,53 @@ const Track = ({ key, track, type, GoBack, GoForward }) => {
             justifyContent: "flex-end",
           }}
         >
-          <Button
-            style={{ minHeight: "0px", minWidth: "0px", padding: "3px" }}
-            onClick={() => {
-              PauseSong();
-              GoForward();
-            }}
-          >
-            {" "}
-            <FontAwesomeIcon
-              icon={faStepForward}
-              style={{ color: "rgba(0, 0, 0, 0.7)" }}
-            />
-          </Button>
+          {preview ? null : (
+            <Button
+              style={{ minHeight: "0px", minWidth: "0px", padding: "3px" }}
+              onClick={() => {
+                PauseSong();
+                GoForward();
+              }}
+            >
+              {" "}
+              <FontAwesomeIcon
+                icon={faStepForward}
+                style={{ color: "rgba(0, 0, 0, 0.7)" }}
+              />
+            </Button>
+          )}
         </div>
       </div>
-      <div
-        style={
-          is_playing
-            ? { width: "100%", marginTop: "5px", marginBottom: "5px" }
-            : { width: "100%" }
-        }
-      >
-        {Progress_Bar()}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          width: "100%",
-        }}
-      >
-        <Typography
+
+      {preview ? null : (
+        <div
+          style={
+            is_playing
+              ? { width: "100%", marginTop: "5px", marginBottom: "5px" }
+              : { width: "100%" }
+          }
+        >
+          {Progress_Bar()}
+        </div>
+      )}
+      {preview ? null : (
+        <div
           style={{
-            fontSize: "10px",
-            color: "rgba(0, 0, 0, 0.6)",
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
           }}
         >
-          {track.name}
-        </Typography>
-      </div>
+          <Typography
+            style={{
+              fontSize: "10px",
+              color: "rgba(0, 0, 0, 0.6)",
+            }}
+          >
+            {track.name}
+          </Typography>
+        </div>
+      )}
     </>
   );
 };

@@ -167,13 +167,24 @@ const GetPodcasts = async () => {
 };
 
 const PauseSong = async () => {
-  console.log("I AM PAUSING THE SONG");
   let response;
   try {
     response = await axios.get("/spotify/pause-song/");
   } catch (error) {
     response = error.response;
   }
+};
+
+const GetArtistDetails = async (artist_name) => {
+  let response;
+  try {
+    response = await axios.get("/spotify/artist-details/", {
+      params: { artist_name },
+    });
+  } catch (error) {
+    response = error.response;
+  }
+  return response;
 };
 
 export {
@@ -192,4 +203,5 @@ export {
   GetPodcastEpisodes,
   GetPodcasts,
   PauseSong,
+  GetArtistDetails,
 };

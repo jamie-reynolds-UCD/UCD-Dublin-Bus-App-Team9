@@ -5,6 +5,10 @@ from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET 
 from requests import post, put, get
 import datetime
+import urllib.parse
+from difflib import SequenceMatcher
+import requests
+import traceback
 
 BASE_URL = "https://api.spotify.com/v1/me/"
 
@@ -76,8 +80,6 @@ def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
 
     response = get(BASE_URL + endpoint, {}, headers=header)  
 
-    print(response)
-
     try:
         return response.json() 
     except:
@@ -85,7 +87,7 @@ def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
 
 def parse_current_song(song):    
 
-    print(song)
+  
    
     parsed_song = {}  
     artist = song['item']['album']['artists'][0]['name']  
@@ -119,6 +121,48 @@ def get_podcast_details(podcast_id, access_token):
     data = get(endpoint, headers=header).json()  
 
     return {'id':podcast_id, 'name':data['name'], 'image':data['images'][-1]['url']}
+
+
+def generate_search_url_by_name(name): 
+    endpoint = "https://api.spotify.com/v1/search" 
+    query_dict = {'q':name, 'type':'artist'}
+    query_string = urllib.parse.urlencode(query_dict)
+    return "{0}?{1}".format(endpoint, query_string)   
+
+def perform_search(search_url, name, access_token):
+    response = requests.get(search_url, headers={'Authorization':"Bearer {0}".format(access_token)})  
+    data = response.json() 
+
+    try:
+        artist_names_ids_similarity = list(map(lambda x: (x['name'], x['id'], SequenceMatcher(None, name, x['name']).ratio()), data['artists']['items'])) 
+    except: 
+        traceback.print_exc()
+        return None 
+
+    artist_names_ids_similarity.sort(key=lambda x: x[-1]) 
+
+    return artist_names_ids_similarity[-1]
+
+def search_for_artist(name):
+    try:
+        search_url = generate_search_url_by_name(name)  
+        return perform_search(search_url, name) 
+    except:
+        return None   
+
+def get_artist_top_tracks(artist_id, access_token):
+    endpoint = "https://api.spotify.com/v1/artists/" 
+    url = "{0}{1}/top-tracks?market=ES".format(endpoint, artist_id) 
+    response = requests.get(url, headers={'Authorization':"Bearer {0}".format(access_token)})
+    data = response.json() 
+
+    print("TRACKS") 
+    print(data['tracks'])
+    tracks = list(map(lambda x: {'name':x['name'], 'id':x['id'], 'image':x['album']['images'][-1]['url']}, data['tracks'])) 
+    return tracks 
+
+
+
 
 
 

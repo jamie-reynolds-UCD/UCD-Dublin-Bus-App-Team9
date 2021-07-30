@@ -128,7 +128,22 @@ class PauseSong(APIView):
 
         execute_spotify_api_request(request.session.session_key, "player/pause", put_= True) 
 
-        return Response({'success':True}, status=status.HTTP_200_OK)  
+        return Response({'success':True}, status=status.HTTP_200_OK)   
+
+class GetArtistDetails(APIView):
+
+    def get(self, request): 
+        is_spotify_authenticated(request.session.session_key)   
+        try:
+            access_token = get_user_tokens(request.session.session_key).access_token
+            artist_name = request.GET["artist_name"]  
+            search_url = generate_search_url_by_name(artist_name)  
+            artist = perform_search(search_url, artist_name, access_token)  
+            top_tracks = get_artist_top_tracks(artist[1], access_token) 
+        except:
+            top_tracks = []
+
+        return HttpResponse(json.dumps({'songs':top_tracks}))
 
 
 
