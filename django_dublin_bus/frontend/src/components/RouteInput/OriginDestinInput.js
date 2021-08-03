@@ -8,6 +8,7 @@ import { InputContainer } from "./OriginDestinInput.elements";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import AuthContext from "../Auth/AuthContext";
+import { Typography } from "@material-ui/core";
 
 const OriginDestinInput = ({ quick_location, current_location }) => {
   //access this function which allows us to update the markers that are rendered on the application
@@ -37,10 +38,13 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
         },
       });
 
-      UpdateRoute({
-        latitude: quick_location.latitude,
-        longitude: quick_location.longitude,
-      });
+      UpdateRoute(
+        {
+          latitude: quick_location.latitude,
+          longitude: quick_location.longitude,
+        },
+        quick_location.address_string
+      );
     }
   };
 
@@ -117,12 +121,16 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
     });
   };
 
-  const UpdateRoute = async (dest_coords) => {
+  const UpdateRoute = async (dest_coords, destination_address) => {
+    console.log("THESE ARE THE PLACE DETAILS");
+    console.log(placeDetails);
     let response = await GetRoute({
       origin_coords: placeDetails.origin_coords,
       dest_coords: dest_coords != null ? dest_coords : placeDetails.dest_coords,
       origin_string: placeDetails.origin_address.label,
-      destination_string: placeDetails.destination_address.label,
+      destination_string: destination_address
+        ? destination_address
+        : placeDetails.destination_address.label,
       time: timeDetails.use_now ? "now" : timeDetails.chosentime,
       date: timeDetails.date,
     });
@@ -176,6 +184,19 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
       <InputContainer>
         <div
           style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            marginBottom: "10px",
+          }}
+        >
+          <Typography variant="h6" style={{ color: "#4B59F7" }}>
+            Route Planner
+          </Typography>
+        </div>
+        <div
+          style={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -183,7 +204,9 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
             width: "100%",
           }}
         >
-          <div style={{ width: "80px", marginRight: "10px" }}>Origin: </div>
+          <div style={{ width: "80px", marginRight: "10px" }}>
+            <Typography>Origin:</Typography>{" "}
+          </div>
           <div style={{ flex: "1", maxWidth: "300px" }}>
             <GooglePlacesAutocomplete
               autocompletionRequest={{
@@ -216,7 +239,7 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
           }}
         >
           <div style={{ width: "80px", marginRight: "10px" }}>
-            Destination:{" "}
+            <Typography>Destination:</Typography>
           </div>
           <div style={{ flex: "1", maxWidth: "300px" }}>
             <GooglePlacesAutocomplete
@@ -249,7 +272,9 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
             marginTop: "5px",
           }}
         >
-          <div style={{ width: "80px", marginRight: "10px" }}>Trip Date:</div>
+          <div style={{ width: "80px", marginRight: "10px" }}>
+            <Typography>Trip Date:</Typography>
+          </div>
           <TextField
             style={{ flex: "1", maxWidth: "300px" }}
             id="date"
@@ -288,7 +313,9 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
             marginTop: "5px",
           }}
         >
-          <div style={{ width: "80px", marginRight: "10px" }}>Trip Time:</div>
+          <div style={{ width: "80px", marginRight: "10px" }}>
+            <Typography>Trip Time:</Typography>
+          </div>
 
           <ToggleButtonGroup
             style={{ flex: "1", maxWidth: "300px" }}

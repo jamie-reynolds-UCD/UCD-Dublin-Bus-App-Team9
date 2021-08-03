@@ -98,6 +98,95 @@ const DeleteLocation = async (location_id) => {
   return response;
 };
 
+const IsSpotifyAuthenticated = async () => {
+  let status;
+
+  try {
+    let response = await axios.get("/spotify/is-authenticated/");
+    status = response.data.status;
+  } catch (error) {
+    status = false;
+  }
+
+  return status;
+};
+
+const GetSpotifyAuthUrl = async () => {
+  let response = await axios.get("/spotify/get-auth-url/");
+
+  let url = response.data.url;
+
+  return url;
+};
+
+const GetCurrentSong = async () => {
+  let response;
+  try {
+    response = await axios.get("/spotify/current-song/");
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+const GetAccessToken = async () => {
+  let response;
+  try {
+    response = await axios.get("/spotify/access-token/");
+  } catch (error) {
+    response = error.response;
+  }
+  return response;
+};
+
+const GetPodcastEpisodes = async (id) => {
+  let response;
+
+  try {
+    response = await axios.get("/spotify/podcast-episodes/", {
+      params: { id: id },
+    });
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+const GetPodcasts = async () => {
+  let response;
+
+  try {
+    response = await axios.get("/spotify/get-podcasts/");
+  } catch (error) {
+    response = error.response;
+  }
+
+  return response;
+};
+
+const PauseSong = async () => {
+  let response;
+  try {
+    response = await axios.get("/spotify/pause-song/");
+  } catch (error) {
+    response = error.response;
+  }
+};
+
+const GetArtistDetails = async (artist_name) => {
+  let response;
+  try {
+    response = await axios.get("/spotify/artist-details/", {
+      params: { artist_name },
+    });
+  } catch (error) {
+    response = error.response;
+  }
+  return response;
+};
+
 export {
   GetRoute,
   SignUpRequest,
@@ -107,4 +196,12 @@ export {
   LoadUserLocations,
   SaveNewLocation,
   DeleteLocation,
+  IsSpotifyAuthenticated,
+  GetSpotifyAuthUrl,
+  GetCurrentSong,
+  GetAccessToken,
+  GetPodcastEpisodes,
+  GetPodcasts,
+  PauseSong,
+  GetArtistDetails,
 };
