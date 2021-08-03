@@ -31,9 +31,8 @@ export const CardBody = styled.div`
     @media screen and (min-width:600px) {
         flex-direction: column;
         text-align: center;
-        min-width: 16rem;
+        min-width: 14rem;
     }
-
 `
 
 export const CardImage = styled.img`

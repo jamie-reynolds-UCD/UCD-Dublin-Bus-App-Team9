@@ -32,12 +32,11 @@ export const LoadButtonCont = styled.div`
     width: 100%;
 `
 
-
 export const TagButtons = styled.div`
 
     overflow: auto;
     white-space: nowrap;
-    padding-left: 10%;
+    padding-top: 1%;
     width: 100%;
 
     &::-webkit-scrollbar {

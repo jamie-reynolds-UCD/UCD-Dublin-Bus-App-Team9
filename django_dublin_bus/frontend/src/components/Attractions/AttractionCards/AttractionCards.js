@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import jsonData from "./attractionlist.json";
 import TouristMap from '../TouristMap/TouristMap';
 import { LoadButton, LoadButtonCont, TagButton, TagButtons } from './AttractionCards.elements';
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlinePhone, AiOutlineLink } from "react-icons/ai";
 import { RiRouteLine} from "react-icons/ri";
 import SelectedCard from './SelectedCard';
-
+import QuickLocationContext from "../../SavedLocations/QuickLocationContext";
 
 export default function AttractionCards () {
 
@@ -73,6 +73,8 @@ export default function AttractionCards () {
     )
   };
 
+
+
   //Card for each attraction
   function Card(attraction) {
 
@@ -80,9 +82,18 @@ export default function AttractionCards () {
       console.log('callNumber ----> ', phone);
     };
     
-    const alat = parseFloat(attraction.latitude);
-    const alng = parseFloat(attraction.longitude);
+    const { quick_location_updater } = useContext(QuickLocationContext);
 
+    let lat = attraction.latitude;
+    let lng = attraction.longitude;
+    let LName = attraction.name.replace(/"/g, '');
+
+    console.log(LName, lat, lng);
+
+    const GetDirections = () => {
+        quick_location_updater({ address_string: 'The Gaiety Theatre, South King St, Dublin 2',  latitude: 53.340387, longitude: -6.26163 });
+      };
+      
     return (
       <CardBody>
          <CardImage src={attraction.img}></CardImage>
@@ -92,7 +103,7 @@ export default function AttractionCards () {
          <Buttons>
             <form action={attraction.url} method="get" target="_blank"><button type="submit"><AiOutlineLink /></button></form>
             <button onClick={() => callNumber(attraction.telephone)}><AiOutlinePhone /></button>
-            <Link to={'/'}><button onClick={() => HandleClick()}><RiRouteLine /></button></Link>
+            <Link to={'/'}><button onClick={() => GetDirections}><RiRouteLine /></button></Link>
             <button onClick={() => ViewOnMap(attraction)}>View on Map</button>
           </Buttons>
       </CardBody>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MapContainer = styled.div`
   display: block;
   flex: 1;
-  height: 60vh;
+  height: 60%;
 
   @media screen and (max-width: 600px) {
     width: 100%;

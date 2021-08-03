@@ -10,10 +10,8 @@ export const SCardBody = styled.div`
   display: flex;
   flex-direction: column;
 
-    @media screen and (min-width:600px) {
-        flex-direction: column;
-        text-align: center;
-        min-width: 16rem;
+    @media screen and (max-width:600px) {
+        position: relative;
     }
 `
 export const SCardImage = styled.img`

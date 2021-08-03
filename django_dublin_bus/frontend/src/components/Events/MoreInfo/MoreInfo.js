@@ -16,7 +16,7 @@ export default function MoreInfo(SelEvent) {
   const venuelong = parseFloat(SelEvent._embedded.venues[0].location.longitude);
   const venue = SelEvent._embedded.venues[0].name;
 
-
+  
   //Google Map marker of selected event
   const EventMap = withGoogleMap(props =>
     <GoogleMap
@@ -30,11 +30,13 @@ export default function MoreInfo(SelEvent) {
   );
 
   //OnClick of 'PlanRoute' bring user backt to the homepage with the selected venue entered as destination
-  const HandleClick = () => {
+  const GetDirections = () => {
     quick_location_updater({address_string: venue, latitude: venuelat, longitude: venuelong}) 
   }
 
-  
+  console.log(venue, venuelat, venuelong);
+
+
     return (
       <InfoContainer>
         <InfoWindow>
@@ -50,7 +52,7 @@ export default function MoreInfo(SelEvent) {
               <button type="submit">Buy Tickets</button>
             </form>
             <Link to={'/'}>
-              <button onClick={() => HandleClick()}> Plan Route </button>
+              <button onClick={() => GetDirections}> Plan Route </button>
             </Link>
           </Buttons>
         </InfoWindow>
