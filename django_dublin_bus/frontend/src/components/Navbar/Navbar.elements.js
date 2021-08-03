@@ -88,6 +88,27 @@ export const NavItem = styled.li`
   }
 `;
 
+export const WeatherIcon = styled.img`
+  height: 45px;
+  width: 30px;
+  padding-bottom: 20px;
+
+`
+export const WeatherItem = styled.div`
+  max-height: 80px;
+  padding-top: 30px;
+  display: flex;
+  
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+`;
+
+export const WeatherText = styled.p`
+  color: #fff;
+  font-size: 15px;
+`;
+
 export const NavItemBtn = styled.li`
   @media screen and (max-width: 960px) {
     display: flex;

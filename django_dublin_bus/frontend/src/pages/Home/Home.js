@@ -5,7 +5,6 @@ import {
   MapRouteContainer,
   RouteInputDirectionsContainer,
 } from "../../components/MapRouteContainer/MapRouteContainer.elements";
-import Weather from "../../components/Weather/Weather";
 import SavedLocationOptions from "../../components/SavedLocations/SavedLocationOptions";
 import ActivitiesList from "../../components/Activities/ActivitiesList";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
@@ -34,7 +33,6 @@ const Home = ({
           </RouteInputDirectionsContainer>
           <FinalMap />
         </MapRouteContainer>
-        <Weather />
       </div>
     </>
   );

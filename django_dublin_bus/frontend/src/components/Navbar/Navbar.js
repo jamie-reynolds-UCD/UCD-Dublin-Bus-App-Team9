@@ -16,6 +16,7 @@ import {
 } from "./Navbar.elements";
 import AuthContext from "../Auth/AuthContext";
 import { Logout } from "../../Api/ApiFunctions";
+import Weather from "../Weather/Weather";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -61,15 +62,11 @@ function Navbar() {
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
+            <Weather />
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
                 <NavLinks to="/" onClick={closeMobileMenu}>
                   Home
-                </NavLinks>
-              </NavItem>
-              <NavItem>
-                <NavLinks to="/services" onClick={closeMobileMenu}>
-                  Timetables
                 </NavLinks>
               </NavItem>
               <NavItem>

@@ -1,16 +1,19 @@
 import React from "react";
+import { WeatherItem, WeatherIcon, WeatherText } from "../Navbar/Navbar.elements";
 
 const WeatherCard = (props) =>{
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
+    const desc = capitalizeFirstLetter(props.description);
     
     return(
-        <div>
-        
-            <img src ={`http://openweathermap.org/img/w/${props.image}.png`} alt="weather img" />
-            <h3>Temp:{Math.round(props.temp)}</h3>
-            <h3>Description:{props.description}</h3>
-            <h3>Humidity:{props.humidity}</h3>
-            <h3>Rain:{props.rain}</h3>
-        </div>
+            <WeatherItem>
+                <WeatherIcon src ={`http://openweathermap.org/img/w/${props.image}.png`} alt="weather img" />
+                <WeatherText>{desc} {Math.round(props.temp)}°</WeatherText>
+            </WeatherItem>
     );
 }
 
