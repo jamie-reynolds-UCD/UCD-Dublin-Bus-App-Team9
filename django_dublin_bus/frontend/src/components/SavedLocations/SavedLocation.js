@@ -23,7 +23,9 @@ const SavedLocation = ({ loc }) => {
   return (
     <div
       style={
-        deleted ? { height: "0px", width: "0px", overflow: "hidden" } : null
+        deleted
+          ? { height: "0px", width: "0px", overflow: "hidden" }
+          : { zIndex: "100000" }
       }
     >
       <Box
@@ -36,6 +38,7 @@ const SavedLocation = ({ loc }) => {
           borderTop: "0px",
           borderLeft: "0px",
           borderRight: "0px",
+          zIndex: "100000",
         }}
       >
         <Box
@@ -73,7 +76,9 @@ const SavedLocation = ({ loc }) => {
           }}
         >
           <div style={{ flex: 1, overflow: "scroll" }}>
-            <Typography>{loc.full_address}</Typography>
+            <Typography style={{ fontSize: "11px" }}>
+              {loc.full_address}
+            </Typography>
           </div>
           <Button
             style={{ minWidth: "0px", minHeight: "0px", padding: "1px" }}
@@ -87,7 +92,12 @@ const SavedLocation = ({ loc }) => {
         <EditBackground
           style={
             AreYourSureDelete == false
-              ? { width: "0px", height: "0px", overflow: "hidden" }
+              ? {
+                  width: "0px",
+                  height: "0px",
+                  overflow: "hidden",
+                  zIndex: "1000000",
+                }
               : null
           }
         >

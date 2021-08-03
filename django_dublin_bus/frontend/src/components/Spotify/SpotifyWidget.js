@@ -30,24 +30,38 @@ const SpotifyWidget = () => {
 
   const LoginButton = () => {
     return (
-      <Button
-        onClick={LoginSpotify}
-        style={{
-          textTransform: "none",
-          backgroundColor: "#1DB954",
-          color: "white",
-        }}
-      >
-        Connect Spotify{" "}
-        <FontAwesomeIcon icon={faSpotify} style={{ marginLeft: "5px" }} />
-      </Button>
+      <>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            onClick={LoginSpotify}
+            style={{
+              textTransform: "none",
+              backgroundColor: "#1DB954",
+              color: "white",
+            }}
+          >
+            Connect Spotify{" "}
+            <FontAwesomeIcon icon={faSpotify} style={{ marginLeft: "5px" }} />
+          </Button>
+        </div>
+        <Typography variant="caption" style={{ marginTop: "20px" }}>
+          Connect to Spotify to listen to Dublin-based content and stay up to
+          date on what's going on in the city.
+        </Typography>
+      </>
     );
   };
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       {is_authenticated ? (
-        <div>
+        <div style={{ width: "100%" }}>
           <DublinPodcasts />
         </div>
       ) : (

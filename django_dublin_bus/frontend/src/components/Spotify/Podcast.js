@@ -44,7 +44,12 @@ const Podcast = ({ podcast }) => {
     <Box
       boxShadow={1}
       borderRadius={8}
-      style={{ padding: "7px", width: "200px" }}
+      style={{
+        padding: "7px",
+        width: "85%",
+        marginTop: "10px",
+        margin: "auto",
+      }}
     >
       <div
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}

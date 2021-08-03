@@ -5,6 +5,7 @@ export const MapContainer = styled(Container)`
   display: block;
   flex: 1;
   height: 60vh;
+  zindex: 1;
 
   @media screen and (max-width: 600px) {
     width: 100%;

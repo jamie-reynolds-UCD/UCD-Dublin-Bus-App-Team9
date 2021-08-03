@@ -14,16 +14,18 @@ const DublinPodcasts = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <Box
+        boxShadow={2}
         borderRadius={8}
         style={{
           backgroundColor: "#1DB954",
           padding: "5px",
-          maxWidth: "150px",
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
+          textAlign: "center",
+          width: "100%",
         }}
       >
         <Typography>
