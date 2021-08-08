@@ -132,4 +132,7 @@ STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' 
+
+
+MODELS_DIR = "/Users/brianryan/Documents/CollegeWork/summer/Dublin-Bus-App-Team9/django_dublin_bus/api/models"
