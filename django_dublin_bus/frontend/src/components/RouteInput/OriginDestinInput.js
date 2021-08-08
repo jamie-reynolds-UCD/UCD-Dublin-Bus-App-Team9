@@ -9,10 +9,16 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import AuthContext from "../Auth/AuthContext";
 import { Typography } from "@material-ui/core";
+import { useMediaQuery } from "@material-ui/core";
+import QuickLocationContext from "../SavedLocations/QuickLocationContext";
 
 const OriginDestinInput = ({ quick_location, current_location }) => {
   //access this function which allows us to update the markers that are rendered on the application
   const { setMapDetails } = useContext(MapContext);
+
+  const { toggle_display_updater } = useContext(QuickLocationContext);
+
+  const ismobile = useMediaQuery("(max-width:600px)");
 
   const geocoder = new google.maps.Geocoder();
   //a state variable which is updated when the user changes the value in the autocomplete menu
@@ -122,8 +128,6 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
   };
 
   const UpdateRoute = async (dest_coords, destination_address) => {
-    console.log("THESE ARE THE PLACE DETAILS");
-    console.log(placeDetails);
     let response = await GetRoute({
       origin_coords: placeDetails.origin_coords,
       dest_coords: dest_coords != null ? dest_coords : placeDetails.dest_coords,
@@ -164,6 +168,8 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
         route_object: response.data.route,
         route_bounds: response.data.route_bounds,
       });
+
+      toggle_display_updater("description");
     }
   };
 
@@ -191,9 +197,11 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
             marginBottom: "10px",
           }}
         >
-          <Typography variant="h6" style={{ color: "#4B59F7" }}>
-            Route Planner
-          </Typography>
+          {ismobile ? null : (
+            <Typography variant="h6" style={{ color: "#4B59F7" }}>
+              Route Planner
+            </Typography>
+          )}
         </div>
         <div
           style={{

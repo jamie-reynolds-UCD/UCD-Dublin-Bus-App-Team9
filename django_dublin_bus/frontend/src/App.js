@@ -110,6 +110,8 @@ function App() {
 
   window.onSpotifyWebPlaybackSDKReady = () => set_sdk_ready(true);
 
+  const [toggleDisplay, setToggleDisplay] = useState("planner");
+
   useEffect(() => {
     UpdateUserCredentials();
     GetUserCoordinatesAndString();
@@ -122,7 +124,9 @@ function App() {
           latitude: quickLocation.latitude,
           longitude: quickLocation.longitude,
           address_string: quickLocation.address_string,
+          toggle_display: toggleDisplay,
           quick_location_updater: UpdateQuickLocation,
+          toggle_display_updater: (val) => setToggleDisplay(val),
         }}
       >
         <AuthContextProvider

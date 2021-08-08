@@ -7,10 +7,12 @@ import {
   faCircle,
   faBus,
 } from "@fortawesome/free-solid-svg-icons";
+import { useMediaQuery } from "@material-ui/core";
 
 const NewLeg = (leg) => {
   let walking = leg.short_instructions.substring(0, 4) == "Walk";
   let color = walking ? "blue" : "darkorange";
+
   return (
     <div
       style={{
@@ -100,9 +102,13 @@ const RouteDescription = ({ route_object }) => {
     return null;
   }
 
+  const isMobile = useMediaQuery("(max-width:600px)");
+
   return (
     <div>
-      <Typography variant="h6">Route Description</Typography>
+      {isMobile ? null : (
+        <Typography variant="h6">Route Description</Typography>
+      )}
 
       <Typography style={{ marginLeft: "2px", fontWeight: "bold" }}>
         {" "}

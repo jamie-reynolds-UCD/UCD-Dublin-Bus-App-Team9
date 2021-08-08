@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { BiBus } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
-import { Container } from '../../globalStyles';
+import styled from "styled-components";
+import { BiBus } from "react-icons/bi";
+import { Link } from "react-router-dom";
+import { Container } from "../../globalStyles";
 
 export const Nav = styled.nav`
   background: #101522;
@@ -66,7 +66,7 @@ export const NavMenu = styled.ul`
     height: 90vh;
     position: absolute;
     top: 80px;
-    left: ${({ click }) => (click ? 0 : '-100%')};
+    left: ${({ click }) => (click ? 0 : "-100%")};
     opacity: 1;
     transition: all 0.5s ease;
     background: #101522;
@@ -95,13 +95,12 @@ export const WeatherIcon = styled.img`
   height: 45px;
   width: 30px;
   padding-bottom: 20px;
-
-`
+`;
 export const WeatherItem = styled.div`
   max-height: 80px;
   padding-top: 30px;
   display: flex;
-  
+
   @media screen and (max-width: 960px) {
     display: none;
   }
