@@ -210,7 +210,10 @@ def parse_step(step):
     parsed_step['description'] = step['html_instructions']
     parsed_step['polyline'] = step['polyline'] 
     parsed_step['start_location'] = step['start_location'] 
-    parsed_step['end_location'] = step['end_location']  
+    parsed_step['end_location'] = step['end_location']   
+
+
+    
 
     #extra details if the step is "TRANSIT" (BUS)
     if step['travel_mode']=='TRANSIT':
@@ -327,9 +330,6 @@ def get_stop_id(stop_name, lat, long, route_name):
 
         if station_name==None:
             return None 
-        
-        print("I actually found one using the fallback station name finder")  
-        print(station_name)
 
         return station_name[station_name.rfind(" ")+1:]
         
@@ -346,12 +346,15 @@ def get_stop_id(stop_name, lat, long, route_name):
         stop_number = closest_stop[closest_stop.rfind(" ")+1:]  
         return str(stop_number) 
     except:
-        return None
+        return None 
+
+def generate_wait_departure_string(arrival_details, departure_details):  
+
+    departure_time = departure_details['text'] 
+
+    return "Departure: {0}".format(departure_time) 
 
 
-
-    
- 
 
 
 def parse_directions(response):
@@ -359,9 +362,9 @@ def parse_directions(response):
 
     directions = response[0]['legs'][0]  
 
-    print(directions)
+   
 
-    direction_steps = directions['steps']
+    direction_steps = directions['steps'] 
 
     parsed_steps = [] 
 
@@ -379,13 +382,16 @@ def parse_directions(response):
 
         if parsed_steps[-1]['travel_mode']=='TRANSIT':
             try: 
-                print("PARSED STEPS") 
-                print(parsed_steps[-1])
+               
                 end = direction_steps[i]['transit_details']['arrival_stop']['name'] 
                 parsed_steps[-1]['end_name'] = end 
                 parsed_steps[-1]['departure_stop_id'] = get_stop_id(parsed_steps[-1]['departure_name'], parsed_steps[-1]['departure_location']['lat'], parsed_steps[-1]['departure_location']['lng'], parsed_steps[-1]['route_name'])
                 parsed_steps[-1]['arrival_stop_id'] = get_stop_id(parsed_steps[-1]['arrival_name'], parsed_steps[-1]['arrival_location']['lat'], parsed_steps[-1]['arrival_location']['lng'], parsed_steps[-1]['route_name'])    
-                timestamp = direction_steps[i]['transit_details']['departure_time']['value'] 
+                parsed_steps[-1]['departure_time'] = generate_wait_departure_string(direction_steps[i]['transit_details']['arrival_time'], direction_steps[i]['transit_details']['departure_time']) 
+
+
+                timestamp = direction_steps[i]['transit_details']['departure_time']['value']  
+
 
                 try:
                     parsed_steps[-1]['predicted_journey_time'] = get_predicted_journey_time(parsed_steps[-1]['departure_stop_id'],parsed_steps[-1]['arrival_stop_id'], parsed_steps[-1]['route_name'], timestamp) 
@@ -396,7 +402,9 @@ def parse_directions(response):
             except:
                 import traceback
                 traceback.print_exc()
-        i += 1
+        i += 1 
+
+
 
     return parsed_steps 
 
@@ -477,10 +485,17 @@ class GetRoute(View):
             if destination.find(",")!=-1:
                 destination = destination[:destination.find(",")] 
             else:
-                pass 
+                pass  
+            
+            try:
+                trip_departure = directions_result[0]['legs'][0]['departure_time']['text']
+                trip_arrival = directions_result[0]['legs'][0]['arrival_time']['text'] 
+            except:
+                trip_departure=None 
+                trip_arrival=None
 
-            parsed_directions.insert(0, {'origin':origin}) 
-            parsed_directions.append({'destination':destination})
+            parsed_directions.insert(0, {'origin':origin, 'time':trip_departure}) 
+            parsed_directions.append({'destination':destination, 'time':trip_arrival})
 
             #return to client
             return HttpResponse(json.dumps({'route':parsed_directions, 'route_bounds':route_bounds})) 

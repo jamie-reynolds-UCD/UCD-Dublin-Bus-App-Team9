@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Box, Button, Typography } from "@material-ui/core";
 import {
   faDirections,
@@ -25,9 +25,12 @@ const Sidebar = ({
   current_location,
   place_service,
   route_object,
+  toggle_display,
 }) => {
-  let { toggle_display, toggle_display_updater } =
-    useContext(QuickLocationContext);
+  const [toggledisplay, setToggleDisplay] = useState("planner");
+  useEffect(() => {
+    setToggleDisplay(toggle_display);
+  }, [toggle_display]);
 
   const [controlDisplay, setControlDisplay] = useState("route_planner");
   const [savedLocationOption, setSavedLocationOption] = useState("get_there");
@@ -111,10 +114,10 @@ const Sidebar = ({
     return (
       <Box style={{ display: "flex", flexDirection: "row", width: "100%" }}>
         <Box
-          onClick={() => toggle_display_updater("planner")}
-          boxShadow={toggle_display == "planner" ? 0 : 2}
+          onClick={() => setToggleDisplay("planner")}
+          boxShadow={toggledisplay == "planner" ? 0 : 2}
           className={
-            toggle_display == "planner"
+            toggledisplay == "planner"
               ? style.toggle_option_selected
               : style.toggle_option_not_selected
           }
@@ -122,10 +125,10 @@ const Sidebar = ({
           <Typography>Route Input</Typography>
         </Box>
         <Box
-          onClick={() => toggle_display_updater("description")}
-          boxShadow={toggle_display == "description" ? 0 : 2}
+          onClick={() => setToggleDisplay("description")}
+          boxShadow={toggledisplay == "description" ? 0 : 2}
           className={
-            toggle_display == "description"
+            toggledisplay == "description"
               ? style.toggle_option_selected
               : style.toggle_option_not_selected
           }
@@ -174,14 +177,29 @@ const Sidebar = ({
             >
               {RoutePlanToggle()}
 
-              {toggle_display == "planner" ? (
+              <div
+                style={
+                  toggledisplay == "planner"
+                    ? null
+                    : { width: "0px", height: "0px", overflow: "hidden" }
+                }
+              >
+                {" "}
                 <OriginDestinInput
                   quick_location={quick_location}
                   current_location={current_location}
+                  dis
                 />
-              ) : (
+              </div>
+              <div
+                style={
+                  toggledisplay == "description"
+                    ? null
+                    : { width: "0px", height: "0px", overflow: "hidden" }
+                }
+              >
                 <RouteDescription route_object={route_object} />
-              )}
+              </div>
             </div>
             <div
               id="activity-option-groceries"

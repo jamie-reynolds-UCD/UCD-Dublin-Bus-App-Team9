@@ -124,9 +124,9 @@ function App() {
           latitude: quickLocation.latitude,
           longitude: quickLocation.longitude,
           address_string: quickLocation.address_string,
-          toggle_display: toggleDisplay,
           quick_location_updater: UpdateQuickLocation,
           toggle_display_updater: (val) => setToggleDisplay(val),
+          toggle_display: toggleDisplay,
         }}
       >
         <AuthContextProvider
@@ -178,6 +178,7 @@ function App() {
                         quick_location={quickLocation}
                         current_location={userCredentials.current_location}
                         place_service={placeService}
+                        toggle_display={toggleDisplay}
                       ></Home>
                     )}
                   />

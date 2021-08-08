@@ -13,6 +13,7 @@ const Home = ({
   quick_location,
   current_location,
   place_service,
+  toggle_display,
 }) => {
   const isMobile = useMediaQuery("(max-width:600px)");
   return (
@@ -26,6 +27,7 @@ const Home = ({
               current_location={current_location}
               place_service={place_service}
               route_object={route_object}
+              toggle_display={toggle_display}
             />
 
             {isMobile ? null : <RouteDescription route_object={route_object} />}

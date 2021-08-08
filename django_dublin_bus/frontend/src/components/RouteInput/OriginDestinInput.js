@@ -7,7 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import { InputContainer } from "./OriginDestinInput.elements";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import AuthContext from "../Auth/AuthContext";
 import { Typography } from "@material-ui/core";
 import { useMediaQuery } from "@material-ui/core";
 import QuickLocationContext from "../SavedLocations/QuickLocationContext";
