@@ -155,9 +155,6 @@ def get_artist_top_tracks(artist_id, access_token):
     url = "{0}{1}/top-tracks?market=ES".format(endpoint, artist_id) 
     response = requests.get(url, headers={'Authorization':"Bearer {0}".format(access_token)})
     data = response.json() 
-
-    print("TRACKS") 
-    print(data['tracks'])
     tracks = list(map(lambda x: {'name':x['name'], 'id':x['id'], 'image':x['album']['images'][-1]['url']}, data['tracks'])) 
     return tracks 
 

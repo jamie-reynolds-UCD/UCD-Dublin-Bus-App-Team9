@@ -63,7 +63,14 @@ const NewLeg = (leg) => {
               style={{ fontSize: "15px", marginRight: "3px" }}
             />
           )}
-          {leg.short_instructions.replace("Walk ", "").replace("Bus ", "")}
+
+          {`${leg.short_instructions
+            .replace("Walk ", "")
+            .replace("Bus ", "")} ${
+            leg.predicted_journey_time
+              ? `(${leg.predicted_journey_time} mins predicted)`
+              : ""
+          }`}
         </Typography>
       </div>
       {leg.end_name ? (
