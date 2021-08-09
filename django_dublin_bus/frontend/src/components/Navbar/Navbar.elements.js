@@ -35,6 +35,7 @@ export const NavLogo = styled(Link)`
 
 export const NavIcon = styled(BiBus)`
   margin-right: 0.5rem;
+  font-family: 'Quicksand', 'sans-serif';
 `;
 
 export const MobileIcon = styled.div`
@@ -56,6 +57,7 @@ export const NavMenu = styled.ul`
   align-items: center;
   list-style: none;
   text-align: center;
+  font-family: 'Quicksand', 'sans-serif';
 
   @media screen and (max-width: 960px) {
     display: flex;
@@ -74,6 +76,7 @@ export const NavMenu = styled.ul`
 export const NavItem = styled.li`
   height: 80px;
   border-bottom: 2px solid transparent;
+  font-family: 'Quicksand', 'sans-serif';
 
   &:hover {
     border-bottom: 2px solid #4b59f7;
@@ -107,6 +110,7 @@ export const WeatherItem = styled.div`
 export const WeatherText = styled.p`
   color: #fff;
   font-size: 15px;
+  font-family: 'Quicksand', 'sans-serif';
 `;
 
 export const NavItemBtn = styled.li`

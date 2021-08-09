@@ -57,7 +57,7 @@ function Navbar() {
           <NavbarContainer>
             <NavLogo to="/" onClick={closeMobileMenu}>
               <NavIcon />
-              Dublin Bus
+              Explore Dublin
             </NavLogo>
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}

@@ -6,7 +6,6 @@ import {
   PosterInfo,
   PosterText,
   PosterHead,
-  RowPosters,
   RowHeading,
 } from "./Row.elements";
 import MoreInfo from "../MoreInfo/MoreInfo";
@@ -19,6 +18,17 @@ import {
   IsSpotifyAuthenticated,
   GetSpotifyAuthUrl,
 } from "../../../Api/ApiFunctions";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+require('swiper/components/navigation/navigation.min.css');
+require('swiper/components/pagination/pagination.min.css');
+import 'swiper/components/scrollbar/scrollbar.scss';
+import 'swiper/swiper.scss';
+import './SwiperStyle.css';
+import 'swiper/components/scrollbar/scrollbar.scss';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 
 function Row({ title, fetchUrl }) {
   const [events, setEvents] = useState([]);
@@ -39,8 +49,6 @@ function Row({ title, fetchUrl }) {
     window.location.replace(url);
   };
 
-  // Snippet of code that runs based on a specific condition/variable
-  // Function pulls information from Ticketmaster when the row function is called
   useEffect(async () => {
     async function fetchData() {
       //wait for answer to come back and then do something
@@ -53,9 +61,7 @@ function Row({ title, fetchUrl }) {
     update_spotify_state({ authenticated: authenticated });
 
     fetchData();
-    // if [], run once when the row loads and don't run again
-    //Have to include variable below because useEffect depends on the variable
-    //Using a var which is passed from outside the block, need to tell useEffect this
+    
   }, [fetchUrl]);
 
   const HandleClick = (event) => {
@@ -70,13 +76,13 @@ function Row({ title, fetchUrl }) {
     <RowContainer>
       <RowHeading>
         {title}{" "}
-        {spotify_authenticated & (title == "Music") ? (
+        {spotify_authenticated & (title == "MUSIC") ? (
           <FontAwesomeIcon
             icon={faSpotify}
             size="1x"
             style={{ color: "#1DB954", marginRight: "8px" }}
           />
-        ) : title == "Music" ? (
+        ) : title == "MUSIC" ? (
           <Button
             variant="contained"
             style={{
@@ -97,9 +103,37 @@ function Row({ title, fetchUrl }) {
           </Button>
         ) : null}
       </RowHeading>
-      <RowPosters>
+
+
+      <Swiper
+         navigation
+         pagination={{ "clickable": true }}
+         breakpoints={{
+          
+          "360": {
+            "slidesPerView": 3,
+            "slidesPerGroup": 3,
+            "spaceBetween": 5,
+          },
+          "900": {
+            "slidesPerView": 3,
+          },
+          "1024": {
+            "slidesPerView": 5,
+            "slidesPerGroup": 5,
+          },
+
+          "1536": {
+            "slidesPerView": 6,
+            "slidesPerGroup": 6,
+          },
+          "1920": {
+            "slidesPerView": 7,
+            "slidesPerGroup": 7,
+       }}}
+       >
         {events.map((event) => [
-          <PosterInfo key={event.id} onClick={() => HandleClick(event)}>
+          <SwiperSlide><PosterInfo key={event.id} onClick={() => HandleClick(event)}>
             <PosterImg
               key={event.id}
               src={event.images[0]["url"]}
@@ -112,14 +146,12 @@ function Row({ title, fetchUrl }) {
             ) : null}
             <PosterHead>{event.name}</PosterHead>
             <PosterText>
-              {event.dates.start.localTime}
-              {"\n"}
-              {event.dates.start.localDate}
+              {event.dates.start.localTime}{"\n"}
+              {new Date(event.dates.start.dateTime).toLocaleDateString('en-gb', {month: 'long',day: 'numeric'})}
             </PosterText>
-          </PosterInfo>,
+          </PosterInfo></SwiperSlide>
         ])}
-      </RowPosters>
-      {/*If an event is selcted, show the information window  */}
+      </Swiper>
       {selEvent && MoreInfo(selEvent)}
     </RowContainer>
   );
