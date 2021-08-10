@@ -127,7 +127,9 @@ const RouteDescription = ({ route_object }) => {
       <Typography style={{ marginLeft: "2px", fontWeight: "bold" }}>
         {" "}
         <FontAwesomeIcon icon={faMapPin} style={{ marginRight: "2px" }} />
-        {`${route_object[0].origin}, ${route_object[0].time}`}
+        {`${route_object[0].origin} ${
+          route_object[0].time ? `, ${route_object[0].time}` : ""
+        }`}
       </Typography>
 
       {route_object.slice(1, -1).map((leg) => {
@@ -140,8 +142,10 @@ const RouteDescription = ({ route_object }) => {
       <Typography style={{ marginLeft: "2px", fontWeight: "bold" }}>
         {" "}
         <FontAwesomeIcon icon={faMapPin} style={{ marginRight: "2px" }} />
-        {`Arrive at ${route_object[route_object.length - 1].destination}, ${
+        {`Arrive at ${route_object[route_object.length - 1].destination} ${
           route_object[route_object.length - 1].time
+            ? `, ${route_object[route_object.length - 1].time}`
+            : ""
         }`}
       </Typography>
     </div>

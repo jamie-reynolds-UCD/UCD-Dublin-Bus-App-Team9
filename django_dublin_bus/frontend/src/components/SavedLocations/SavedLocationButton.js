@@ -29,8 +29,7 @@ const SavedLocationButton = ({ loc_obj }) => {
 
     try {
       location = await GetCoordinates(loc_obj.full_address);
-      console.log("SETTING THE NEW LOCATION");
-      console.log(location);
+
       quick_location_updater({
         ...location,
         address_string: loc_obj.full_address,

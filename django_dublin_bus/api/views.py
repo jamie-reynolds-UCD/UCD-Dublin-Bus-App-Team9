@@ -1,3 +1,4 @@
+from typing import Sequence
 from django.views import View 
 import googlemaps 
 import datetime
@@ -7,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-from api.models import SavedLocations, BusStationsStatic
+from api.models import SavedLocations, BusStationsStatic, RoutesStatic, TripsStatic, StopTimesStatic
 from api.serializers import *
 from django.conf import settings
 import os
@@ -35,7 +36,6 @@ def generate_stop_pair(model_name):
 
 def get_path(from_stop, pairs, final_target):   
 
-
     """Takes the from stop number, all pairs of stops along the route, and the final target stop. Return 
     True, *path* if a path to the final target exists. otherwise returns False, []"""
     for i in range(len(pairs)): 
@@ -51,12 +51,72 @@ def get_path(from_stop, pairs, final_target):
                 else:
                     path.insert(0, (from_stop, next_stop)) 
                     return valid, path
-    return False, [] 
+    return False, []  
 
+
+def get_path_db(route, from_stop, to_stop):
+    """Generates the path from 1 stop to the next stop on a given route given a start and end point. 
+    This method of path generation is only called if the initial method fails.""" 
+
+    route_id = RoutesStatic.objects.filter(route_short_name=route)[0].route_id
+
+    print("Route id is {0}".format(route_id))
+
+    trip_id_dir_0 = TripsStatic.objects.filter(route_id=route_id, direction_id=0)[0].trip_id
+    trip_id_dir_1 = TripsStatic.objects.filter(route_id=route_id, direction_id=1)[0].trip_id  
+
+    trip_0_stops = StopTimesStatic.objects.filter(trip_id=trip_id_dir_0).order_by('stop_sequence') 
+    trip_0_stops = [x.stop_id for x in trip_0_stops]  
+    trip_0_stops = [BusStationsStatic.objects.get(stop_id=x).stop_name for x in trip_0_stops]  
+    trip_0_stops = [x[x.rfind(" ")+1:] for x in trip_0_stops] 
+
+
+    try:
+        from_stop_index = trip_0_stops.index(from_stop)  
+    except:
+        from_stop_index = -1 
+
+    try:
+        to_stop_index = trip_0_stops.index(to_stop)  
+    except:
+        to_stop_index = -1
+
+    if (from_stop_index!=-1) and (to_stop_index!=-1) and (from_stop_index < to_stop_index):
+
+        stops = trip_0_stops[from_stop_index:to_stop_index+1] 
+
+        pairs = [] 
+
+        for i in range(len(stops)-1):
+            pairs.append((stops[i], stops[i+1]))
+        
+        return pairs 
+
+    trip_1_stops = StopTimesStatic.objects.filter(trip_id=trip_id_dir_1).order_by('stop_sequence') 
+    trip_1_stops = [x.stop_id for x in trip_1_stops]  
+    trip_1_stops = [BusStationsStatic.objects.get(stop_id=x).stop_name for x in trip_1_stops]  
+    trip_1_stops = [x[x.rfind(" ")+1:] for x in trip_1_stops]  
+
+    try:
+        from_stop_index = trip_1_stops.index(from_stop)  
+    except:
+        from_stop_index = -1 
+
+    try:
+        to_stop_index = trip_1_stops.index(to_stop)  
+    except:
+        to_stop_index = -1
+
+    if (from_stop_index!=-1) and (to_stop_index!=-1) and (from_stop_index < to_stop_index):
+        stops = trip_1_stops[from_stop_index:to_stop_index+1] 
+        pairs = [] 
+        for i in range(len(stops)-1):
+            pairs.append((stops[i], stops[i+1]))
+        return pairs  
+
+    return None 
 
 def get_models_array(path_route, models_directory):  
-
-   
 
     models = []
 
@@ -89,19 +149,89 @@ def get_weather_forecast_dublin(timestamp):
     response = requests.get(current_endpoint)  
 
     data = response.json()
-    
-
-
     temperature = data['main']['temp'] 
     humidity = data['main']['humidity'] 
     windspeed = data['wind']['speed']
     precipitation = data.get('rain', {}).get('1h', 0) + data.get('snow', {}).get('1h', 0)  
 
+    return float(temperature), float(humidity), float(windspeed), float(precipitation) 
+
+def get_route_sequence(pairs): 
+
+    next_stops = {} 
+
+    from_stops = {} 
+
+    for pair in pairs:
+        next_stops[pair[0]] = pair[1] 
+
+        from_stops[pair[1]] = pair[0]
+
+    start_stop = None 
+    end_stop = None
+
+    for stop in next_stops:
+        if stop not in from_stops:
+            start_stop=stop 
+            break 
+
+    for stop in from_stops:
+        if stop not in next_stops:
+            end_stop = stop 
+            break 
 
     
-    return float(temperature), float(humidity), float(windspeed), float(precipitation)
+    stop_pointer = start_stop 
+
+    sequence = [] 
+
+    while True:
+        sequence.append(stop_pointer)  
+
+        try:
+            stop_pointer = next_stops[stop_pointer]  
+        except:
+            break
+
+    return sequence 
+
+def get_closest_stop(stop, valid_stops):
+
+    current_stop = BusStationsStatic.objects.filter(stop_name__iendswith=" {0}".format(stop))[0]  
+    current_lat, current_long = current_stop.stop_lat, current_stop.stop_long 
+
+    closest = None 
+    closest_distance = None 
+
+
+    for stop in valid_stops:
+        try:
+            this_stop = BusStationsStatic.objects.filter(stop_name__iendswith=" {0}".format(stop))[0] 
+            stop_lat, stop_long = this_stop.stop_lat, this_stop.stop_long  
+
+            distance = haversine(current_lat, current_long, stop_lat, stop_long) 
+
+            if closest_distance==None:
+                closest = stop 
+                closest_distance = distance 
+            else:
+                if distance<closest_distance:
+                    closest = stop 
+                    closest_distance = distance 
+
+        except:
+            pass   
 
     
+    if closest_distance==None:
+        return None 
+
+    if closest_distance<0.2:
+        return closest 
+    else:
+        return None
+  
+
 def get_predicted_journey_time(departure_stop, arrival_stop, route_name, timestamp):
 
     print("The departure stop is {0}".format(departure_stop)) 
@@ -118,6 +248,8 @@ def get_predicted_journey_time(departure_stop, arrival_stop, route_name, timesta
     #if the route name is in the models directory set route name found to true
     if route_name in all_dirs:
         route_name_found = True 
+
+    #path_route_db = get_path_db(route_name, departure_stop, arrival_stop) 
 
     #if the route name found is false then return None since there will be no model for this stop to stop pair
     if route_name_found==False: 
@@ -136,7 +268,19 @@ def get_predicted_journey_time(departure_stop, arrival_stop, route_name, timesta
 
     #turns the file names into tuples such as (103, 793) to represent a trip from stop 103 to 793
     dir1_pairs = list(map(lambda x: generate_stop_pair(x), os.listdir(dir1)))
-    dir2_pairs = list(map(lambda x: generate_stop_pair(x), os.listdir(dir2)))  
+    dir2_pairs = list(map(lambda x: generate_stop_pair(x), os.listdir(dir2)))   
+
+
+    dir1_sequence = get_route_sequence(dir1_pairs) 
+    dir2_sequence = get_route_sequence(dir2_pairs)    
+
+    all_stops_on_route = list(set(dir1_sequence + dir2_sequence))  
+
+    if departure_stop not in all_stops_on_route:
+        departure_stop = get_closest_stop(departure_stop, all_stops_on_route) 
+
+    if arrival_stop not in all_stops_on_route:
+        arrival_stop = get_closest_stop(arrival_stop, all_stops_on_route) 
    
     #checks if dir1 has a valid path from the departure stop to the arrival stop 
     path_directory = "dir1"
@@ -145,7 +289,7 @@ def get_predicted_journey_time(departure_stop, arrival_stop, route_name, timesta
     if valid_path==False:  
         path_directory="dir2"
         #if there was no valid path using di1 then check dir2
-        valid_path, path_route = get_path(departure_stop, dir2_pairs, arrival_stop)  
+        valid_path, path_route = get_path(departure_stop, dir2_pairs, arrival_stop)   
 
     #if no valid path is found return None
     if valid_path==False:
@@ -357,7 +501,8 @@ def generate_wait_departure_string(arrival_details, departure_details):
 
 
 
-def parse_directions(response):
+def parse_directions(response): 
+   
     """Helper function - Parse the full directions response"""
 
     directions = response[0]['legs'][0]  

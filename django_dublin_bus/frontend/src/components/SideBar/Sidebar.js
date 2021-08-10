@@ -26,18 +26,24 @@ const Sidebar = ({
   place_service,
   route_object,
   toggle_display,
+  toggle_display_updated,
 }) => {
   const [toggledisplay, setToggleDisplay] = useState("planner");
+
+  const menu_type = useMediaQuery("(max-width:600px)") ? "thumb" : "sidebar";
+
   useEffect(() => {
     setToggleDisplay(toggle_display);
-  }, [toggle_display]);
+
+    if (menu_type == "thumb") {
+      setControlDisplay("route_planner");
+    }
+  }, [toggle_display, toggle_display_updated]);
 
   const [controlDisplay, setControlDisplay] = useState("route_planner");
   const [savedLocationOption, setSavedLocationOption] = useState("get_there");
 
   const style = SidebarStyle();
-
-  const menu_type = useMediaQuery("(max-width:600px)") ? "thumb" : "sidebar";
 
   /*let activities = [
     "Groceries",
