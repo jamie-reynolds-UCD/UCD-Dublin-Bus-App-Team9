@@ -11,7 +11,7 @@ export const SCardBody = styled.div`
   flex-direction: column;
 
     @media screen and (max-width:600px) {
-        position: relative;
+        display: none;
     }
 `
 export const SCardImage = styled.img`
