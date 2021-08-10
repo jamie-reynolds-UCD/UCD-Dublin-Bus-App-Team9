@@ -70,36 +70,23 @@ function Navbar() {
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/Events' onClick={closeMobileMenu}>
+                <NavLinks to="/Events" onClick={closeMobileMenu}>
                   Events
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/Attractions' onClick={closeMobileMenu}>
+                <NavLinks to="/Attractions" onClick={closeMobileMenu}>
                   Attractions
                 </NavLinks>
               </NavItem>
 
-              {loggedin ? (
+              {/*loggedin ? (
                 <NavItem>
                   <NavLinks to="/" onClick={LogoutUser}>
                     Logout
                   </NavLinks>
                 </NavItem>
-              ) : null}
-              <NavItemBtn>
-                {button ? (
-                  <NavBtnLink to={button_link}>
-                    <Button primary>{profile_button_text}</Button>
-                  </NavBtnLink>
-                ) : (
-                  <NavBtnLink to={button_link}>
-                    <Button onClick={closeMobileMenu} fontBig primary>
-                      {profile_button_text}
-                    </Button>
-                  </NavBtnLink>
-                )}
-              </NavItemBtn>
+              ) : null*/}
             </NavMenu>
           </NavbarContainer>
         </Nav>
@@ -109,3 +96,17 @@ function Navbar() {
 }
 
 export default Navbar;
+
+/*<NavItemBtn>
+{button ? (
+  <NavBtnLink to={button_link}>
+    <Button primary>{profile_button_text}</Button>
+  </NavBtnLink>
+) : (
+  <NavBtnLink to={button_link}>
+    <Button onClick={closeMobileMenu} fontBig primary>
+      {profile_button_text}
+    </Button>
+  </NavBtnLink>
+)}
+</NavItemBtn>*/

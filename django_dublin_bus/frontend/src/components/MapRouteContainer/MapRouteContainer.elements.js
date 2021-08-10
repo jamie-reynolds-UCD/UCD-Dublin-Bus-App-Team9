@@ -14,7 +14,7 @@ export const RouteInputDirectionsContainer = styled.div`
 
   @media screen and (max-width: 600px) {
     flex: 1;
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
 `;

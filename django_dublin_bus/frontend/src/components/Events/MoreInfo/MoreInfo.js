@@ -59,7 +59,7 @@ export default function MoreInfo(SelEvent) {
                     color="primary"
                     size="small"
                     startIcon={<FaRoute />}
-                    onClick={() => GetDirections}
+                    onClick={() => GetDirections()}
                   >
                     Route
                   </Button>

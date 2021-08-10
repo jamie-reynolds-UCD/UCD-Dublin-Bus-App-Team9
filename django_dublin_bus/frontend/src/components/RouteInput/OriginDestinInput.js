@@ -7,12 +7,18 @@ import TextField from "@material-ui/core/TextField";
 import { InputContainer } from "./OriginDestinInput.elements";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import AuthContext from "../Auth/AuthContext";
 import { Typography } from "@material-ui/core";
+import { useMediaQuery } from "@material-ui/core";
+import QuickLocationContext from "../SavedLocations/QuickLocationContext";
 
 const OriginDestinInput = ({ quick_location, current_location }) => {
   //access this function which allows us to update the markers that are rendered on the application
   const { setMapDetails } = useContext(MapContext);
+
+  const { toggle_display_updater, trigger_toggle_update } =
+    useContext(QuickLocationContext);
+
+  const ismobile = useMediaQuery("(max-width:600px)");
 
   const geocoder = new google.maps.Geocoder();
   //a state variable which is updated when the user changes the value in the autocomplete menu
@@ -25,26 +31,31 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
   });
 
   const SetDestinationToQuickLocation = () => {
-    if (quick_location.latitude != null) {
-      setPlaceDetails({
-        ...placeDetails,
-        destination_address: {
-          label: quick_location.address_string,
-          value: {},
-        },
-        dest_coords: {
-          latitude: quick_location.latitude,
-          longitude: quick_location.longitude,
-        },
-      });
+    console.log("SETTING DESTINATION TO QUICK LOCATION");
+    try {
+      if (quick_location.latitude != null) {
+        setPlaceDetails({
+          ...placeDetails,
+          destination_address: {
+            label: quick_location.address_string,
+            value: {},
+          },
+          dest_coords: {
+            latitude: quick_location.latitude,
+            longitude: quick_location.longitude,
+          },
+        });
 
-      UpdateRoute(
-        {
-          latitude: quick_location.latitude,
-          longitude: quick_location.longitude,
-        },
-        quick_location.address_string
-      );
+        UpdateRoute(
+          {
+            latitude: quick_location.latitude,
+            longitude: quick_location.longitude,
+          },
+          quick_location.address_string
+        );
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -122,48 +133,83 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
   };
 
   const UpdateRoute = async (dest_coords, destination_address) => {
-    console.log("THESE ARE THE PLACE DETAILS");
-    console.log(placeDetails);
-    let response = await GetRoute({
-      origin_coords: placeDetails.origin_coords,
-      dest_coords: dest_coords != null ? dest_coords : placeDetails.dest_coords,
-      origin_string: placeDetails.origin_address.label,
-      destination_string: destination_address
-        ? destination_address
-        : placeDetails.destination_address.label,
-      time: timeDetails.use_now ? "now" : timeDetails.chosentime,
-      date: timeDetails.date,
-    });
+    try {
+      let response = await GetRoute({
+        origin_coords:
+          placeDetails.origin_coords != null
+            ? placeDetails.origin_coords
+            : {
+                latitude: current_location.latitude,
+                longitude: current_location.longitude,
+              },
+        dest_coords:
+          dest_coords != null ? dest_coords : placeDetails.dest_coords,
+        origin_string: placeDetails.origin_address
+          ? placeDetails.origin_address.label
+          : "Current Location",
+        destination_string:
+          destination_address != null
+            ? destination_address
+            : placeDetails.destination_address.label,
+        time: timeDetails.use_now ? "now" : timeDetails.chosentime,
+        date: timeDetails.date,
+      });
 
-    if (response.status == 200) {
-      let start_markers = response.data.route
-        .slice(1, -1)
-        .map((leg) => leg.start_location);
+      if (response.status == 200) {
+        let start_markers = response.data.route
+          .slice(1, -1)
+          .map((leg) => leg.start_location);
 
-      let end_markers = response.data.route
-        .slice(1, -1)
-        .map((leg) => leg.end_location);
+        let end_markers = response.data.route
+          .slice(1, -1)
+          .map((leg) => leg.end_location);
 
-      let all_markers = [];
+        let all_markers = [];
 
-      for (var i = 0; i < start_markers.length; i += 2) {
-        all_markers.push(start_markers[i]);
-        all_markers.push(end_markers[i]);
+        for (var i = 0; i < start_markers.length; i += 2) {
+          all_markers.push(start_markers[i]);
+          all_markers.push(end_markers[i]);
+        }
+
+        let polylines = response.data.route.slice(1, -1).map((leg) => {
+          return {
+            travelmode: leg.travel_mode,
+            path: google.maps.geometry.encoding.decodePath(leg.polyline.points),
+          };
+        });
+
+        setMapDetails({
+          markers: all_markers,
+          polylines: polylines,
+          route_object: response.data.route,
+          route_bounds: response.data.route_bounds,
+        });
+
+        if (destination_address != null) {
+          console.log(placeDetails.origin_address);
+          setPlaceDetails({
+            ...placeDetails,
+            destination_address: {
+              label: destination_address,
+              value: {},
+            },
+            dest_coords: dest_coords,
+            origin_address: {
+              label: placeDetails.origin_address
+                ? placeDetails.origin_address.label
+                : "Current Location",
+              value: {},
+            },
+          });
+        }
+
+        toggle_display_updater("description");
+
+        trigger_toggle_update();
       }
-
-      let polylines = response.data.route.slice(1, -1).map((leg) => {
-        return {
-          travelmode: leg.travel_mode,
-          path: google.maps.geometry.encoding.decodePath(leg.polyline.points),
-        };
-      });
-
-      setMapDetails({
-        markers: all_markers,
-        polylines: polylines,
-        route_object: response.data.route,
-        route_bounds: response.data.route_bounds,
-      });
+    } catch (error) {
+      console.log("Error");
+      console.log(error);
     }
   };
 
@@ -191,9 +237,11 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
             marginBottom: "10px",
           }}
         >
-          <Typography variant="h6" style={{ color: "#4B59F7" }}>
-            Route Planner
-          </Typography>
+          {ismobile ? null : (
+            <Typography variant="h6" style={{ color: "#4B59F7" }}>
+              Route Planner
+            </Typography>
+          )}
         </div>
         <div
           style={{

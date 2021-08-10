@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import jsonData from "./attractionlist.json";
 import TouristMap from '../TouristMap/TouristMap';
 import { LoadButton, LoadButtonCont, TagButton, TagButtons } from './AttractionCards.elements';
@@ -18,54 +18,49 @@ export default function AttractionCards () {
 
   //Load more cards
   const loadMore = () => {
-  setVisible(visible + 8)
+    setVisible(visible + 8);
   };
 
   useEffect(() => {
-    tagList
-  }, [])
-
+    tagList;
+  }, []);
 
   //Filterting the entire list of attractions
-  const tagList = jsonData.filter(
-    attraction => {
-      return (
-        attraction.tags.toLowerCase().includes(tag.toLowerCase()) &&
-        attraction.name.toLowerCase().includes(name.toLowerCase())
-      );
-    }
-  );
+  const tagList = jsonData.filter((attraction) => {
+    return (
+      attraction.tags.toLowerCase().includes(tag.toLowerCase()) &&
+      attraction.name.toLowerCase().includes(name.toLowerCase())
+    );
+  });
 
   //On click of tag button, set conditions
   const handleClick = (tag) => {
-        setTag(tag);
-        setVisible(8);
-        setName("");
-        setShowResults(false);
+    setTag(tag);
+    setVisible(8);
+    setName("");
+    setShowResults(false);
   };
 
   //Reset list of attractions to all
   function ResetList() {
-    setName('');
+    setName("");
     setVisible(8);
-    setShowResults(false)
-  };
+    setShowResults(false);
+  }
 
   //View single attraction on maap
   function ViewOnMap(attraction) {
     setName(attraction.name);
     setVisible(0);
     setShowResults(true);
-  };
+  }
 
   //Create info card of single selected attraction
   function SelectedAttraction() {
-    return (
-      <div>{tagList.map(attraction => [SelectedCard(attraction)])}</div>
-    )
-  };
+    return <div>{tagList.map((attraction) => [SelectedCard(attraction)])}</div>;
+  }
 
-  //Close info card of single selected attraction 
+  //Close info card of single selected attraction
   function CloseAttraction() {
     return (
       <div><button onClick={() => ResetList()}>Close</button></div>
@@ -79,7 +74,7 @@ export default function AttractionCards () {
 
     let lat = attraction.latitude;
     let lng = attraction.longitude;
-    let LName = attraction.name.replace(/"/g, '');
+    let LName = attraction.name.replace(/"/g, "");
 
     const GetDirections = () => {
         quick_location_updater({ address_string: LName,  latitude: lat, longitude: lng });
@@ -131,7 +126,7 @@ export default function AttractionCards () {
       </CardBody>
     </WholeCard>
     );
-  };
+  }
 
   return (
     <div>
@@ -139,21 +134,37 @@ export default function AttractionCards () {
       <div>{TouristMap(tagList)}</div>
       <div>{showResults && <CloseAttraction />}</div>
       <TagButtons>
-        <TagButton onClick={() => handleClick("")}>All</TagButton> 
-        <TagButton onClick={() => handleClick("Art Gallery")}>Art Galleries</TagButton> 
-        <TagButton onClick={() => handleClick("Public Sculpture")}>Public Sculptures</TagButton>  
-        <TagButton onClick={() => handleClick("Historic Houses and Castle")}>Historic Houses and Castles</TagButton> 
-        <TagButton onClick={() => handleClick("Food and Drink")}>Food and Drink</TagButton> 
-        <TagButton onClick={() => handleClick("Music")}>Music</TagButton> 
-        <TagButton onClick={() => handleClick("Museums and Attraction")}>Museums and Attraction</TagButton> 
-        <TagButton onClick={() => handleClick("Gardens")}>Gardens</TagButton> 
-        <TagButton onClick={() => handleClick("Beach")}>Beaches</TagButton> 
-        <TagButton onClick={() => handleClick("Tour")}>Tours</TagButton> 
-        <TagButton onClick={() => handleClick("Walking")}>Walking</TagButton> 
-        <TagButton onClick={() => handleClick("Learning")}>Learning</TagButton> 
+        <TagButton onClick={() => handleClick("")}>All</TagButton>
+        <TagButton onClick={() => handleClick("Art Gallery")}>
+          Art Galleries
+        </TagButton>
+        <TagButton onClick={() => handleClick("Public Sculpture")}>
+          Public Sculptures
+        </TagButton>
+        <TagButton onClick={() => handleClick("Historic Houses and Castle")}>
+          Historic Houses and Castles
+        </TagButton>
+        <TagButton onClick={() => handleClick("Food and Drink")}>
+          Food and Drink
+        </TagButton>
+        <TagButton onClick={() => handleClick("Music")}>Music</TagButton>
+        <TagButton onClick={() => handleClick("Museums and Attraction")}>
+          Museums and Attraction
+        </TagButton>
+        <TagButton onClick={() => handleClick("Gardens")}>Gardens</TagButton>
+        <TagButton onClick={() => handleClick("Beach")}>Beaches</TagButton>
+        <TagButton onClick={() => handleClick("Tour")}>Tours</TagButton>
+        <TagButton onClick={() => handleClick("Walking")}>Walking</TagButton>
+        <TagButton onClick={() => handleClick("Learning")}>Learning</TagButton>
       </TagButtons>
-      <CardWrapper>{tagList.slice(0, visible).map(attraction => [Card(attraction)])}</CardWrapper>
-      <LoadButtonCont>{visible < tagList.length && (<LoadButton onClick={loadMore}>Load More</LoadButton> )}</LoadButtonCont>
+      <CardWrapper>
+        {tagList.slice(0, visible).map((attraction) => [Card(attraction)])}
+      </CardWrapper>
+      <LoadButtonCont>
+        {visible < tagList.length && (
+          <LoadButton onClick={loadMore}>Load More</LoadButton>
+        )}
+      </LoadButtonCont>
     </div>
   );
 }

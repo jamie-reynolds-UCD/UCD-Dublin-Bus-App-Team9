@@ -4,20 +4,48 @@ import { OptionsContainer } from "./SavedLocations.elements";
 import AuthContext from "../Auth/AuthContext";
 import SavedLocationButton from "./SavedLocationButton";
 import { Typography, Box } from "@material-ui/core";
+import Cookies from "universal-cookie";
 
 const SavedLocationOptions = ({ display }) => {
   const [locDetails, setLocDetails] = useState({ saved_locations: [] });
+
+  const cookies = new Cookies();
   let { loggedin } = useContext(AuthContext);
 
-  const LoadSavedLocations = async () => {
-    let response = await LoadUserLocations();
+  const LoadLocations = () => {
+    let locs = cookies.get("saved_locations");
 
-    if (response.status == 200) {
-      setLocDetails({
-        ...locDetails,
-        saved_locations: response.data.locations,
+    if (locs == "") {
+      return [];
+    }
+
+    if (locs == null) {
+      return [];
+    } else {
+      locs = locs.split("|||");
+    }
+
+    let saved_locations = [];
+
+    for (var i = 0; i < locs.length; i++) {
+      let split_loc = locs[i].split("***");
+      saved_locations.push({
+        full_address: split_loc[1],
+        location_name: split_loc[0],
+        id: i,
       });
     }
+
+    return saved_locations;
+  };
+
+  const LoadSavedLocations = () => {
+    let locs = LoadLocations();
+
+    setLocDetails({
+      ...locDetails,
+      saved_locations: locs,
+    });
   };
 
   useEffect(LoadSavedLocations, []);

@@ -13,11 +13,14 @@ import {
   HorizontalDiv,
   InputRowContainer,
 } from "./SavedLocations.elements";
+import Cookies from "universal-cookie";
 
 const UserSavedLocations = ({ display }) => {
   const [locDetails, setLocDetails] = useState({ saved_locations: [] });
 
   const [ShowEdit, setShowEdit] = useState(false);
+
+  const cookies = new Cookies();
 
   const [NewLocationDetails, setNewLocationDetails] = useState({
     location_name: null,
@@ -25,6 +28,34 @@ const UserSavedLocations = ({ display }) => {
     location_name_error: false,
     full_address_error: false,
   });
+
+  const generate_cookie_string = (location_name, location_address) => {
+    return location_name.concat("***").concat(location_address);
+  };
+
+  const SaveNewLocationCookie = (loc_details) => {
+    let current_cookies = cookies.get("saved_locations");
+
+    current_cookies = current_cookies ? current_cookies : "";
+
+    if (current_cookies == "") {
+      current_cookies = generate_cookie_string(
+        loc_details.location_name,
+        loc_details.full_address
+      );
+    } else {
+      current_cookies = current_cookies
+        .concat("|||")
+        .concat(
+          generate_cookie_string(
+            loc_details.location_name,
+            loc_details.full_address
+          )
+        );
+    }
+
+    cookies.set("saved_locations", current_cookies, { path: "/" });
+  };
 
   const SaveLocation = async () => {
     if (
@@ -51,19 +82,47 @@ const UserSavedLocations = ({ display }) => {
       return;
     }
 
-    await SaveNewLocation(NewLocationDetails);
+    //await SaveNewLocation(NewLocationDetails);
+
+    SaveNewLocationCookie(NewLocationDetails);
 
     LoadSavedLocations();
   };
 
-  const LoadSavedLocations = async () => {
-    let response = await LoadUserLocations();
-    if (response.status == 200) {
-      setLocDetails({
-        ...locDetails,
-        saved_locations: response.data.locations,
+  const LoadLocations = () => {
+    let locs = cookies.get("saved_locations");
+
+    if (locs == "") {
+      return [];
+    }
+
+    if (locs == null) {
+      return [];
+    } else {
+      locs = locs.split("|||");
+    }
+
+    let saved_locations = [];
+
+    for (var i = 0; i < locs.length; i++) {
+      let split_loc = locs[i].split("***");
+      saved_locations.push({
+        full_address: split_loc[1],
+        location_name: split_loc[0],
+        id: i,
       });
     }
+
+    return saved_locations;
+  };
+
+  const LoadSavedLocations = () => {
+    let saved_locations = LoadLocations();
+
+    setLocDetails({
+      ...locDetails,
+      saved_locations: saved_locations,
+    });
 
     setShowEdit(false);
   };
