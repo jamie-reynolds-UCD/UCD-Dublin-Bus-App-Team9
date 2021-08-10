@@ -7,15 +7,31 @@ import {
   DeleteContainer,
   HorizontalDiv,
 } from "./SavedLocations.elements";
-import { DeleteLocation } from "../../Api/ApiFunctions";
+import Cookies from "universal-cookie";
 
 const SavedLocation = ({ loc }) => {
   const [AreYourSureDelete, setAreYouSureDelete] = useState(false);
 
   const [deleted, setDeleted] = useState(false);
 
-  const Delete_Location = async () => {
-    await DeleteLocation(loc.id);
+  const cookies = new Cookies();
+
+  const Delete_Location = () => {
+    let saved_locs = cookies.get("saved_locations");
+
+    saved_locs = saved_locs.split("|||");
+
+    for (var i = 0; i < saved_locs.length; i++) {
+      if (i == loc.id) {
+        saved_locs.splice(i);
+        break;
+      }
+    }
+
+    saved_locs = saved_locs.join("|||");
+
+    cookies.set("saved_locations", saved_locs, { path: "/" });
+
     setDeleted(true);
     setAreYouSureDelete(false);
   };

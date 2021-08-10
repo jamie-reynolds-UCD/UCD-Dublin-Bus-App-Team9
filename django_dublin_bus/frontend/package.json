@@ -49,6 +49,7 @@
     "style-loader": "^3.2.1",
     "styled-components": "^5.3.0",
     "swiper": "^6.8.1",
+    "universal-cookie": "^4.0.4",
     "weather-icons": "github:erikflowers/weather-icons"
   }
 }

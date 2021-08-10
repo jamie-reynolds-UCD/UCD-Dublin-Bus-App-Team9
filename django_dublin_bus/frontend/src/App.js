@@ -110,6 +110,9 @@ function App() {
 
   window.onSpotifyWebPlaybackSDKReady = () => set_sdk_ready(true);
 
+  const [toggleDisplay, setToggleDisplay] = useState("planner");
+  const [toggleDisplayUpdated, setToggleDisplayUpdated] = useState(0);
+
   useEffect(() => {
     UpdateUserCredentials();
     GetUserCoordinatesAndString();
@@ -123,6 +126,16 @@ function App() {
           longitude: quickLocation.longitude,
           address_string: quickLocation.address_string,
           quick_location_updater: UpdateQuickLocation,
+          toggle_display_updater: (val) => setToggleDisplay(val),
+          toggle_display: toggleDisplay,
+          toggle_display_updated: toggleDisplayUpdated,
+          trigger_toggle_update: () => {
+            if (toggleDisplayUpdated == 0) {
+              setToggleDisplayUpdated(1);
+            } else {
+              setToggleDisplayUpdated(0);
+            }
+          },
         }}
       >
         <AuthContextProvider
@@ -174,6 +187,8 @@ function App() {
                         quick_location={quickLocation}
                         current_location={userCredentials.current_location}
                         place_service={placeService}
+                        toggle_display={toggleDisplay}
+                        toggle_display_updated={toggleDisplayUpdated}
                       ></Home>
                     )}
                   />
