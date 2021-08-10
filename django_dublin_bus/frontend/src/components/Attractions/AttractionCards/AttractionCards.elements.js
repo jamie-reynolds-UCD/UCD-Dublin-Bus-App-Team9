@@ -23,9 +23,7 @@ export const LoadButton = styled.button`
     background-color:#FFFFFF;
 
     }
- 
 `
-
 export const LoadButtonCont = styled.div`
     padding-top: 2%;
     align-content: center;
@@ -38,6 +36,7 @@ export const TagButtons = styled.div`
     white-space: nowrap;
     padding-top: 1%;
     width: 100%;
+    font-family: 'Quicksand', 'sans-serif';
 
     &::-webkit-scrollbar {
     width: 20px;
@@ -64,30 +63,30 @@ export const TagButton = styled.button`
 
     display:inline-block;
     padding:0.5em 3em;
-    border:0.16em solid #706f6f;
+    border:0.16em solid #64b5f6;
     margin:0 0.3em 0.3em 0;
     box-sizing: border-box;
     text-decoration:none;
     text-transform:uppercase;
-    font-family:'Roboto',sans-serif;
+    font-family: 'Quicksand', 'sans-serif';
     font-weight:400;
-    color:#706f6f;
+    color:#000;
     text-align:center;
     transition: all 0.15s;
     
     &:hover {
     color: #000;
-    border-color: #000;
+    border-color: #e57373;
     }
 
     &:active{
-    color:#4B59F7;
-    border-color:#4B59F7;
+    color:#000;
+    border-color:#e57373;
     }
 
     &:focus{
-    color:#4B59F7;
-    border-color:#4B59F7;
+    color:#000;
+    border-color:#e57373;
     }
 `
 
@@ -97,4 +96,5 @@ export const attractionWindow = styled.div`
     width: 30%;
     height: 10%;
     float: right;
+    font-family: 'Quicksand', 'sans-serif';
 `

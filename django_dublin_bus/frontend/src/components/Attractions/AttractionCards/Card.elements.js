@@ -7,12 +7,23 @@ export const CardWrapper = styled.div`
     gap: 2rem;
     justify-content: center;
     padding-top: 40px;
+    padding-left: 5%;
+    padding-right: 5%;
+    @media screen and (max-width:600px) {
+        margin: 2rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
 `
 
-export const CardBody = styled.div`
+export const WholeCard = styled.div`
     overflow: hidden;
   box-shadow: 0 2px 20px #e1e5ee;
   border-radius: 0.2rem;
+  height: 40vh;
+  width: 275px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -28,27 +39,54 @@ export const CardBody = styled.div`
     transform: scale(1.01); 
     }
 
-    @media screen and (min-width:600px) {
+    @media screen and (max-width:600px) {
+        min-width: 28rem;
+        display: flex;
+        flex-direction: unset;
+        height: 11rem;
+    }
+`
+
+export const CardBody = styled.div`
+
+    @media screen and (max-width:600px) {
+        width: 50%;
+        display: flex;
         flex-direction: column;
-        text-align: center;
-        min-width: 14rem;
     }
 `
 
 export const CardImage = styled.img`
     float: left;
     width:  300px;
-    height: 100px;
+    height: 125px;
     object-fit: cover;
 
+    @media screen and (max-width:600px) {
+        width: 12rem;
+        height: 11rem;
+        display: flex;
+    }
 `
 export const CardTitle = styled.h1`
     line-height: 1.4rem;
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
+    font-size: 20px;
+    font-family: 'Quicksand', 'sans-serif';
+
+    @media screen and (max-width:600px) {
+        line-height: 1.4rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        padding-left: 5%;
+
+    }
 `
 export const CardLocation = styled.p`
     line-height: 1.2rem;
+    font-family: 'Quicksand', 'sans-serif';
+    display: flex;
 `
 
 export const CardTags = styled.div`
@@ -58,28 +96,31 @@ export const CardTags = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
-`
+    text-align: center;
+    font-family: 'Quicksand', 'sans-serif';
 
-export const Tag = styled.p`
+    @media screen and (max-width:600px) {
+        float: left;
+        white-space: pre-line;
+    }
 
 `
 
 export const Buttons = styled.div`
-    display: inline-flex;
     width: 100%;
-    height: 20%;
-    padding-left: 40%;
     align-content: center;
-    right: 0;
+    justify-content: flex-end;
+    display: flex;
+    font-family: 'Quicksand', 'sans-serif';
+    padding-bottom: 5px;
+    padding-right: 7%;
     
+    @media screen and (max-width:600px) {
+        float: left;
+        bottom: 0;
+    }
 `
-
-export const Button = styled.button`
-
-    align-content: center;
-    width: 50px;
-    margin-right: 15px;
-    
+export const Divider = styled.div`
+  width:5px;
+  display:inline-block;
 `
-

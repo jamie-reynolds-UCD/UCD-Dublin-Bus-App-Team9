@@ -6,7 +6,7 @@ import { Parallax, Background } from 'react-parallax';
 const Hero = (head, text, head2, image, setheight) => {
 
     return (
-    <Parallax strength={900}>
+    <Parallax strength={500}>
       <div style={{ height: setheight }} >
         <Header>{head}</Header>
         <Text>{text}</Text>
@@ -18,7 +18,7 @@ const Hero = (head, text, head2, image, setheight) => {
             height: 2000,
             width: 2000,
             backgroundImage: "url('" + image + "')"
-          }}s
+          }}
         />
       </Background>
     </Parallax>

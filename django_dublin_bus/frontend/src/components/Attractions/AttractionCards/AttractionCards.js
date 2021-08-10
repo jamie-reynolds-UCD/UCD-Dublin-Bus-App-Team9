@@ -2,15 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import jsonData from "./attractionlist.json";
 import TouristMap from '../TouristMap/TouristMap';
 import { LoadButton, LoadButtonCont, TagButton, TagButtons } from './AttractionCards.elements';
-import { CardWrapper, CardBody, CardImage, CardTitle, CardLocation, CardTags, Buttons } from "./Card.elements";
+import { WholeCard, CardWrapper, CardBody, CardImage, CardTitle, CardLocation, CardTags, Buttons, Divider } from "./Card.elements";
 import { Link } from 'react-router-dom';
-import { AiOutlinePhone, AiOutlineLink } from "react-icons/ai";
-import { RiRouteLine} from "react-icons/ri";
 import SelectedCard from './SelectedCard';
 import QuickLocationContext from "../../SavedLocations/QuickLocationContext";
+import { FaRoute, FaMapPin, FaExternalLinkAlt } from 'react-icons/fa';
+import { Button } from '@material-ui/core';
 
 export default function AttractionCards () {
-
 
   const [tag, setTag] = useState('');
   const [name, setName] = useState('');
@@ -73,40 +72,64 @@ export default function AttractionCards () {
     )
   };
 
-
-
   //Card for each attraction
   function Card(attraction) {
 
-    const callNumber = phone => {
-      console.log('callNumber ----> ', phone);
-    };
-    
     const { quick_location_updater } = useContext(QuickLocationContext);
 
     let lat = attraction.latitude;
     let lng = attraction.longitude;
     let LName = attraction.name.replace(/"/g, '');
 
-    console.log(LName, lat, lng);
-
     const GetDirections = () => {
-        quick_location_updater({ address_string: 'The Gaiety Theatre, South King St, Dublin 2',  latitude: 53.340387, longitude: -6.26163 });
+        quick_location_updater({ address_string: LName,  latitude: lat, longitude: lng });
       };
       
     return (
-      <CardBody>
-         <CardImage src={attraction.img}></CardImage>
+      <WholeCard>
+        <CardImage src={attraction.img}></CardImage>
+        <CardBody>
          <CardTitle>{attraction.name}</CardTitle>
          <CardLocation>{attraction.addressLocality}</CardLocation>
          <CardTags>{attraction.tags}</CardTags>
          <Buttons>
-            <form action={attraction.url} method="get" target="_blank"><button type="submit"><AiOutlineLink /></button></form>
-            <button onClick={() => callNumber(attraction.telephone)}><AiOutlinePhone /></button>
-            <Link to={'/'}><button onClick={() => GetDirections}><RiRouteLine /></button></Link>
-            <button onClick={() => ViewOnMap(attraction)}>View on Map</button>
+            <form action={attraction.url} method="get" target="_blank">
+              <Button
+                variant="outlined"
+                color="secondary"
+                size="small"
+                type="submit"
+                startIcon={<FaExternalLinkAlt />}
+              >
+              Site
+              </Button>
+            </form>
+            <Divider />
+              <Button
+                variant="outlined"
+                color="secondary"
+                size="small"
+                type="submit"
+                onClick={() => ViewOnMap(attraction)}
+                startIcon={<FaMapPin />}
+              >
+               Map
+              </Button>
+              <Divider />
+            <Link to={'/'}>
+              <Button
+                variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<FaRoute />}
+                onClick={() => GetDirections}
+              >
+                Route
+              </Button>
+            </Link> 
           </Buttons>
       </CardBody>
+    </WholeCard>
     );
   };
 
