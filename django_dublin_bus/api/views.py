@@ -20,7 +20,7 @@ from math import radians, cos, sin, asin, sqrt, floor
 from functools import reduce
 from operator import or_
 from django.db.models import Q
-from operator import or_
+from datetime import timezone
 
 
 gmaps = googlemaps.Client(key='AIzaSyBdUcgbXHzxHB_UbYZmd7R2R6XaEO078WA')
@@ -135,16 +135,77 @@ def get_models_array(path_route, models_directory):
     return models
 
 
-def get_time_params(timestamp): 
-    dt = datetime.datetime.fromtimestamp(timestamp, pytz.timezone("Europe/Dublin")) 
+def get_time_params(dt): 
+   
     return float(dt.month), float(dt.weekday()), float(dt.hour)
 
-def get_weather_forecast_dublin(timestamp):  
+def get_weather_forecast_dublin(departure_time):   
 
-   
+
+    hours_from_now = abs((datetime.datetime.now() - departure_time).total_seconds())/(60*60)   
+
+
     current_endpoint = "http://pro.openweathermap.org/data/2.5/weather?q=Dublin,ie&APPID=98310ef86bbb250277915291623ed079&units=metric"  
     forecast_endpoint_hourly= "http://pro.openweathermap.org/data/2.5/forecast/hourly?q=Dublin,ie&APPID=98310ef86bbb250277915291623ed079&units=metric"  
     forecast_endpoint_daily = "http://pro.openweathermap.org/data/2.5/forecast/daily?q=Dublin,ie&APPID=98310ef86bbb250277915291623ed079&units=metric"  
+
+
+
+  
+    if hours_from_now<=1.1: 
+        response = requests.get(current_endpoint)  
+        data = response.json() 
+
+    elif hours_from_now<=5: 
+
+        #if the hours from now is less than 5 then get the hourly forecast and find the closest one 
+        response = requests.get(forecast_endpoint_hourly) 
+        data = response.json()['list'] 
+
+        closest_time = None 
+        closest_forecast = None
+        for forecast in data: 
+            
+            dt = datetime.datetime.strptime(forecast['dt_txt'],"%Y-%m-%d %H:%M:%S")  
+            diff = abs(departure_time-dt).total_seconds() 
+
+
+            if closest_time==None:
+                closest_time=diff 
+                closest_forecast = forecast 
+            
+            else:
+                if diff<closest_time:
+                    closest_time=diff 
+                    closest_forecast = forecast 
+
+        data = closest_forecast 
+    
+    else:
+
+        response = requests.get(forecast_endpoint_daily) 
+        data = response.json()['list'] 
+
+        closest_time = None 
+        closest_forecast = None
+        for forecast in data:   
+
+            dt = datetime.datetime.fromtimestamp(forecast['dt'])
+
+            diff = abs(departure_time-dt).total_seconds() 
+
+
+            if closest_time==None:
+                closest_time=diff 
+                closest_forecast = forecast 
+            
+            else:
+                if diff<closest_time:
+                    closest_time=diff 
+                    closest_forecast = forecast 
+
+        data = closest_forecast  
+
 
     response = requests.get(current_endpoint)  
 
@@ -232,12 +293,12 @@ def get_closest_stop(stop, valid_stops):
         return None
   
 
-def get_predicted_journey_time(departure_stop, arrival_stop, route_name, timestamp):
+def get_predicted_journey_time(departure_stop, arrival_stop, route_name, departure_time):
 
     print("The departure stop is {0}".format(departure_stop)) 
     print("The arrival stop is {0}".format(arrival_stop)) 
     print("The route name is {0}".format(route_name))  
-    print("The timestamp is {0}".format(timestamp))  
+  
 
 
     #list all routes in the models directory
@@ -256,7 +317,7 @@ def get_predicted_journey_time(departure_stop, arrival_stop, route_name, timesta
         print("Route name not found")
         return None 
 
-    print("Route name found")
+  
 
     #create the path to the models for this route
     model_dir = os.path.join(settings.MODELS_DIR, route_name) 
@@ -311,15 +372,15 @@ def get_predicted_journey_time(departure_stop, arrival_stop, route_name, timesta
     timestampadjust = 0 
 
     #the weather details will remain constant
-    temp, humidity, windspeed, precipitation = get_weather_forecast_dublin(timestamp)  
+    temp, humidity, windspeed, precipitation = get_weather_forecast_dublin(departure_time)  
 
     predicted_times = []
 
     for model in models_array:
-        month, weekday, hour = get_time_params(timestamp + timestampadjust) 
+        month, weekday, hour = get_time_params(departure_time + datetime.timedelta(seconds=timestampadjust) )
         full_input_data = [[month, weekday, hour, temp, humidity, windspeed, precipitation]]  
         predicted_time = model.predict(full_input_data)[0] 
-        timestamp += timestampadjust 
+        departure_time = departure_time + datetime.timedelta(seconds=timestampadjust)
         predicted_times.append(predicted_time)  
 
     return int(floor(sum(predicted_times)/60))
@@ -447,10 +508,6 @@ def get_closest_station_on_route(route_name, lat, long):
         pass
 
 
-
-
-
-
 def get_stop_id(stop_name, lat, long, route_name):
     """Given a stop name, returns the stop id from the BusStationsStatic table."""     
 
@@ -501,13 +558,11 @@ def generate_wait_departure_string(arrival_details, departure_details):
 
 
 
-def parse_directions(response): 
+def parse_directions(response, departure_time): 
    
     """Helper function - Parse the full directions response"""
 
     directions = response[0]['legs'][0]  
-
-   
 
     direction_steps = directions['steps'] 
 
@@ -539,7 +594,7 @@ def parse_directions(response):
 
 
                 try:
-                    parsed_steps[-1]['predicted_journey_time'] = get_predicted_journey_time(parsed_steps[-1]['departure_stop_id'],parsed_steps[-1]['arrival_stop_id'], parsed_steps[-1]['route_name'], timestamp) 
+                    parsed_steps[-1]['predicted_journey_time'] = get_predicted_journey_time(parsed_steps[-1]['departure_stop_id'],parsed_steps[-1]['arrival_stop_id'], parsed_steps[-1]['route_name'], departure_time) 
                 except:
                     import traceback 
                     traceback.print_exc() 
@@ -589,7 +644,7 @@ class GetRoute(View):
 
         time = request.GET["time"] 
 
-        date = request.GET["date"]  
+        date = request.GET["date"]   
 
         #if either of the above or null then return a bad request code
         if origin_coords==None or dest_coords==None:
@@ -611,12 +666,31 @@ class GetRoute(View):
         else:
             departure_time = datetime.datetime.strptime("{0} {1}".format(date, time), "%Y-%m-%d %H:%M")
 
-        #get the directions from google
-        directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')   
+        #get the directions from google 
+
+
+         
+        
+        dublin_tz = pytz.timezone('Europe/Dublin')
+        dublin_time = departure_time.astimezone(dublin_tz)  
+        dublin_time = dublin_time.replace(tzinfo=None) 
+        offset = (departure_time - dublin_time).total_seconds() 
+        departure_time = departure_time + datetime.timedelta(seconds=offset)
+
+
+        #offset = departure_time - (datetime.datetime.(dublin_time.year, dublin_time.month, dublin_time.da))
+
+        
+
+
+       
+        directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')     
+
+        print(directions_result[0]['legs'][0]['departure_time']) 
 
         try:
             #parse the directions  
-            parsed_directions = parse_directions(directions_result)     
+            parsed_directions = parse_directions(directions_result, departure_time)     
             
             route_bounds = get_route_bounds(parsed_directions)  
 
