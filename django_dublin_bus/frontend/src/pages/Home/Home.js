@@ -17,26 +17,27 @@ const Home = ({
   toggle_display_updated,
 }) => {
   const isMobile = useMediaQuery("(max-width:600px)");
+
   return (
     <>
       {" "}
-      <div>
-        <MapRouteContainer>
-          <RouteInputDirectionsContainer>
-            <Sidebar
-              quick_location={quick_location}
-              current_location={current_location}
-              place_service={place_service}
-              route_object={route_object}
-              toggle_display={toggle_display}
-              toggle_display_updated={toggle_display_updated}
-            />
+      <MapRouteContainer
+        style={isMobile ? { height: "84vh", display: "flex" } : null}
+      >
+        <RouteInputDirectionsContainer>
+          <Sidebar
+            quick_location={quick_location}
+            current_location={current_location}
+            place_service={place_service}
+            route_object={route_object}
+            toggle_display={toggle_display}
+            toggle_display_updated={toggle_display_updated}
+          />
 
-            {isMobile ? null : <RouteDescription route_object={route_object} />}
-          </RouteInputDirectionsContainer>
-          <FinalMap />
-        </MapRouteContainer>
-      </div>
+          {isMobile ? null : <RouteDescription route_object={route_object} />}
+        </RouteInputDirectionsContainer>
+        <FinalMap />
+      </MapRouteContainer>
     </>
   );
 };

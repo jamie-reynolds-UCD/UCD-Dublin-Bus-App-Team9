@@ -28,6 +28,9 @@ const Sidebar = ({
   toggle_display,
   toggle_display_updated,
 }) => {
+  let isShort = useMediaQuery("(max-height:800px)");
+  let sidebar_height = isShort ? "35vh" : "27vh";
+
   const [toggledisplay, setToggleDisplay] = useState("planner");
 
   const menu_type = useMediaQuery("(max-width:600px)") ? "thumb" : "sidebar";
@@ -89,6 +92,7 @@ const Sidebar = ({
         <Box
           onClick={() => setSavedLocationOption("get_there")}
           boxShadow={savedLocationOption == "get_there" ? 0 : 2}
+          style={{ paddingBottom: "8px", paddingTop: "8px" }}
           className={
             savedLocationOption == "get_there"
               ? style.toggle_option_selected
@@ -98,6 +102,7 @@ const Sidebar = ({
           <Typography>Get There</Typography>
         </Box>
         <Box
+          style={{ paddingBottom: "8px", paddingTop: "8px" }}
           onClick={() => setSavedLocationOption("edit_locations")}
           boxShadow={savedLocationOption == "edit_locations" ? 0 : 2}
           className={
@@ -127,6 +132,7 @@ const Sidebar = ({
               ? style.toggle_option_selected
               : style.toggle_option_not_selected
           }
+          style={{ paddingTop: "8px", paddingBottom: "8px" }}
         >
           <Typography>Route Input</Typography>
         </Box>
@@ -138,6 +144,7 @@ const Sidebar = ({
               ? style.toggle_option_selected
               : style.toggle_option_not_selected
           }
+          style={{ paddingTop: "8px", paddingBottom: "8px" }}
         >
           <Typography>Description</Typography>
         </Box>
@@ -149,10 +156,11 @@ const Sidebar = ({
     return (
       <div
         style={{
-          height: "27vh",
+          height: sidebar_height,
           display: "flex",
           flexDirection: "column",
           width: "100%",
+          minHeight: "240px",
         }}
       >
         <div

@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ActivitySuggestion from "./ActivitySuggestion";
 import { Typography } from "@material-ui/core";
+import AuthContext from "../Auth/AuthContext";
 
 const ActivityOptionTab = ({ keyword, place_service, title }) => {
   const [placeSuggestions, setPlaceSuggestions] = useState([]);
+
+  const { current_location } = useContext(AuthContext);
+
   const SuggestionCallback = (results, status) => {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       let suggestions = [];
@@ -20,7 +24,12 @@ const ActivityOptionTab = ({ keyword, place_service, title }) => {
       return;
     }
 
-    var location = new google.maps.LatLng(53.2857041368395, -6.243121977460595);
+    var location = new google.maps.LatLng(
+      current_location.latitude ? current_location.latitude : 53.2857041368395,
+      current_location.longitude
+        ? current_location.longitude
+        : -6.243121977460595
+    );
     var request = {
       location: location,
       radius: "500",

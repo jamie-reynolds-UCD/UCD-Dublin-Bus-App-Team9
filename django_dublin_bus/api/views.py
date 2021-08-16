@@ -337,11 +337,13 @@ def get_predicted_journey_time(departure_stop, arrival_stop, route_name, departu
 
     all_stops_on_route = list(set(dir1_sequence + dir2_sequence))  
 
-    if departure_stop not in all_stops_on_route:
-        departure_stop = get_closest_stop(departure_stop, all_stops_on_route) 
 
-    if arrival_stop not in all_stops_on_route:
-        arrival_stop = get_closest_stop(arrival_stop, all_stops_on_route) 
+    #SIGNIFICANTLY SLOWS DOWN APP
+    #if departure_stop not in all_stops_on_route:
+    #    departure_stop = get_closest_stop(departure_stop, all_stops_on_route) 
+
+    #if arrival_stop not in all_stops_on_route:
+    #    arrival_stop = get_closest_stop(arrival_stop, all_stops_on_route) 
    
     #checks if dir1 has a valid path from the departure stop to the arrival stop 
     path_directory = "dir1"
@@ -683,7 +685,7 @@ class GetRoute(View):
        
         directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')     
 
-        print(directions_result[0]['legs'][0]['departure_time']) 
+       
 
         try:
             #parse the directions  

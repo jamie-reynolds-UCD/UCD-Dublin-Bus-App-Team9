@@ -31,7 +31,6 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
   });
 
   const SetDestinationToQuickLocation = () => {
-    console.log("SETTING DESTINATION TO QUICK LOCATION");
     try {
       if (quick_location.latitude != null) {
         setPlaceDetails({
@@ -54,9 +53,7 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
           quick_location.address_string
         );
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const SetOriginToCurrentLocation = () => {

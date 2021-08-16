@@ -1,18 +1,32 @@
 import React, { useState, useEffect, useContext } from "react";
 import jsonData from "./attractionlist.json";
-import TouristMap from '../TouristMap/TouristMap';
-import { LoadButton, LoadButtonCont, TagButton, TagButtons } from './AttractionCards.elements';
-import { WholeCard, CardWrapper, CardBody, CardImage, CardTitle, CardLocation, CardTags, Buttons, Divider } from "./Card.elements";
-import { Link } from 'react-router-dom';
-import SelectedCard from './SelectedCard';
+import TouristMap from "../TouristMap/TouristMap";
+import {
+  LoadButton,
+  LoadButtonCont,
+  TagButton,
+  TagButtons,
+} from "./AttractionCards.elements";
+import {
+  WholeCard,
+  CardWrapper,
+  CardBody,
+  CardImage,
+  CardTitle,
+  CardLocation,
+  CardTags,
+  Buttons,
+  Divider,
+} from "./Card.elements";
+import { Link } from "react-router-dom";
+import SelectedCard from "./SelectedCard";
 import QuickLocationContext from "../../SavedLocations/QuickLocationContext";
-import { FaRoute, FaMapPin, FaExternalLinkAlt } from 'react-icons/fa';
-import { Button } from '@material-ui/core';
+import { FaRoute, FaMapPin, FaExternalLinkAlt } from "react-icons/fa";
+import { Button } from "@material-ui/core";
 
-export default function AttractionCards () {
-
-  const [tag, setTag] = useState('');
-  const [name, setName] = useState('');
+export default function AttractionCards() {
+  const [tag, setTag] = useState("");
+  const [name, setName] = useState("");
   const [visible, setVisible] = useState(4);
   const [showResults, setShowResults] = useState(false);
 
@@ -63,13 +77,14 @@ export default function AttractionCards () {
   //Close info card of single selected attraction
   function CloseAttraction() {
     return (
-      <div><button onClick={() => ResetList()}>Close</button></div>
-    )
-  };
+      <div>
+        <button onClick={() => ResetList()}>Close</button>
+      </div>
+    );
+  }
 
   //Card for each attraction
   function Card(attraction) {
-
     const { quick_location_updater } = useContext(QuickLocationContext);
 
     let lat = attraction.latitude;
@@ -77,17 +92,21 @@ export default function AttractionCards () {
     let LName = attraction.name.replace(/"/g, "");
 
     const GetDirections = () => {
-        quick_location_updater({ address_string: LName,  latitude: lat, longitude: lng });
-      };
-      
+      quick_location_updater({
+        address_string: LName,
+        latitude: lat,
+        longitude: lng,
+      });
+    };
+
     return (
       <WholeCard>
         <CardImage src={attraction.img}></CardImage>
         <CardBody>
-         <CardTitle>{attraction.name}</CardTitle>
-         <CardLocation>{attraction.addressLocality}</CardLocation>
-         <CardTags>{attraction.tags}</CardTags>
-         <Buttons>
+          <CardTitle>{attraction.name}</CardTitle>
+          <CardLocation>{attraction.addressLocality}</CardLocation>
+          <CardTags>{attraction.tags}</CardTags>
+          <Buttons>
             <form action={attraction.url} method="get" target="_blank">
               <Button
                 variant="outlined"
@@ -96,35 +115,35 @@ export default function AttractionCards () {
                 type="submit"
                 startIcon={<FaExternalLinkAlt />}
               >
-              Site
+                Site
               </Button>
             </form>
             <Divider />
-              <Button
-                variant="outlined"
-                color="secondary"
-                size="small"
-                type="submit"
-                onClick={() => ViewOnMap(attraction)}
-                startIcon={<FaMapPin />}
-              >
-               Map
-              </Button>
-              <Divider />
-            <Link to={'/'}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              size="small"
+              type="submit"
+              onClick={() => ViewOnMap(attraction)}
+              startIcon={<FaMapPin />}
+            >
+              Map
+            </Button>
+            <Divider />
+            <Link to={"/"}>
               <Button
                 variant="outlined"
                 color="primary"
                 size="small"
                 startIcon={<FaRoute />}
-                onClick={() => GetDirections}
+                onClick={() => GetDirections()}
               >
                 Route
               </Button>
-            </Link> 
+            </Link>
           </Buttons>
-      </CardBody>
-    </WholeCard>
+        </CardBody>
+      </WholeCard>
     );
   }
 

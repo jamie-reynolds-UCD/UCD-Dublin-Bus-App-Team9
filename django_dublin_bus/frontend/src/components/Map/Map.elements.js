@@ -4,7 +4,7 @@ import { Container } from "../../globalStyles";
 export const MapContainer = styled(Container)`
   display: block;
   flex: 1;
-  height: 60vh;
+  height: 80vh;
   zindex: 1;
 
   @media screen and (max-width: 600px) {
@@ -13,6 +13,7 @@ export const MapContainer = styled(Container)`
     flex: none;
     padding-left: 5px;
     padding-right: 5px;
+    height: 100%;
   }
 
   ${Container}

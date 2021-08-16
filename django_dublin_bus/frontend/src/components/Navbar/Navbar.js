@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
+import { Typography } from "@material-ui/core";
 import { Button } from "../../globalStyles";
 import {
   Nav,
@@ -39,10 +40,6 @@ function Navbar() {
 
   let { loggedin, updatecredentials } = useContext(AuthContext);
 
-  let profile_button_text = loggedin ? "PROFILE" : "SIGN UP";
-
-  let button_link = loggedin ? "/profile" : "/signup";
-
   const LogoutUser = async () => {
     await Logout();
     updatecredentials();
@@ -57,11 +54,13 @@ function Navbar() {
           <NavbarContainer>
             <NavLogo to="/" onClick={closeMobileMenu}>
               <NavIcon />
-              Explore Dublin
+              <Typography variant="h6"> Explore Dublin</Typography>
             </NavLogo>
+
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
+
             <Weather />
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
