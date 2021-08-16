@@ -454,10 +454,7 @@ def haversine(lon1, lat1, lon2, lat2):
     return c * r
 
 def get_closest_station_on_route(route_name, lat, long): 
-
-
     try: 
-
         model_dir = os.path.join(settings.MODELS_DIR, route_name)  
         model_dir = os.path.join(model_dir, "dir1") 
 
