@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Typography, Box } from "@material-ui/core";
 import ActivitySuggestionList from "./ActivitySuggestionList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../Auth/AuthContext";
 
 const ActivityOption = ({ activity_object, place_service, icon }) => {
   const [suggestionDetails, setSuggestionDetails] = useState({
     suggestions: [],
     display_suggestions: false,
   });
+
+  const { current_location } = useContext(AuthContext);
 
   const SuggestionCallback = (results, status) => {
     if (status == google.maps.places.PlacesServiceStatus.OK) {

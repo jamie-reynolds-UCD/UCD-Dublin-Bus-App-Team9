@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faWalking,
@@ -79,13 +79,14 @@ const NewLeg = (leg) => {
               />
             )}
 
-            {`${leg.short_instructions
-              .replace("Walk ", "")
-              .replace("Bus ", "")} ${
+            {`${
               leg.predicted_journey_time
-                ? `(${leg.predicted_journey_time} mins predicted)`
-                : ""
-            }`}
+                ? `${leg.predicted_journey_time} mins`
+                : leg.short_instructions
+                    .replace("Walk ", "")
+                    .replace("Bus ", "")
+            } 
+            `}
           </Typography>
         </div>
       </div>
@@ -119,36 +120,50 @@ const RouteDescription = ({ route_object }) => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
-    <div>
-      {isMobile ? null : (
-        <Typography variant="h6">Route Description</Typography>
-      )}
+    <Box
+      boxShadow={isMobile ? 0 : 1}
+      borderRadius={7}
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        margin: "auto",
+        marginTop: isMobile ? "2px" : "12px",
+        marginLeft: "5px",
+      }}
+    >
+      <div>
+        {isMobile ? null : (
+          <Typography variant="h6">Route Description</Typography>
+        )}
 
-      <Typography style={{ marginLeft: "2px", fontWeight: "bold" }}>
-        {" "}
-        <FontAwesomeIcon icon={faMapPin} style={{ marginRight: "2px" }} />
-        {`${route_object[0].origin} ${
-          route_object[0].time ? `, ${route_object[0].time}` : ""
-        }`}
-      </Typography>
+        <Typography style={{ marginLeft: "2px", fontWeight: "bold" }}>
+          {" "}
+          <FontAwesomeIcon icon={faMapPin} style={{ marginRight: "2px" }} />
+          {`${route_object[0].origin} ${
+            route_object[0].time ? `, ${route_object[0].time}` : ""
+          }`}
+        </Typography>
 
-      {route_object.slice(1, -1).map((leg) => {
-        return (
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            {NewLeg(leg)}
-          </div>
-        );
-      })}
-      <Typography style={{ marginLeft: "2px", fontWeight: "bold" }}>
-        {" "}
-        <FontAwesomeIcon icon={faMapPin} style={{ marginRight: "2px" }} />
-        {`Arrive at ${route_object[route_object.length - 1].destination} ${
-          route_object[route_object.length - 1].time
-            ? `, ${route_object[route_object.length - 1].time}`
-            : ""
-        }`}
-      </Typography>
-    </div>
+        {route_object.slice(1, -1).map((leg) => {
+          return (
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              {NewLeg(leg)}
+            </div>
+          );
+        })}
+        <Typography style={{ marginLeft: "2px", fontWeight: "bold" }}>
+          {" "}
+          <FontAwesomeIcon icon={faMapPin} style={{ marginRight: "2px" }} />
+          {`Arrive at ${route_object[route_object.length - 1].destination} ${
+            route_object[route_object.length - 1].time
+              ? `, ${route_object[route_object.length - 1].time}`
+              : ""
+          }`}
+        </Typography>
+      </div>
+    </Box>
   );
 };
 

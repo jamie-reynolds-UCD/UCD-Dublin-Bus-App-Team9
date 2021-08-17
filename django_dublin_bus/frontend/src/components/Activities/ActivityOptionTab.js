@@ -3,10 +3,13 @@ import ActivitySuggestion from "./ActivitySuggestion";
 import { Typography } from "@material-ui/core";
 import AuthContext from "../Auth/AuthContext";
 
-const ActivityOptionTab = ({ keyword, place_service, title }) => {
+const ActivityOptionTab = ({
+  keyword,
+  place_service,
+  title,
+  current_location,
+}) => {
   const [placeSuggestions, setPlaceSuggestions] = useState([]);
-
-  const { current_location } = useContext(AuthContext);
 
   const SuggestionCallback = (results, status) => {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -40,7 +43,7 @@ const ActivityOptionTab = ({ keyword, place_service, title }) => {
 
   useEffect(() => {
     GetSuggestions();
-  }, [place_service]);
+  }, [place_service, current_location]);
 
   return (
     <>

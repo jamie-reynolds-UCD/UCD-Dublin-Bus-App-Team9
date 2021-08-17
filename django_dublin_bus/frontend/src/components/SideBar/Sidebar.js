@@ -161,6 +161,7 @@ const Sidebar = ({
           flexDirection: "column",
           width: "100%",
           minHeight: "240px",
+          backgroundColor: "red",
         }}
       >
         <div
@@ -227,6 +228,7 @@ const Sidebar = ({
                 keyword="groceries"
                 place_service={place_service}
                 title="Groceries"
+                current_location={current_location}
               />
             </div>
             <div
@@ -241,6 +243,7 @@ const Sidebar = ({
                 keyword="restaurants"
                 place_service={place_service}
                 title="Restaurants"
+                current_location={current_location}
               />
             </div>
             <div
@@ -255,6 +258,7 @@ const Sidebar = ({
                 keyword="pubs"
                 place_service={place_service}
                 title="Pubs"
+                current_location={current_location}
               />
             </div>
             <div
@@ -269,6 +273,7 @@ const Sidebar = ({
                 keyword="outdoor walks"
                 place_service={place_service}
                 title="Outdoor Walks"
+                current_location={current_location}
               />
             </div>
 
@@ -314,6 +319,8 @@ const Sidebar = ({
             flexDirection: "row",
             flexWrap: "wrap",
             width: "100%",
+
+            minHeight: "50px",
           }}
         >
           <Button
@@ -586,6 +593,7 @@ const Sidebar = ({
                 keyword="groceries"
                 place_service={place_service}
                 title="Groceries"
+                current_location={current_location}
               />
             </div>
             <div
@@ -600,6 +608,7 @@ const Sidebar = ({
                 keyword="restaurants"
                 place_service={place_service}
                 title="Restaurants"
+                current_location={current_location}
               />
             </div>
             <div
@@ -614,6 +623,7 @@ const Sidebar = ({
                 keyword="pubs"
                 place_service={place_service}
                 title="Pubs"
+                current_location={current_location}
               />
             </div>
             <div
@@ -628,6 +638,7 @@ const Sidebar = ({
                 keyword="outdoor walks"
                 place_service={place_service}
                 title="Outdoor Walks"
+                current_location={current_location}
               />
             </div>
 
