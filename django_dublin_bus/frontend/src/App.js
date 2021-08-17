@@ -11,7 +11,7 @@ import { SpotifyContextProvider } from "./components/Spotify/SpotifyContext.js";
 import { QuickLocationContextProvider } from "./components/SavedLocations/QuickLocationContext.js";
 import GlobalStyle from "./globalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Navbar, Footer } from "./components";
+import { Navbar } from "./components";
 import Profile from "./pages/Profile/Profile";
 import ScrollToTop from "./components/ScrollToTop";
 import InitialiseWebPlayer from "./components/Spotify/InitialiseWebPlayer";
@@ -239,8 +239,6 @@ function App() {
                     <Attractions />
                   </Route>
                 </Switch>
-
-                <Footer />
                 <InitialiseWebPlayer
                   authenticated={SpotifyPlayerState.authenticated}
                   sdk_ready={sdk_ready}

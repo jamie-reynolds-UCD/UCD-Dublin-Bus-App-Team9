@@ -2,6 +2,7 @@ import React from "react";
 import Row from "../../components/Events/EventsRows/Row";
 import requests from "../../Api/Events/requests";
 import Hero from "../../components/Events/Hero/Hero";
+import Footer from "../../components/Footer/Footer";
 
 const Events = () => {
   return (
@@ -24,7 +25,9 @@ const Events = () => {
         <Row title="METAL" fetchUrl={requests.fetchMetal} />
         <Row title="FOLK" fetchUrl={requests.fetchFolk} />
         <Row title="OTHER" fetchUrl={requests.fetchOther} />
+        <Footer />
       </div>
+      
     </>
   );
 };

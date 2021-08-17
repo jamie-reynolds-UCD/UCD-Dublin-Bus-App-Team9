@@ -24,8 +24,6 @@ export const PosterImg = styled.img`
     width: 300px;
     object-fit: cover;
   }
-
-
 `;
 
 export const PosterInfo = styled.div`
@@ -36,10 +34,9 @@ export const PosterInfo = styled.div`
   display: inline-block;
   transition: transform 450ms;
 
-
   @media screen and (max-width: 600px) {
     height: 200px;
-    width: 140px;
+    width: 190px;
   }
 
   &:hover {

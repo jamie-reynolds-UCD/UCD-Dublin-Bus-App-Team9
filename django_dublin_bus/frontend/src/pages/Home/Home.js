@@ -7,6 +7,7 @@ import {
 } from "../../components/MapRouteContainer/MapRouteContainer.elements";
 import Sidebar from "../../components/SideBar/Sidebar";
 import { useMediaQuery } from "@material-ui/core";
+import Footer from "../../components/Footer/Footer";
 
 const Home = ({
   route_object,
@@ -38,6 +39,7 @@ const Home = ({
         </RouteInputDirectionsContainer>
         <FinalMap />
       </MapRouteContainer>
+      {isMobile ? null : <Footer />}
     </>
   );
 };
