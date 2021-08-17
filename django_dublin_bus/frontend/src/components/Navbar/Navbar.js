@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { Typography } from "@material-ui/core";
-import { Button } from "../../globalStyles";
 import {
   Nav,
   NavbarContainer,
@@ -11,9 +10,7 @@ import {
   MobileIcon,
   NavMenu,
   NavItem,
-  NavItemBtn,
   NavLinks,
-  NavBtnLink,
 } from "./Navbar.elements";
 import AuthContext from "../Auth/AuthContext";
 import { Logout } from "../../Api/ApiFunctions";
@@ -37,13 +34,6 @@ function Navbar() {
   useEffect(() => {
     showButton();
   }, []);
-
-  let { loggedin, updatecredentials } = useContext(AuthContext);
-
-  const LogoutUser = async () => {
-    await Logout();
-    updatecredentials();
-  };
 
   window.addEventListener("resize", showButton);
 
@@ -78,14 +68,6 @@ function Navbar() {
                   Attractions
                 </NavLinks>
               </NavItem>
-
-              {/*loggedin ? (
-                <NavItem>
-                  <NavLinks to="/" onClick={LogoutUser}>
-                    Logout
-                  </NavLinks>
-                </NavItem>
-              ) : null*/}
             </NavMenu>
           </NavbarContainer>
         </Nav>
