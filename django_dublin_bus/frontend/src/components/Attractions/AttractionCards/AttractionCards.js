@@ -19,7 +19,6 @@ import {
   Divider,
 } from "./Card.elements";
 import { Link } from "react-router-dom";
-import SelectedCard from "./SelectedCard";
 import QuickLocationContext from "../../SavedLocations/QuickLocationContext";
 import { FaRoute, FaMapPin, FaExternalLinkAlt } from "react-icons/fa";
 import { Button } from "@material-ui/core";
@@ -65,21 +64,16 @@ export default function AttractionCards() {
   //View single attraction on maap
   function ViewOnMap(attraction) {
     setName(attraction.name);
-    setVisible(0);
+    setVisible(1);
     setShowResults(true);
-  }
-
-  //Create info card of single selected attraction
-  function SelectedAttraction() {
-    return <div>{tagList.map((attraction) => [SelectedCard(attraction)])}</div>;
   }
 
   //Close info card of single selected attraction
   function CloseAttraction() {
     return (
-      <div>
-        <button onClick={() => ResetList()}>Close</button>
-      </div>
+      <LoadButtonCont>
+        <LoadButton onClick={() => ResetList()}>Close</LoadButton>
+      </LoadButtonCont>
     );
   }
 
@@ -149,9 +143,7 @@ export default function AttractionCards() {
 
   return (
     <div>
-      <div>{showResults && <SelectedAttraction />}</div>
       <div>{TouristMap(tagList)}</div>
-      <div>{showResults && <CloseAttraction />}</div>
       <TagButtons>
         <TagButton onClick={() => handleClick("")}>All</TagButton>
         <TagButton onClick={() => handleClick("Art Gallery")}>
@@ -179,6 +171,7 @@ export default function AttractionCards() {
       <CardWrapper>
         {tagList.slice(0, visible).map((attraction) => [Card(attraction)])}
       </CardWrapper>
+      {showResults && <CloseAttraction />}
       <LoadButtonCont>
         {visible < tagList.length && (
           <LoadButton onClick={loadMore}>Load More</LoadButton>

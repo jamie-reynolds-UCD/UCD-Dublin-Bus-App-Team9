@@ -22,8 +22,6 @@ export const WholeCard = styled.div`
     overflow: hidden;
   box-shadow: 0 2px 20px #e1e5ee;
   border-radius: 0.2rem;
-  height: 40vh;
-  width: 275px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -48,7 +46,6 @@ export const WholeCard = styled.div`
 `
 
 export const CardBody = styled.div`
-
     @media screen and (max-width:600px) {
         width: 50%;
         display: flex;
@@ -72,6 +69,7 @@ export const CardTitle = styled.h1`
     line-height: 1.4rem;
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
+    top: 0;
     font-size: 20px;
     font-family: 'Quicksand', 'sans-serif';
 
@@ -86,12 +84,11 @@ export const CardTitle = styled.h1`
 export const CardLocation = styled.p`
     line-height: 1.2rem;
     font-family: 'Quicksand', 'sans-serif';
-    display: flex;
+    text-align: center;
 `
 
 export const CardTags = styled.div`
-
-    font-size: 0.8rem;
+    font-size: 12px;
     margin-top: 0.6rem;
     display: flex;
     flex-direction: row;
@@ -102,8 +99,8 @@ export const CardTags = styled.div`
     @media screen and (max-width:600px) {
         float: left;
         white-space: pre-line;
+        padding-bottom: 0px;
     }
-
 `
 
 export const Buttons = styled.div`
@@ -120,6 +117,7 @@ export const Buttons = styled.div`
         bottom: 0;
     }
 `
+
 export const Divider = styled.div`
   width:5px;
   display:inline-block;
