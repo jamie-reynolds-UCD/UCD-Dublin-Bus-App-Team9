@@ -20,7 +20,7 @@ const Weather = () => {
 
   const getWeather = () => {
     fetch(
-      `http://pro.openweathermap.org/data/2.5/weather?q=Dublin,ie&APPID=98310ef86bbb250277915291623ed079&units=metric`
+      `https://pro.openweathermap.org/data/2.5/weather?q=Dublin,ie&APPID=98310ef86bbb250277915291623ed079&units=metric`
     )
       .then((data) => data.json())
       .then((results) => {
