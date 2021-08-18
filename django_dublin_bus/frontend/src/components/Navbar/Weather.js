@@ -39,8 +39,11 @@ const Weather = () => {
 
   return (
     <WeatherDesc>
-      <WeatherIcon src ={`http://openweathermap.org/img/w/${info.icon}.png`} alt="weather img" />
-      {desc} {Math.round(info.temp)}° 
+      <WeatherIcon
+        src={`https://openweathermap.org/img/w/${info.icon}.png`}
+        alt="weather img"
+      />
+      {desc} {Math.round(info.temp)}°
     </WeatherDesc>
   );
 };
