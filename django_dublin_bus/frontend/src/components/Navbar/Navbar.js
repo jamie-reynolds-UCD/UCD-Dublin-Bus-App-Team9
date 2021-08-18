@@ -12,9 +12,7 @@ import {
   NavItem,
   NavLinks,
 } from "./Navbar.elements";
-import AuthContext from "../Auth/AuthContext";
-import { Logout } from "../../Api/ApiFunctions";
-import Weather from "../Weather/Weather";
+import Weather from "./Weather";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -50,8 +48,6 @@ function Navbar() {
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
-
-            <Weather />
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
                 <NavLinks to="/" onClick={closeMobileMenu}>
@@ -68,6 +64,11 @@ function Navbar() {
                   Attractions
                 </NavLinks>
               </NavItem>
+              <NavItem>
+                <NavLinks to={{ pathname: "https://openweathermap.org/city/2964574" }} target="_blank" onClick={closeMobileMenu}>
+                  <Weather />
+                </NavLinks>
+              </NavItem>
             </NavMenu>
           </NavbarContainer>
         </Nav>
@@ -78,16 +79,3 @@ function Navbar() {
 
 export default Navbar;
 
-/*<NavItemBtn>
-{button ? (
-  <NavBtnLink to={button_link}>
-    <Button primary>{profile_button_text}</Button>
-  </NavBtnLink>
-) : (
-  <NavBtnLink to={button_link}>
-    <Button onClick={closeMobileMenu} fontBig primary>
-      {profile_button_text}
-    </Button>
-  </NavBtnLink>
-)}
-</NavItemBtn>*/

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WeatherCard from "./WeatherCard";
+import { WeatherDesc, WeatherIcon } from "./Navbar.elements";
 
 const Weather = () => {
   const [info, setInfo] = useState({
@@ -13,6 +13,10 @@ const Weather = () => {
   useEffect(() => {
     getWeather();
   }, []);
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   const getWeather = () => {
     fetch(
@@ -30,16 +34,14 @@ const Weather = () => {
         });
       });
   };
+
+  const desc = capitalizeFirstLetter(info.desc);
+
   return (
-    <div className="weatherBox">
-      <WeatherCard
-        temp={info.temp}
-        description={info.desc}
-        image={info.icon}
-        humidity={info.humidity}
-        rain={info.rain}
-      />
-    </div>
+    <WeatherDesc>
+      <WeatherIcon src ={`http://openweathermap.org/img/w/${info.icon}.png`} alt="weather img" />
+      {desc} {Math.round(info.temp)}° 
+    </WeatherDesc>
   );
 };
 

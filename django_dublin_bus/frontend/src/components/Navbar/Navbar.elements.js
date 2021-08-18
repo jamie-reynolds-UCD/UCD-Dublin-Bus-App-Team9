@@ -80,7 +80,7 @@ export const NavMenu = styled.ul`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 30vh;
+    height: 40vh;
     position: absolute;
     top: 10vh;
     left: ${({ click }) => (click ? 0 : "-100%")};
@@ -110,27 +110,6 @@ export const NavItem = styled.li`
       border: none;
     }
   }
-`;
-
-export const WeatherIcon = styled.img`
-  height: 45px;
-  width: 30px;
-  padding-bottom: 20px;
-`;
-export const WeatherItem = styled.div`
-  max-height: 80px;
-  padding-top: 30px;
-  display: flex;
-
-  @media screen and (max-width: 960px) {
-    display: none;
-  }
-`;
-
-export const WeatherText = styled.p`
-  color: #fff;
-  font-size: 15px;
-  font-family: "Quicksand", "sans-serif";
 `;
 
 export const NavItemBtn = styled.li`
@@ -174,4 +153,39 @@ export const NavBtnLink = styled(Link)`
   width: 100%;
   border: none;
   outline: none;
+`;
+
+
+export const WeatherIcon = styled.img`
+  height: 35px;
+  width: 30px;
+  padding-right: 5px;
+  @media screen and (max-width: 960px) {
+    display: none
+  }
+`;
+
+export const WeatherDesc = styled.div`
+
+  color: #fff;
+  font-size: 14px;
+  font-family: "Quicksand", "sans-serif";
+  border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+
+  @media screen and (max-width: 960px) {
+    text-align: center;
+    width: 100%;
+    display: table;
+    color: #4b59f7;
+
+    &:hover {
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+  }
 `;
