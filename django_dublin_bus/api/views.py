@@ -645,6 +645,10 @@ class GetRoute(View):
 
         date = request.GET["date"]   
 
+        arrive_at = request.GET["arrive_at"] 
+
+       
+
         #if either of the above or null then return a bad request code
         if origin_coords==None or dest_coords==None:
             return HttpResponseBadRequest(json.dumps({'error':'Origin and destination coordinates required.'}))
@@ -664,17 +668,18 @@ class GetRoute(View):
             departure_time = datetime.datetime.now() 
         else:
             departure_time = datetime.datetime.strptime("{0} {1}".format(date, time), "%Y-%m-%d %H:%M")
+            dublin_tz = pytz.timezone('Europe/Dublin')
+            dublin_time = departure_time.astimezone(dublin_tz)  
+            dublin_time = dublin_time.replace(tzinfo=None) 
+            offset = (departure_time - dublin_time).total_seconds() 
+            departure_time = departure_time + datetime.timedelta(seconds=offset)
 
         #get the directions from google 
 
 
          
         
-        dublin_tz = pytz.timezone('Europe/Dublin')
-        dublin_time = departure_time.astimezone(dublin_tz)  
-        dublin_time = dublin_time.replace(tzinfo=None) 
-        offset = (departure_time - dublin_time).total_seconds() 
-        departure_time = departure_time + datetime.timedelta(seconds=offset)
+        
 
 
         #offset = departure_time - (datetime.datetime.(dublin_time.year, dublin_time.month, dublin_time.da))
@@ -682,8 +687,10 @@ class GetRoute(View):
         
 
 
-       
-        directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')     
+        if int(arrive_at)==1:
+            directions_result = gmaps.directions(start, end, mode="transit", arrival_time=departure_time-datetime.timedelta(minutes=15), transit_mode='bus')   
+        else:
+            directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')     
 
        
 

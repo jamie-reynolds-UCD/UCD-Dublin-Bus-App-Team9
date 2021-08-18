@@ -18,17 +18,16 @@ import {
   IsSpotifyAuthenticated,
   GetSpotifyAuthUrl,
 } from "../../../Api/ApiFunctions";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-require('swiper/components/navigation/navigation.min.css');
-require('swiper/components/pagination/pagination.min.css');
-import 'swiper/components/scrollbar/scrollbar.scss';
-import 'swiper/swiper.scss';
-import './SwiperStyle.css';
-import 'swiper/components/scrollbar/scrollbar.scss';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+require("swiper/components/navigation/navigation.min.css");
+require("swiper/components/pagination/pagination.min.css");
+import "swiper/components/scrollbar/scrollbar.scss";
+import "swiper/swiper.scss";
+import "./SwiperStyle.css";
+import "swiper/components/scrollbar/scrollbar.scss";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
-
 
 function Row({ title, fetchUrl }) {
   const [events, setEvents] = useState([]);
@@ -61,7 +60,6 @@ function Row({ title, fetchUrl }) {
     update_spotify_state({ authenticated: authenticated });
 
     fetchData();
-    
   }, [fetchUrl]);
 
   const HandleClick = (event) => {
@@ -104,54 +102,60 @@ function Row({ title, fetchUrl }) {
         ) : null}
       </RowHeading>
 
-
       <Swiper
-         navigation
-         pagination={{ "clickable": true }}
-         breakpoints={{
-          
-          "360": {
-            "slidesPerView": 3,
-            "slidesPerGroup": 3,
-            "spaceBetween": 5,
+        navigation
+        pagination={{ clickable: true }}
+        breakpoints={{
+          360: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            spaceBetween: 5,
           },
-          "900": {
-            "slidesPerView": 3,
+          900: {
+            slidesPerView: 3,
           },
-          "1024": {
-            "slidesPerView": 5,
-            "slidesPerGroup": 5,
+          1024: {
+            slidesPerView: 5,
+            slidesPerGroup: 5,
           },
 
-          "1536": {
-            "slidesPerView": 6,
-            "slidesPerGroup": 6,
+          1536: {
+            slidesPerView: 6,
+            slidesPerGroup: 6,
           },
-          "1920": {
-            "slidesPerView": 7,
-            "slidesPerGroup": 7,
-       }}}
-       >
+          1920: {
+            slidesPerView: 7,
+            slidesPerGroup: 7,
+          },
+        }}
+      >
         {events.map((event) => [
-          <SwiperSlide><PosterInfo key={event.id} onClick={() => HandleClick(event)}>
-            <PosterImg
-              key={event.id}
-              src={event.images[0]["url"]}
-              alt={event.name}
-            ></PosterImg>
-            {spotify_authenticated & (play_song != null) ? (
-              title == "MUSIC" ? (
-                <SpotifyPreview key={event.id} artist_name={event.name} />
-              ) : null
-            ) : null}
-            <PosterHead>{event.name}</PosterHead>
-            <PosterText>
-              {event.dates.start.localTime}{"\n"}
-              {new Date(event.dates.start.dateTime).toLocaleDateString('en-gb', {month: 'long',day: 'numeric'})}
-            </PosterText>
-          </PosterInfo></SwiperSlide>
+          <SwiperSlide>
+            <PosterInfo key={event.id} onClick={() => HandleClick(event)}>
+              <PosterImg
+                key={event.id}
+                src={event.images[0]["url"]}
+                alt={event.name}
+              ></PosterImg>
+              {spotify_authenticated & (play_song != null) ? (
+                title == "MUSIC" ? (
+                  <SpotifyPreview key={event.id} artist_name={event.name} />
+                ) : null
+              ) : null}
+              <PosterHead>{event.name}</PosterHead>
+              <PosterText>
+                {event.dates.start.localTime}
+                {"\n"}
+                {new Date(event.dates.start.dateTime).toLocaleDateString(
+                  "en-gb",
+                  { month: "long", day: "numeric" }
+                )}
+              </PosterText>
+            </PosterInfo>
+          </SwiperSlide>,
         ])}
       </Swiper>
+
       {selEvent && MoreInfo(selEvent)}
     </RowContainer>
   );

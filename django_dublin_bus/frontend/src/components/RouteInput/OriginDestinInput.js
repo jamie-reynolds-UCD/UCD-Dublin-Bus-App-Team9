@@ -30,6 +30,23 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
     dest_coords: null,
   });
 
+  const GetTodaysDate = () => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0");
+    var yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+    return today;
+  };
+
+  let default_date = GetTodaysDate();
+
+  const [timeDetails, setTimeDetails] = useState({
+    date: default_date,
+    chosentime: null,
+    use_now: true,
+  });
+
   const SetDestinationToQuickLocation = () => {
     try {
       if (quick_location.latitude != null) {
@@ -45,12 +62,30 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
           },
         });
 
+        if ((quick_location.date == null) | (quick_location.time == null)) {
+          setTimeDetails({
+            ...timeDetails,
+            date: default_date,
+            chosentime: null,
+            use_now: true,
+          });
+        } else {
+          setTimeDetails({
+            ...timeDetails,
+            date: quick_location.date,
+            chosentime: quick_location.time.substring(0, 5),
+            use_now: false,
+          });
+        }
+
         UpdateRoute(
           {
             latitude: quick_location.latitude,
             longitude: quick_location.longitude,
           },
-          quick_location.address_string
+          quick_location.address_string,
+          quick_location.date,
+          quick_location.time ? quick_location.time.substring(0, 5) : "now"
         );
       }
     } catch (error) {}
@@ -70,15 +105,6 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
   useEffect(SetDestinationToQuickLocation, [quick_location]);
   useEffect(SetOriginToCurrentLocation, [current_location]);
 
-  const GetTodaysDate = () => {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0");
-    var yyyy = today.getFullYear();
-    today = yyyy + "-" + mm + "-" + dd;
-    return today;
-  };
-
   const GetTimeNow = () => {
     var now = new Date();
     var HH = String(now.getHours()).padStart(2, "0");
@@ -88,14 +114,6 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
 
     return now;
   };
-
-  let default_date = GetTodaysDate();
-
-  const [timeDetails, setTimeDetails] = useState({
-    date: default_date,
-    chosentime: null,
-    use_now: true,
-  });
 
   const GetCoordinates = (place_id) => {
     //when the user chooses a place in the origin / destination an object is returned which has a place id
@@ -129,7 +147,7 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
     });
   };
 
-  const UpdateRoute = async (dest_coords, destination_address) => {
+  const UpdateRoute = async (dest_coords, destination_address, date, time) => {
     try {
       let response = await GetRoute({
         origin_coords:
@@ -148,8 +166,13 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
           destination_address != null
             ? destination_address
             : placeDetails.destination_address.label,
-        time: timeDetails.use_now ? "now" : timeDetails.chosentime,
-        date: timeDetails.date,
+        time: time
+          ? time
+          : timeDetails.use_now
+          ? "now"
+          : timeDetails.chosentime,
+        date: date ? date : timeDetails.date,
+        arrive_at: date ? 1 : 0,
       });
 
       if (response.status == 200) {
@@ -183,7 +206,6 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
         });
 
         if (destination_address != null) {
-          console.log(placeDetails.origin_address);
           setPlaceDetails({
             ...placeDetails,
             destination_address: {
@@ -197,6 +219,15 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
                 : "Current Location",
               value: {},
             },
+          });
+        }
+
+        if (time == "now") {
+          setTimeDetails({
+            ...timeDetails,
+            date: default_date,
+            chosentime: null,
+            use_now: true,
           });
         }
 

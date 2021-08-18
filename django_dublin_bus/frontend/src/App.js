@@ -30,6 +30,8 @@ function App() {
     latitude: null,
     longitude: null,
     address_string: null,
+    date: null,
+    time: null,
   });
 
   const [SpotifyPlayerState, setSpotifyPlayerState] = useState({
@@ -78,7 +80,12 @@ function App() {
   const [placeService, setPlaceService] = useState(null);
 
   const UpdateQuickLocation = (new_loc) => {
-    setQuickLocation({ ...quickLocation, ...new_loc });
+    setQuickLocation({
+      ...quickLocation,
+      ...new_loc,
+      date: new_loc.date ? new_loc.date : null,
+      time: new_loc.time ? new_loc.time : null,
+    });
   };
 
   const GetUsersLocation = () => {
@@ -159,6 +166,8 @@ function App() {
           latitude: quickLocation.latitude,
           longitude: quickLocation.longitude,
           address_string: quickLocation.address_string,
+          date: quickLocation.date,
+          time: quickLocation.time,
           quick_location_updater: UpdateQuickLocation,
           toggle_display_updater: (val) => setToggleDisplay(val),
           toggle_display: toggleDisplay,
