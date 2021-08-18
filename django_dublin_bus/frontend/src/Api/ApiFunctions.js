@@ -187,6 +187,17 @@ const GetArtistDetails = async (artist_name) => {
   return response;
 };
 
+const PlaySongServer = async (uri) => {
+  let response;
+
+  try {
+    response = await axios.get("/spotify/play-song/", { params: { uri } });
+  } catch (error) {
+    reponse = error.response;
+  }
+  return response;
+};
+
 export {
   GetRoute,
   SignUpRequest,
@@ -204,4 +215,5 @@ export {
   GetPodcasts,
   PauseSong,
   GetArtistDetails,
+  PlaySongServer,
 };

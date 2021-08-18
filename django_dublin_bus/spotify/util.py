@@ -9,6 +9,7 @@ import urllib.parse
 from difflib import SequenceMatcher
 import requests
 import traceback
+import json
 
 BASE_URL = "https://api.spotify.com/v1/me/"
 
@@ -17,7 +18,19 @@ def get_user_tokens(session_id):
     if user_tokens.exists():
         return user_tokens[0]
     else:
-        return None
+        return None 
+
+def play_track(uri, access_token):
+
+    header = {'Content-Type':'application/json', 'Authorization':"Bearer " + access_token}
+
+    endpoint = "https://api.spotify.com/v1/me/player/play" 
+
+    data = {"uris":[uri]}  
+
+    requests.put(endpoint, data=json.dumps(data), headers=header)  
+
+
 
 def update_or_create_user_tokens(session_id, access_token, token_type, expires_in, refresh_token):
 

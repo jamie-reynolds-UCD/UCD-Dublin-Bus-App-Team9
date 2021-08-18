@@ -143,7 +143,20 @@ class GetArtistDetails(APIView):
         except:
             top_tracks = []
 
-        return HttpResponse(json.dumps({'songs':top_tracks}))
+        return HttpResponse(json.dumps({'songs':top_tracks})) 
+
+
+class PlaySong(APIView):
+
+    def get(self, request):
+
+        uri = request.GET["uri"]   
+
+        play_track(uri, get_user_tokens(request.session.session_key).access_token) 
+
+        return HttpResponse(json.dumps({'success':True}))
+
+
 
 
 

@@ -802,7 +802,6 @@ class SignUp(View):
             User.objects.create_user(username, email, password) 
             return HttpResponse(json.dumps({'success':True})) 
 
-
 @method_decorator(csrf_exempt, name='dispatch')
 class Login(View):
 

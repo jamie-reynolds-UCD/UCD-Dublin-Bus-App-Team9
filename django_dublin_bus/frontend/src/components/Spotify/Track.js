@@ -12,6 +12,7 @@ import {
 import { PauseSong } from "../../Api/ApiFunctions";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
+import { PlaySongServer } from "../../Api/ApiFunctions";
 
 const Track = ({ key, track, type, GoBack, GoForward, preview }) => {
   const { play_song } = useContext(SpotifyContext);
@@ -31,7 +32,13 @@ const Track = ({ key, track, type, GoBack, GoForward, preview }) => {
   }
 
   const playsong = () => {
-    play_song(uri);
+    if (play_song == null) {
+      PlaySongServer(uri);
+      //this will be null if the player failed to initialise (typically on mobile devices)
+      //in that case just play on the user's spotify app and forget about in browser sound
+    } else {
+      play_song(uri);
+    }
   };
 
   const stop_prop = (ev) => {

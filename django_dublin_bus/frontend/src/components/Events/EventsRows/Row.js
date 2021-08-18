@@ -137,7 +137,7 @@ function Row({ title, fetchUrl }) {
                 src={event.images[0]["url"]}
                 alt={event.name}
               ></PosterImg>
-              {spotify_authenticated & (play_song != null) ? (
+              {spotify_authenticated ? (
                 title == "MUSIC" ? (
                   <SpotifyPreview key={event.id} artist_name={event.name} />
                 ) : null

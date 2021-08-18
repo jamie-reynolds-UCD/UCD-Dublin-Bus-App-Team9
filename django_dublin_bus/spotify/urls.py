@@ -11,5 +11,6 @@ urlpatterns = [
     path('podcast-episodes/', GetPodcastEpisodes.as_view()),
     path('get-podcasts/', GetPodcasts.as_view()),
     path('pause-song/', PauseSong.as_view()),
-    path('artist-details/', GetArtistDetails.as_view())
+    path('artist-details/', GetArtistDetails.as_view()), 
+    path('play-song/', PlaySong.as_view())
 ]
