@@ -177,11 +177,11 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
 
       if (response.status == 200) {
         let start_markers = response.data.route
-          .slice(1, -1)
+          .slice(1, -2)
           .map((leg) => leg.start_location);
 
         let end_markers = response.data.route
-          .slice(1, -1)
+          .slice(1, -2)
           .map((leg) => leg.end_location);
 
         let all_markers = [];
@@ -191,7 +191,7 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
           all_markers.push(end_markers[i]);
         }
 
-        let polylines = response.data.route.slice(1, -1).map((leg) => {
+        let polylines = response.data.route.slice(1, -2).map((leg) => {
           return {
             travelmode: leg.travel_mode,
             path: google.maps.geometry.encoding.decodePath(leg.polyline.points),
@@ -299,6 +299,11 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
               selectProps={{
                 value: placeDetails.origin_address,
                 onChange: updateOriginAddress,
+                placeholder: "Enter Origin",
+                components: {
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                },
               }}
             />
           </div>
@@ -333,6 +338,11 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
               selectProps={{
                 value: placeDetails.destination_address,
                 onChange: updateDestAddress,
+                placeholder: "Enter Destination",
+                components: {
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                },
               }}
             />
           </div>

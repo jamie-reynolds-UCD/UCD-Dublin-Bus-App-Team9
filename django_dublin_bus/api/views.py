@@ -295,12 +295,6 @@ def get_closest_stop(stop, valid_stops):
 
 def get_predicted_journey_time(departure_stop, arrival_stop, route_name, departure_time):
 
-    print("The departure stop is {0}".format(departure_stop)) 
-    print("The arrival stop is {0}".format(arrival_stop)) 
-    print("The route name is {0}".format(route_name))  
-  
-
-
     #list all routes in the models directory
     all_dirs = os.listdir(settings.MODELS_DIR)   
 
@@ -622,7 +616,212 @@ def get_route_bounds(directions):
     bound_1 = {'lat':min(lats), 'lng':min(lngs)}
     bound_2 = {'lat':max(lats), 'lng':max(lngs)} 
 
-    return [bound_1, bound_2]
+    return [bound_1, bound_2] 
+
+
+def fix_times(directions):  
+
+    change_vs_expected = 0 
+
+    for i in range(len(directions)-1):  
+
+       
+
+        if directions[i].get('travel_mode', None)=='TRANSIT':
+            change_vs_expected = 0
+
+        predicted_time = directions[i].get("predicted_journey_time", None) 
+
+        if predicted_time==None:
+            continue 
+        
+        googles_time = int(directions[i]['duration'][:directions[i]['duration'].find(" ")]) 
+
+        difference = predicted_time - googles_time 
+        
+        change_vs_expected += difference  
+
+    
+    if change_vs_expected != 0: 
+
+        expected_end_time = directions[-1]['time'].zfill(7)
+
+        am_pm = expected_end_time[-2:] 
+
+        expected_end_time = datetime.datetime.strptime(expected_end_time[:5], "%H:%M")  
+
+        new_end_time = expected_end_time + datetime.timedelta(minutes=change_vs_expected) 
+
+        new_end_time = datetime.datetime.strftime(new_end_time, "%H:%M")  
+
+        new_end_time = new_end_time+ am_pm 
+
+        directions[-1]['time'] = new_end_time
+
+
+
+    return directions 
+
+
+def find_invalid_route(parsed_directions):
+
+   
+
+ 
+
+    INVALID_ROUTE = False
+    INVALID_INDEX = None 
+    LAST_OBSERVED_LAT = None 
+    LAST_OBSERVED_LONG = None
+    DEPARTURE = None
+
+    for i in range(len(parsed_directions)-1):  
+        if INVALID_ROUTE:
+            break 
+
+        if parsed_directions[i]['travel_mode']=='TRANSIT':
+            departure_time = parsed_directions[i]['departure_time'] 
+            departure_time = datetime.datetime.strptime(departure_time[-7:].strip().zfill(7).upper(), "%I:%M%p")  
+
+            predicted_time = parsed_directions[i].get("predicted_journey_time", None)   
+            duration = parsed_directions[i]['duration']
+            duration = int(duration[:duration.find(" ")]) 
+
+            if predicted_time==None:
+                continue  
+
+            if predicted_time < duration:
+                continue 
+
+            arrival_at_next_bus = departure_time + datetime.timedelta(minutes=predicted_time) 
+
+            for j in range(i+1, len(parsed_directions)):
+
+                if parsed_directions[j]['travel_mode']=='TRANSIT':
+
+                    departure = parsed_directions[j]['departure_time'] 
+                    departure = datetime.datetime.strptime(departure[-7:].strip().zfill(7).upper(), "%I:%M%p")  
+
+                    if arrival_at_next_bus>departure: 
+
+                        INVALID_ROUTE=True  
+                        INVALID_INDEX = i
+                        break
+        
+    if INVALID_ROUTE: 
+        LAST_OBSERVED_LAT = parsed_directions[INVALID_INDEX]['arrival_location']['lat'] 
+        LAST_OBSERVED_LONG = parsed_directions[INVALID_INDEX]['arrival_location']['lng']    
+        DEPARTURE = datetime.datetime.strptime(parsed_directions[INVALID_INDEX]['arrival_time'].strip().zfill(7).upper(), "%I:%M%p") + datetime.timedelta(minutes=predicted_time-duration) 
+    
+    return INVALID_ROUTE, INVALID_INDEX, LAST_OBSERVED_LAT, LAST_OBSERVED_LONG, DEPARTURE
+
+def get_google_summary(parsed_directions, start_time, end_time):   
+
+    start_time = start_time.zfill(7) 
+    end_time = end_time.zfill(7) 
+
+    start_time = datetime.datetime.strptime(start_time.upper(), "%I:%M%p")  
+    end_time = datetime.datetime.strptime(end_time.upper(), "%I:%M%p")  
+    total_time = (end_time-start_time).total_seconds()//60
+
+    total_bus = 0
+    total_walk = 0 
+    total_wait = 0 
+
+
+    for i in range(len(parsed_directions)):
+
+        leg = parsed_directions[i] 
+
+        duration = leg['duration'] 
+        duration = int(duration[:duration.find(" ")])
+
+        if leg['travel_mode'] == 'WALKING':
+            total_walk += duration 
+        else:
+            total_bus += duration 
+
+    total_wait = total_time - (total_walk+total_bus)
+
+    desc = {'Trip Time':int(total_time), 'Bus': int(total_bus), 'Walking':int(total_walk), 'Waiting':int(total_wait)} 
+    
+    return desc 
+
+
+def get_our_summary(parsed_directions): 
+
+    start_time = parsed_directions[0]['time'] 
+    end_time = parsed_directions[-1]['time']
+
+    start_time = datetime.datetime.strptime(start_time.upper(), "%I:%M%p")  
+    end_time = datetime.datetime.strptime(end_time.upper(), "%I:%M%p")  
+    total_time = (end_time-start_time).total_seconds()//60 
+
+    total_walk = 0 
+    total_bus = 0
+    total_wait = 0
+
+    for i in range(len(parsed_directions)):
+
+        leg = parsed_directions[i] 
+
+        travel_mode = leg.get('travel_mode', None) 
+
+        if travel_mode==None:
+            continue 
+
+        duration = leg['duration'] 
+        duration = int(duration[:duration.find(" ")])  
+       
+
+        old_duration = duration 
+
+
+        duration = leg.get('predicted_journey_time', None)
+
+        if duration==None:
+            duration = old_duration
+
+       
+
+        if travel_mode=="WALKING":
+            total_walk += duration 
+        else:
+            total_bus += duration
+
+    total_wait = total_time - (total_walk+total_bus)
+
+    desc = {'Trip Time':int(total_time), 'Bus': int(total_bus), 'Walking':int(total_walk), 'Waiting':int(total_wait)} 
+
+    return desc 
+
+        
+def get_route_summary(googles_trip_summary, our_summary):
+
+
+    diff = our_summary['Trip Time'] - googles_trip_summary['Trip Time'] 
+
+    abs_diff = abs(diff) 
+
+    pc_diff = abs_diff/googles_trip_summary['Trip Time'] 
+
+    if diff > 0:
+
+        if abs_diff>10 or pc_diff>0.2:
+            message = "Longer than usual" 
+        else:
+            message = "Slightly longer than usual" 
+
+    else:
+        if abs_diff>10 or pc_diff>0.2:
+            message = "Shorter than usual" 
+        else:
+            message = "Slightly shorter than usual"  
+
+    our_summary['message'] = message 
+
+    return our_summary
+
 
 class GetRoute(View):
 
@@ -647,7 +846,6 @@ class GetRoute(View):
 
         arrive_at = request.GET["arrive_at"] 
 
-       
 
         #if either of the above or null then return a bad request code
         if origin_coords==None or dest_coords==None:
@@ -675,28 +873,17 @@ class GetRoute(View):
             departure_time = departure_time + datetime.timedelta(seconds=offset)
 
         #get the directions from google 
-
-
-         
-        
-        
-
-
         #offset = departure_time - (datetime.datetime.(dublin_time.year, dublin_time.month, dublin_time.da))
-
-        
-
-
         if int(arrive_at)==1:
             directions_result = gmaps.directions(start, end, mode="transit", arrival_time=departure_time-datetime.timedelta(minutes=15), transit_mode='bus')   
         else:
             directions_result = gmaps.directions(start, end, mode="transit", departure_time=departure_time, transit_mode='bus')     
 
-       
-
         try:
             #parse the directions  
-            parsed_directions = parse_directions(directions_result, departure_time)     
+            parsed_directions = parse_directions(directions_result, departure_time)    
+
+            googles_trip_summary = get_google_summary(parsed_directions, directions_result[0]['legs'][0]['departure_time']['text'], directions_result[0]['legs'][0]['arrival_time']['text'])  
             
             route_bounds = get_route_bounds(parsed_directions)  
 
@@ -717,11 +904,44 @@ class GetRoute(View):
                 trip_arrival = directions_result[0]['legs'][0]['arrival_time']['text'] 
             except:
                 trip_departure=None 
-                trip_arrival=None
+                trip_arrival=None 
+
+            INVALID_ROUTE, INVALID_INDEX, LAST_OBSERVED_LAT, LAST_OBSERVED_LONG, DEPARTURE = find_invalid_route(parsed_directions) 
+
+
+            if INVALID_ROUTE:   
+
+                valid_directions = parsed_directions[:INVALID_INDEX+1] 
+
+                new_origin = "{0},{1}".format(LAST_OBSERVED_LAT, LAST_OBSERVED_LONG)  
+
+                DEPARTURE = datetime.datetime.combine(departure_time, datetime.time(DEPARTURE.hour, DEPARTURE.minute, DEPARTURE.second))  + datetime.timedelta(seconds=offset)
+
+                result = gmaps.directions(new_origin, end, mode="transit", departure_time=DEPARTURE, transit_mode='bus') 
+                
+                new_parsed_directions = parse_directions(result, DEPARTURE)  
+
+                parsed_directions = valid_directions + new_parsed_directions 
+
+                route_bounds = get_route_bounds(parsed_directions)  
 
             parsed_directions.insert(0, {'origin':origin, 'time':trip_departure}) 
-            parsed_directions.append({'destination':destination, 'time':trip_arrival})
+            parsed_directions.append({'destination':destination, 'time':trip_arrival})   
 
+            parsed_directions = fix_times(parsed_directions) 
+
+            our_summary = get_our_summary(parsed_directions) 
+
+            route_summary = get_route_summary(googles_trip_summary, our_summary) 
+
+
+           
+
+            parsed_directions.append(route_summary) 
+
+           
+           
+            
             #return to client
             return HttpResponse(json.dumps({'route':parsed_directions, 'route_bounds':route_bounds})) 
         except: 
