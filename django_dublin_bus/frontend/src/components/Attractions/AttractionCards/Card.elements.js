@@ -10,11 +10,13 @@ export const CardWrapper = styled.div`
     padding-left: 5%;
     padding-right: 5%;
     @media screen and (max-width:600px) {
-        margin: 2rem;
         display: grid;
         gap: 1rem;
         grid-template-columns: 1fr;
         justify-content: center;
+        padding-top: 20px;
+        padding-left: 2%;
+        padding-right: 2%;
     }
 `
 
@@ -38,18 +40,18 @@ export const WholeCard = styled.div`
     }
 
     @media screen and (max-width:600px) {
-        min-width: 28rem;
+        min-width: 100%;
         display: flex;
         flex-direction: unset;
-        height: 11rem;
     }
 `
 
 export const CardBody = styled.div`
     @media screen and (max-width:600px) {
-        width: 50%;
+        width: 55%;
         display: flex;
         flex-direction: column;
+        margin-left: 5%;
     }
 `
 
@@ -60,8 +62,8 @@ export const CardImage = styled.img`
     object-fit: cover;
 
     @media screen and (max-width:600px) {
-        width: 12rem;
-        height: 11rem;
+        width: 40%;
+        height: 100%;
         display: flex;
     }
 `
@@ -69,37 +71,40 @@ export const CardTitle = styled.h1`
     line-height: 1.4rem;
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
-    top: 0;
     font-size: 20px;
+    text-align: center;
     font-family: 'Quicksand', 'sans-serif';
 
     @media screen and (max-width:600px) {
         line-height: 1.4rem;
-        margin-bottom: 0.5rem;
-        display: flex;
-        padding-left: 5%;
-
+        margin-bottom: 0.1rem;
+        font-size: 16px;
+        text-align: center;
     }
 `
 export const CardLocation = styled.p`
     line-height: 1.2rem;
     font-family: 'Quicksand', 'sans-serif';
     text-align: center;
+
+    @media screen and (max-width:600px) {
+        line-height: 0.5rem;
+        font-size: 13px;
+
+    }
 `
 
 export const CardTags = styled.div`
     font-size: 12px;
     margin-top: 0.6rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    margin-bottom: 10px;
     text-align: center;
     font-family: 'Quicksand', 'sans-serif';
 
     @media screen and (max-width:600px) {
-        float: left;
-        white-space: pre-line;
-        padding-bottom: 0px;
+        overflow-wrap: break-word;
+        margin-bottom: 5px;
+        font-size: 10px;
     }
 `
 
@@ -110,11 +115,12 @@ export const Buttons = styled.div`
     display: flex;
     font-family: 'Quicksand', 'sans-serif';
     padding-bottom: 5px;
-    padding-right: 7%;
+    padding-right: 10%;
     
     @media screen and (max-width:600px) {
-        float: left;
         bottom: 0;
+        padding-right: 7%;
+        justify-content: center;
     }
 `
 

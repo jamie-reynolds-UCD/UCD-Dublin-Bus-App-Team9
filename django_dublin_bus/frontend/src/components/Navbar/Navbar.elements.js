@@ -80,7 +80,6 @@ export const NavMenu = styled.ul`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 40vh;
     position: absolute;
     top: 10vh;
     left: ${({ click }) => (click ? 0 : "-100%")};
@@ -89,9 +88,6 @@ export const NavMenu = styled.ul`
     background: #101522;
   }
 
-  @media screen and (max-height: 600px) {
-    top: 40px;
-  }
 `;
 
 export const NavItem = styled.li`

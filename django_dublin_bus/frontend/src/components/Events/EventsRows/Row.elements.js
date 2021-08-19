@@ -68,6 +68,10 @@ export const PosterHead = styled.h1`
   right: 0;
   bottom: 10%;
   font-family: 'Quicksand', 'sans-serif';
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 export const PosterText = styled.h1`
@@ -78,10 +82,21 @@ export const PosterText = styled.h1`
   position: absolute;
   margin: 0 auto;
   font-family: sans-serif;
-  left: 10%;
+  left: 5%;
   right: 0;
   bottom: 1%;
   font-family: 'Quicksand', 'sans-serif';
+
+
+  @media screen and (max-width: 600px) {
+    left: 2%;
+  }
+
+
+  @media screen and (max-width : 350px)
+    {
+      font-size:10px;
+    }
 `;
 
 export const SpotifyPreviewContainer = styled.div`

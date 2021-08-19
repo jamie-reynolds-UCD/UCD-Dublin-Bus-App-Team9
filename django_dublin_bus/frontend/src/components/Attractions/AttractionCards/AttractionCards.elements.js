@@ -3,16 +3,17 @@ import styled from 'styled-components';
 export const LoadButton = styled.button`
 
     align-content: center;
+    overflow: hidden;
     width: 100%;
     height: 5%;
     display:inline-block;
     padding:2em 1.2em;
     border:0.1em solid #FFFFFF;
-    margin:0 0.3em 0.3em 0;
+    margin-top: 1.7em;
     border-radius:0.12em;
     box-sizing: border-box;
     text-decoration:none;
-    font-family:'Roboto',sans-serif;
+    font-family:'Quicksand', 'sans-serif';
     font-weight:300;
     color:#000;
     text-align:center;
@@ -32,7 +33,7 @@ export const LoadButtonCont = styled.div`
 
 export const TagButtons = styled.div`
 
-    overflow: auto;
+    overflow-x: auto;
     white-space: nowrap;
     padding-top: 1%;
     width: 100%;
@@ -88,13 +89,4 @@ export const TagButton = styled.button`
     color:#000;
     border-color:#e57373;
     }
-`
-
-export const attractionWindow = styled.div`
-    padding-left: 10%;
-    align-content: center;
-    width: 30%;
-    height: 10%;
-    float: right;
-    font-family: 'Quicksand', 'sans-serif';
 `

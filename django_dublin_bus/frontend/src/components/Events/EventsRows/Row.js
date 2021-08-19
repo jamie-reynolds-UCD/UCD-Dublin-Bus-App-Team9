@@ -106,7 +106,7 @@ function Row({ title, fetchUrl }) {
         navigation
         pagination={{ clickable: true }}
         breakpoints={{
-          360: {
+          280: {
             slidesPerView: 3,
             slidesPerGroup: 3,
             spaceBetween: 5,
@@ -144,11 +144,9 @@ function Row({ title, fetchUrl }) {
               ) : null}
               <PosterHead>{event.name}</PosterHead>
               <PosterText>
-                {event.dates.start.localTime}
-                {"\n"}
                 {new Date(event.dates.start.dateTime).toLocaleDateString(
                   "en-gb",
-                  { month: "long", day: "numeric" }
+                  { hour: '2-digit', minute:'2-digit', day: "numeric", month: "long"  }
                 )}
               </PosterText>
             </PosterInfo>

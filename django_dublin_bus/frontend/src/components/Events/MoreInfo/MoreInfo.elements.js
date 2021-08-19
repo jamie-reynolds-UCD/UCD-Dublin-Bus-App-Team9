@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const InfoContainer = styled.div`
-  height: 36vh;
+  height: 100%;
   width: 100%;
   position: relative;
   display: flex; 
@@ -13,17 +13,19 @@ export const InfoContainer = styled.div`
 export const MapContainer = styled.div`
     position: flex;
     float: right;
-    height: 36vh;
     width: 30vw;
     background-color: #E8E8E8;
     @media screen and (max-width : 600px)
     {
-      width: 50vw;
+      width: 40vw;
+    }
+    @media screen and (max-width : 320px)
+    {
+      width: 35vw;
     }
 `;
 
 export const InfoWindow = styled.div`
-  height: 30vh;
   width: 50vw;
   float: left;
   white-space: pre-wrap;
@@ -34,46 +36,38 @@ export const InfoWindow = styled.div`
   @media screen and (max-width : 600px)
     {
       padding-left: 0%;
+      width: 60vw;
+    }
+  @media screen and (max-width : 320px)
+    {
+      width: 65vw;
     }
 `;
 
 export const TextWrapper = styled.div`
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding-left: 10%;
 `;
 
 export const TopLine = styled.h1`
-  font-size: 22px;
-  line-height: 22px;
+  font-size: 20px;
+  line-height: 20px;
   font-weight: bold;
-  padding-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   font-family: 'Quicksand', 'sans-serif';
   @media screen and (max-width : 600px)
     {
-      font-size:16px;
+      font-size:15px;
     }
 `;
 
 export const Venue = styled.p`
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 17px;
+  line-height: 22px;
   font-family: 'Quicksand', 'sans-serif';
   font-weight: bold;
-
-    @media screen and (max-width : 600px)
-    {
-      font-size:14px;
-      line-height: 14px;
-    }
-`;
-
-export const Address = styled.p`
-  font-size: 17px;
-  line-height: 18px;
-  font-family: 'Quicksand', 'sans-serif';
-  padding-bottom: 5px;
 
     @media screen and (max-width : 600px)
     {
@@ -82,34 +76,45 @@ export const Address = styled.p`
     }
 `;
 
-export const Time = styled.p`
-  padding-top: 10px;
+export const Address = styled.p`
   font-size: 16px;
+  line-height: 18px;
+  font-family: 'Quicksand', 'sans-serif';
+  margin-bottom: 5px;
+
+    @media screen and (max-width : 600px)
+    {
+      font-size:12px;
+      line-height: 14px;
+    }
+`;
+
+export const Time = styled.p`
+  margin-top: 10px;
+  font-size: 14px;
   line-height: 14px;
   margin-bottom: 10px;
   font-family: 'Quicksand', 'sans-serif';
   @media screen and (max-width : 600px)
     {
-      font-size:12px;
+      font-size:11px;
       margin-bottom: 0px;
       line-height: 14px;
     }
-
 `;
 
 export const EventDate = styled.p`
-  font-size: 16px;
+  font-size: 14px;
   line-height: 14px;
   margin-bottom: 5px;
   font-family: 'Quicksand', 'sans-serif';
   @media screen and (max-width : 600px)
     {
-      font-size:12px;
+      font-size:11px;
       margin-bottom: 0px;
       line-height: 14px;
     }
 `;
-
 
 export const ButtonsContainer = styled.div`
   padding-left: 10%;
@@ -119,6 +124,7 @@ export const ButtonsContainer = styled.div`
 export const Buttons = styled.div`
   display: inline-block;
   align-content: center;
+  margin-bottom: 20px;
   @media screen and (max-width : 600px)
     {
       margin-top: 5px;
@@ -128,5 +134,4 @@ export const Buttons = styled.div`
 export const Divider = styled.div`
   width:5px;
   display:inline-block;
-
 `

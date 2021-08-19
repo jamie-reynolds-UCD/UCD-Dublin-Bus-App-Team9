@@ -6,7 +6,7 @@
     "longitude": -6.250578476,
     "latitude": 53.34188602,
     "addressLocality": "Dublin City",
-    "tags": "Historic Houses and Castle,Literary Ireland,Food Shops,Shopping",
+    "tags": "Historic Houses and Castle, Literary Ireland, Food Shops, Shopping",
     "img": "https://assets-eu-01.kc-usercontent.com/aa24ba70-9a12-01ae-259b-7ef588a0b2ef/09dbc8e0-c067-4807-ae3c-c438ce5be18d/daa62893-c70c-4b52-8485-bae2ebb0b30c_90686.jpg"
   },
   {
@@ -16,7 +16,7 @@
     "longitude": -6.259589373,
     "latitude": 53.34424924,
     "addressLocality": "",
-    "tags": "Activity Operator,Museums and Attraction,Food and Drink,Pubs and Bar,Food Shops,Shopping,Tour",
+    "tags": "Activity Operator, Museums and Attraction, Food and Drink, Pubs and Bar, Food Shops, Shopping, Tour",
     "img": "https://www.irishwhiskeymuseum.ie/wp-content/uploads/2016/03/008-20150106-_DSD8837-Copy.jpg"
   },
   {
@@ -26,7 +26,7 @@
     "longitude": -6.26163,
     "latitude": 53.340387,
     "addressLocality": "",
-    "tags": "Historic Houses and Castle,Venue,Comedy,Music,Cafe,Food and Drink,Food Shops,Shopping,Tour",
+    "tags": "Historic Houses and Castle, Venue, Comedy, Music, Cafe, Food and Drink, Food Shops, Shopping, Tour",
     "img": "https://i2.wp.com/theclarence.ie/wp-content/uploads/2019/05/Gaiety-Theatre.jpg?resize=532%2C405&ssl=1"
   },
   {
@@ -36,7 +36,7 @@
     "longitude": -6.261545,
     "latitude": 53.34718,
     "addressLocality": "",
-    "tags": "Covid Safety Charter,Activity Operator,River,Discovery Point,Boat,Tour",
+    "tags": "Covid Safety Charter, Activity Operator, River, Discovery Point, Boat, Tour",
     "img": "https://www.familyfun.ie/site-assets/uploads/2017/10/dublin-discovered-boat-tours.jpg"
   },
   {
@@ -46,7 +46,7 @@
     "longitude": -6.269691598,
     "latitude": 53.35722262,
     "addressLocality": "Dublin City",
-    "tags": "Bird Watching,Nature and Wildlife,Walking,Gardens,Garden",
+    "tags": "Bird Watching, Nature and Wildlife, Walking, Gardens, Garden",
     "img": "https://live.staticflickr.com/7649/26990854071_b0230bf797_b.jpg"
   },
   {
@@ -56,7 +56,7 @@
     "longitude": -6.220338,
     "latitude": 53.459928,
     "addressLocality": "Swords",
-    "tags": "Historic Houses and Castle,Castle,Tour",
+    "tags": "Historic Houses and Castle, Castle, Tour",
     "img": "https://upload.wikimedia.org/wikipedia/commons/6/6f/SwordsCastleMain.jpg"
   },
   {
@@ -66,7 +66,7 @@
     "longitude": -6.263985,
     "latitude": 53.354366,
     "addressLocality": "",
-    "tags": "Craft,Shopping,Learning,Historic Houses and Castle,Museums and Attraction,Literary Ireland,Food Shops,Tour",
+    "tags": "Craft, Shopping, Learning, Historic Houses and Castle, Museums and Attraction, Literary Ireland, Food Shops, Tour",
     "img": "https://www.cliste.ie/library1/dublinwritersmuseum-one-770x434.jpg"
   },
   {
@@ -86,7 +86,7 @@
     "longitude": -6.1582704,
     "latitude": 53.4505763,
     "addressLocality": "Malahide",
-    "tags": "Historic Houses and Castle,Museums and Attraction,Tour",
+    "tags": "Historic Houses and Castle, Museums and Attraction, Tour",
     "img": "https://i2-prod.dublinlive.ie/incoming/article17649074.ece/ALTERNATES/s615/0_Casino-Model-Railway-Museum.jpg"
   },
   {
@@ -96,7 +96,7 @@
     "longitude": -6.259782198,
     "latitude": 53.3499184,
     "addressLocality": "Dublin City",
-    "tags": "Public Sculpture,Talking Statue,Literary Ireland",
+    "tags": "Public Sculpture, Talking Statue, Literary Ireland",
     "img": "http://www.talkingstatues.co.uk/stockist_images/dublinadmin/530x1530_james-joyce.jpg"
   },
   {
@@ -106,7 +106,7 @@
     "longitude": -6.263976,
     "latitude": 53.35462,
     "addressLocality": "Dublin City",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://live.staticflickr.com/5607/15399816177_e5c96463e7_b.jpg"
   },
   {
@@ -126,7 +126,7 @@
     "longitude": -6.264056,
     "latitude": 53.345635,
     "addressLocality": "",
-    "tags": "Craft,Shopping,Learning,Activity Operator,Art Gallery",
+    "tags": "Craft, Shopping, Learning, Activity Operator, Art Gallery",
     "img": "https://16boxset.files.wordpress.com/2016/04/black-church-print-studio-image-1.jpg?w=612&h=308"
   },
   {
@@ -136,7 +136,7 @@
     "longitude": -6.1616584,
     "latitude": 53.5817894,
     "addressLocality": "Balbriggan",
-    "tags": "Covid Safety Charter,Learning,Walking,Historic Houses and Castle,Castle,Gardens,Garden,Venue,Music,Cafe,Food and Drink,Local Produce,Restaurant,Tour",
+    "tags": "Walking, Historic Houses and Castle, Castle, Gardens, Garden, Local Produce, Restaurant, Tour",
     "img": "https://s.inyourpocket.com/gallery/22577.jpg"
   },
   {
@@ -146,7 +146,7 @@
     "longitude": -7.323131051,
     "latitude": 53.66843186,
     "addressLocality": "Swords",
-    "tags": "Fishing,Angling,River,Discovery Point",
+    "tags": "Fishing, Angling, River, Discovery Point",
     "img": "https://upload.wikimedia.org/wikipedia/commons/6/63/Inny3302.jpg"
   },
   {
@@ -156,7 +156,7 @@
     "longitude": -6.254645628,
     "latitude": 53.34874522,
     "addressLocality": "",
-    "tags": "Public Sculpture,Talking Statue",
+    "tags": "Public Sculpture, Talking Statue",
     "img": "http://cdn.shopify.com/s/files/1/0815/1857/files/james-connolly-statue.jpg?17565992118154492500"
   },
   {
@@ -166,7 +166,7 @@
     "longitude": -6.259937704,
     "latitude": 53.34907981,
     "addressLocality": "Dublin City",
-    "tags": "Public Sculpture,Talking Statue",
+    "tags": "Public Sculpture, Talking Statue",
     "img": "https://stairnaheireann.net/wp-content/uploads/2016/06/jim-larkin-o-connell-street.jpg"
   },
   {
@@ -176,7 +176,7 @@
     "longitude": -6.25366,
     "latitude": 53.338393,
     "addressLocality": "Dublin City Centre",
-    "tags": "Historic Houses and Castle,Tour",
+    "tags": "Historic Houses and Castle, Tour",
     "img": "https://dublinkids.ie/wp-content/uploads/2018/05/governmen-buildings-dublin.jpg"
   },
   {
@@ -186,7 +186,7 @@
     "longitude": -6.266452,
     "latitude": 53.339835,
     "addressLocality": "",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery,Food Shops,Shopping",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery, Food Shops, Shopping",
     "img": "https://www.churchservices.tv/wp-content/uploads/2019/09/church-whitefriar-street-dublin.png"
   },
   {
@@ -196,7 +196,7 @@
     "longitude": -6.260721,
     "latitude": 53.349349,
     "addressLocality": "",
-    "tags": "Public Sculpture,Talking Statue,Cafe,Food and Drink,Food Shops,Shopping",
+    "tags": "Public Sculpture, Talking Statue, Cafe, Food and Drink, Food Shops, Shopping",
     "img": "https://www.irishtimes.com/polopoly_fs/1.2154461.1427381874!/image/image.jpg"
   },
   {
@@ -206,7 +206,7 @@
     "longitude": -6.26073,
     "latitude": 53.3464,
     "addressLocality": "Dublin City Centre",
-    "tags": "Learning,Activity Operator,Literary Ireland",
+    "tags": "Learning, Activity Operator, Literary Ireland",
     "img": "https://images.squarespace-cdn.com/content/v1/5daa59214396551a98644c5e/1571446183366-VVAPNY1QVSWU6E96SRBI/Singing+in+the+Rain_DSC119484.jpg?format=2500w"
   },
   {
@@ -216,7 +216,7 @@
     "longitude": -6.110148,
     "latitude": 53.574331,
     "addressLocality": "Skerries",
-    "tags": "Covid Safety Charter,Craft,Shopping,Activity Operator,Museums and Attraction,Cafe,Food and Drink,Food Shops",
+    "tags": "Covid Safety Charter, Craft, Shopping, Activity Operator, Museums and Attraction, Cafe, Food and Drink, Food Shops",
     "img": "https://www.skerriesmills.ie/wp-content/uploads/2015/02/5sail-windmill4-thumb1.jpg"
   },
   {
@@ -226,7 +226,7 @@
     "longitude": -6.258781,
     "latitude": 53.332501,
     "addressLocality": "Dublin City",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/12/44/6e/3d/exceptional-facade.jpg"
   },
   {
@@ -256,7 +256,7 @@
     "longitude": -6.263118,
     "latitude": 53.374288,
     "addressLocality": "Glasnevin",
-    "tags": "Restaurant,Gaa,Learning,Activity Operator,Food and Drink,Pubs and Bar",
+    "tags": "Restaurant, Gaa, Learning, Activity Operator, Food and Drink, Pubs and Bar",
     "img": "https://experiencegaelicgames.com/wp-content/uploads/2019/06/What-is-EGG.jpg"
   },
   {
@@ -266,7 +266,7 @@
     "longitude": -6.2603097,
     "latitude": 53.3498053,
     "addressLocality": "Dublin City",
-    "tags": "Art Gallery,Museums and Attraction",
+    "tags": "Art Gallery, Museums and Attraction",
     "img": "https://dublinartlife.com/wp-content/uploads/2020/08/DAL-scaled.jpg"
   },
   {
@@ -276,7 +276,7 @@
     "longitude": -6.33295,
     "latitude": 53.324844,
     "addressLocality": "",
-    "tags": "Walking,Historic Houses and Castle,Castle,Gardens,Garden,Museums and Attraction,Food Shops,Shopping,Tour",
+    "tags": "Walking, Historic Houses and Castle, Castle, Gardens, Garden, Museums and Attraction, Food Shops, Shopping,Tour",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/13/07/2c/a5/drimnagh-castle.jpg"
   },
   {
@@ -286,7 +286,7 @@
     "longitude": -6.2770874,
     "latitude": 53.37003,
     "addressLocality": "Glasnevin",
-    "tags": "Walking,Tracing Your Ancestors,Gardens,Garden,Museums and Attraction,Public Sculpture,Cafe,Food and Drink,Food Shops,Shopping,Tour",
+    "tags": "Walking, Tracing Your Ancestors, Gardens, Garden, Museums and Attraction, Public Sculpture, Cafe, Food and Drink, Food Shops, Shopping,Tour",
     "img": "https://www.dublinvisitorcentre.ie/wp-content/uploads/2017/03/Glasnevin-Cemetery.jpg"
   },
   {
@@ -296,7 +296,7 @@
     "longitude": -6.2354701,
     "latitude": 53.3352901,
     "addressLocality": "",
-    "tags": "Covid Safety Charter,Craft,Shopping,Learning,Activity Operator,Museums and Attraction,Cafe,Food and Drink,Local Produce,Restaurant,Food Shops,Tour",
+    "tags": "Covid Safety Charter, Craft,Shopping, Learning, Activity Operator, Museums and Attraction, Cafe, Food and Drink, Local Produce, Restaurant, Food Shops, Tour",
     "img": "https://www.yourdaysout.ie/uploads/articleimages/big1875_rX-mq.jpg"
   },
   {
@@ -316,7 +316,7 @@
     "longitude": -6.292767969,
     "latitude": 53.30131952,
     "addressLocality": "Terenure",
-    "tags": "Forest Park,Park and Forest Walk,Walking,National Park,National and Forest Park,Public Park,Nature and Wildlife",
+    "tags": "Forest Park, Park and Forest Walk, Walking, National Park, National and Forest Park, Public Park, Nature and Wildlife",
     "img": "https://images.parkrun.com/event/bushydublin/eventhomepagepicture.jpg"
   },
   {
@@ -326,7 +326,7 @@
     "longitude": -6.2645993,
     "latitude": 53.344865,
     "addressLocality": "",
-    "tags": "Covid Safety Charter,Activity Operator,Museums and Attraction,Traditionally Irish,Food Shops,Shopping,Tour",
+    "tags": "Covid Safety Charter, Activity Operator, Museums and Attraction, Traditionally Irish, Food Shops, Shopping,Tour",
     "img": "https://www.yourdaysout.ie/uploads/articleimages/big13648g4cKn.jpg"
   },
   {
@@ -336,7 +336,7 @@
     "longitude": -6.276237376,
     "latitude": 53.27676505,
     "addressLocality": "Rathfarnham",
-    "tags": "Cycling,Golf,Walking,Gardens,Garden,Historic Houses and Castle,Public Park,Nature and Wildlife,Venue,Music,Sports Venues,Cafe,Food and Drink,Local Produce,Restaurant,Food Shops,Shopping,Tour",
+    "tags": "Cycling, Golf, Walking, Gardens, Garden, Historic Houses and Castle, Public Park, Nature and Wildlife, Venue, Music, Sports Venues, Cafe, Food and Drink, Local Produce, Restaurant, Food Shops, Shopping,Tour",
     "img": "https://i0.wp.com/thedevlin.ie/wp-content/uploads/2021/04/Marlay-Park-Lonitude-Concert.jpg?resize=560%2C405&ssl=1"
   },
   {
@@ -346,7 +346,7 @@
     "longitude": -6.2604903,
     "latitude": 53.3396625,
     "addressLocality": "",
-    "tags": "Gaa,Walking,Activity Operator,Tour",
+    "tags": "Gaa,Walking, Activity Operator, Tour",
     "img": "https://i2.wp.com/jetsettingfools.com/wp-content/uploads/2015/05/Dublin-Ireland-Self-Guided-Walking-Tour-Map.jpg?resize=993%2C528&ssl=1"
   },
   {
@@ -356,7 +356,7 @@
     "longitude": -6.264839781,
     "latitude": 53.3451271,
     "addressLocality": "",
-    "tags": "Craft,Shopping,Art Gallery,Food Shops",
+    "tags": "Craft, Shopping, Art Gallery, Food Shops",
     "img": "https://pbs.twimg.com/media/DnofCTIW0AAAfrL.jpg"
   },
   {
@@ -366,7 +366,7 @@
     "longitude": -6.230766,
     "latitude": 53.360651,
     "addressLocality": "Clontarf",
-    "tags": "Learning,Museums and Attraction,Traditionally Irish,Venue,Music,Food Shops,Shopping",
+    "tags": "Learning, Museums and Attraction, Traditionally Irish, Venue, Music, Food Shops, Shopping",
     "img": "https://assets-eu-01.kc-usercontent.com/aa24ba70-9a12-01ae-259b-7ef588a0b2ef/26ed3b73-b3dc-4007-b095-ce704368d4f5/54ab65f3-3ced-4786-89d3-96885dd694c0_75144.jpg?w=828&q=66&h=468&fit=crop&fm=jpg"
   },
   {
@@ -376,7 +376,7 @@
     "longitude": -6.3240651,
     "latitude": 53.3361014,
     "addressLocality": "Inchicore",
-    "tags": "Covid Safety Charter,Restaurant,Food and Drink,Activity Operator,Museums and Attraction,Pubs and Bar,Food Shops,Shopping,Tour",
+    "tags": "Covid Safety Charter, Restaurant, Food and Drink, Activity Operator, Museums and Attraction, Pubs and Bar, Food Shops, Shopping, Tour",
     "img": "https://i2.wp.com/rascalsbrewing.com/wp-content/uploads/2020/07/Exterior-Rascals-best-beer-pizza-Dublin-scaled.jpg?fit=2048%2C1397&ssl=1"
   },
   {
@@ -386,7 +386,7 @@
     "longitude": -6.107273729,
     "latitude": 53.2703464,
     "addressLocality": "Killiney",
-    "tags": "Photography,Learning,Walking,Natural Landscape,Public Park,Nature and Wildlife,Cafe,Food and Drink",
+    "tags": "Photography, Learning, Walking, Natural Landscape, Public Park, Nature and Wildlife, Cafe, Food and Drink",
     "img": "https://www.irelandhighlights.com/wp-content/uploads/2017/07/Killiney-Hill-1669893.jpg"
   },
   {
@@ -406,7 +406,7 @@
     "longitude": -6.231596,
     "latitude": 53.275966,
     "addressLocality": "Sandyford",
-    "tags": "Restaurant,Learning,Historic Houses and Castle,Food and Drink,Food Shops,Shopping",
+    "tags": "Restaurant, Learning, Historic Houses and Castle, Food and Drink, Food Shops, Shopping",
     "img": "https://content.r9cdn.net/rimg/himg/82/26/53/ostrovok-7344912-e110c0aebad2004e52e5f23e9e30b1d6e1274919-087631.jpg?width=660&height=400&xhint=460&yhint=288&crop=true&outputtype=webp"
   },
   {
@@ -416,7 +416,7 @@
     "longitude": -6.216709,
     "latitude": 53.277382,
     "addressLocality": "Sandyford",
-    "tags": "Craft,Shopping,Learning,Activity Operator,Museums and Attraction,Cafe,Food and Drink,Food Shops",
+    "tags": "Craft, Shopping, Learning, Activity Operator, Museums and Attraction, Cafe, Food and Drink, Food Shops",
     "img": "https://www.schooldays.ie/i/7A9167275F1446FA002580FF003F4AF4/logoProfile.png"
   },
   {
@@ -436,7 +436,7 @@
     "longitude": -6.245333,
     "latitude": 53.329644,
     "addressLocality": "Ballsbridge",
-    "tags": "Cooking,Cookery,Learning,Activity Operator,Historic Houses and Castle,Artisan,Food and Drink,Restaurant,Local Produce",
+    "tags": "Cooking, Cookery, Learning, Activity Operator, Historic Houses and Castle, Artisan, Food and Drink, Restaurant, Local Produce",
     "img": "https://www.dublincookery.com/images/banner.jpg"
   },
   {
@@ -446,7 +446,7 @@
     "longitude": -6.25248666,
     "latitude": 53.34092467,
     "addressLocality": "",
-    "tags": "Covid Safety Charter,Public Sculpture,Talking Statue",
+    "tags": "Covid Safety Charter, Public Sculpture, Talking Statue",
     "img": "https://celticcanada.com/wp-content/uploads/2018/09/Dublin-statues-George-Bernard-Shaw.jpg"
   },
   {
@@ -456,7 +456,7 @@
     "longitude": -6.264943,
     "latitude": 53.344624,
     "addressLocality": "",
-    "tags": "Movies,Cinema,Venue,Museums and Attraction,Cafe,Food and Drink,Activity Operator,Food Shops,Shopping",
+    "tags": "Movies, Cinema, Venue, Museums and Attraction, Cafe, Food and Drink, Activity Operator, Food Shops, Shopping",
     "img": "https://ifi.ie/wp-content/uploads/exterior3-314-x-2501.jpg"
   },
   {
@@ -466,7 +466,7 @@
     "longitude": -6.275396,
     "latitude": 53.347458,
     "addressLocality": "Dublin City",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://upload.wikimedia.org/wikipedia/commons/8/89/Dublin_St._Michan%27s_Church_at_Church_Street_2012_09_28.jpg"
   },
   {
@@ -476,7 +476,7 @@
     "longitude": -6.450529,
     "latitude": 53.353489,
     "addressLocality": "Lucan",
-    "tags": "Castle,Historic Houses and Castle",
+    "tags": "Castle, Historic Houses and Castle",
     "img": "https://www.gardensofireland.org/resources/images/directory/listing/18/gallery/20160710_170647.jpg"
   },
   {
@@ -486,7 +486,7 @@
     "longitude": -6.2563,
     "latitude": 53.342249,
     "addressLocality": "",
-    "tags": "Craft,Shopping,Art Gallery,Food Shops",
+    "tags": "Craft, Shopping, Art Gallery, Food Shops",
     "img": "https://www.thedoorwaygallery.com/images/doorwaygallery-home.jpg"
   },
   {
@@ -496,7 +496,7 @@
     "longitude": -6.260616,
     "latitude": 53.336624,
     "addressLocality": "Dublin City",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://media2.catholicireland.net/wp-content/uploads/2019/10/Newman-University-Church-interior.jpg"
   },
   {
@@ -506,7 +506,7 @@
     "longitude": -6.254252,
     "latitude": 53.340122,
     "addressLocality": "Dublin City",
-    "tags": "Historic Houses and Castle,Tour",
+    "tags": "Historic Houses and Castle, Tour",
     "img": "https://upload.wikimedia.org/wikipedia/commons/a/a2/20130810_dublin214.JPG"
   },
   {
@@ -516,7 +516,7 @@
     "longitude": -6.096538524,
     "latitude": 53.27655982,
     "addressLocality": "Dalkey",
-    "tags": "Craft,Shopping,Activity Operator,Historic Houses and Castle,Local Produce,Food and Drink,Restaurant,Food Shops",
+    "tags": "Craft, Shopping, Activity Operator, Historic Houses and Castle, Local Produce, Food and Drink, Restaurant, Food Shops",
     "img": "https://assets-eu-01.kc-usercontent.com/aa24ba70-9a12-01ae-259b-7ef588a0b2ef/dbf7e279-edfc-4dba-ae3d-8ed72c07a24b/80b88f54-a829-4f16-be42-942ca2e638bf_92717.jpg"
   },
   {
@@ -526,7 +526,7 @@
     "longitude": -6.26098,
     "latitude": 53.343599,
     "addressLocality": "",
-    "tags": "Public Sculpture,Ruins,Historic Houses and Castle",
+    "tags": "Public Sculpture, Ruins, Historic Houses and Castle",
     "img": "https://archaeology.co.uk/wp-content/uploads/2017/05/wood-quay-featured.jpg"
   },
   {
@@ -536,7 +536,7 @@
     "longitude": -6.281194,
     "latitude": 53.342908,
     "addressLocality": "",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://upload.wikimedia.org/wikipedia/commons/f/f8/St_Catherines%2C_Thomas_Street.JPG"
   },
   {
@@ -546,7 +546,7 @@
     "longitude": -6.299662901,
     "latitude": 53.35038531,
     "addressLocality": "Phoenix Park",
-    "tags": "Walking,Gardens,Garden,Public Park,Nature and Wildlife,Cafe,Food and Drink",
+    "tags": "Walking, Gardens, Garden, Public Park, Nature and Wildlife, Cafe, Food and Drink",
     "img": "https://heritageireland.ie/assets/uploads/2020/03/Phoenix-Park-Peoples-Garden.jpg"
   },
   {
@@ -556,7 +556,7 @@
     "longitude": -6.261219,
     "latitude": 53.344479,
     "addressLocality": "Dublin City",
-    "tags": "Public Sculpture,Tour",
+    "tags": "Public Sculpture, Tour",
     "img": "https://victorianweb.org/sculpture/foley/6.jpg"
   },
   {
@@ -566,7 +566,7 @@
     "longitude": -6.2603097,
     "latitude": 53.3498053,
     "addressLocality": "Tallaght",
-    "tags": "Craft,Shopping,Learning,Art Gallery,Cafe,Food and Drink",
+    "tags": "Craft, Shopping, Learning, Art Gallery, Cafe, Food and Drink",
     "img": "https://www.blushweddingmusic.com/wp-content/uploads/2014/12/rua_red_venue.jpg"
   },
   {
@@ -586,7 +586,7 @@
     "longitude": -6.268747,
     "latitude": 53.338802,
     "addressLocality": "Dublin City",
-    "tags": "Learning,Tracing Your Ancestors,Museums and Attraction",
+    "tags": "Learning, Tracing Your Ancestors, Museums and Attraction",
     "img": "https://www.ancestryireland.com/family-history-conference/autumn/wp-content/uploads/national-archives-856x520.jpg"
   },
   {
@@ -596,7 +596,7 @@
     "longitude": -6.251328,
     "latitude": 53.339313,
     "addressLocality": "Dublin City Centre",
-    "tags": "Castle,Historic Houses and Castle",
+    "tags": "Castle, Historic Houses and Castle",
     "img": "https://img2.thejournal.ie/inline/586798/original/?width=630&version=586798"
   },
   {
@@ -616,7 +616,7 @@
     "longitude": -6.1596571,
     "latitude": 53.2954544,
     "addressLocality": "Monkstown",
-    "tags": "Gardening,Nature and Wildlife,Learning,Gardens,Garden,Tour",
+    "tags": "Gardening, Nature and Wildlife, Learning, Gardens, Garden, Tour",
     "img": "https://www.irishtimes.com/polopoly_fs/1.3544506!/image/image.jpg_gen/derivatives/landscape_620/image.jpg"
   },
   {
@@ -626,7 +626,7 @@
     "longitude": -6.2705757,
     "latitude": 53.3524569,
     "addressLocality": "Dublin City Centre",
-    "tags": "Historic Houses and Castle,Venue,Music",
+    "tags": "Historic Houses and Castle, Venue, Music",
     "img": "https://static01.nyt.com/images/2018/09/10/t-magazine/10tmag-henrietta-slide-QKFC/10tmag-henrietta-slide-QKFC-superJumbo.jpg"
   },
   {
@@ -636,7 +636,7 @@
     "longitude": -6.263919307,
     "latitude": 53.34561919,
     "addressLocality": "",
-    "tags": "Craft,Shopping,Shopping Centres and Department Store,Art Gallery,Food Shops",
+    "tags": "Craft, Shopping, Shopping Centres and Department Store, Art Gallery, Food Shops",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/09/df/94/60/photo0jpg.jpg"
   },
   {
@@ -646,7 +646,7 @@
     "longitude": -6.108629,
     "latitude": 53.285016,
     "addressLocality": "Dalkey",
-    "tags": "Castle,Historic Houses and Castle,Ruins",
+    "tags": "Castle, Historic Houses and Castle, Ruins",
     "img": "https://i.pinimg.com/originals/3d/31/aa/3d31aa5f3e8ac750014658d047e4e0bc.jpg"
   },
   {
@@ -656,7 +656,7 @@
     "longitude": -6.21882,
     "latitude": 53.30680741,
     "addressLocality": "",
-    "tags": "Learning,Museums and Attraction,Literary Ireland,Cafe,Food and Drink,Tour",
+    "tags": "Learning, Museums and Attraction, Literary Ireland, Cafe, Food and Drink, Tour",
     "img": "http://www.ucd.ie/t4cms/01-nfc-unesco.jpg"
   },
   {
@@ -666,7 +666,7 @@
     "longitude": -6.28974,
     "latitude": 53.349727,
     "addressLocality": "",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://www.thyateira.org.uk/images/Churches/dublinchurch.jpg"
   },
   {
@@ -676,7 +676,7 @@
     "longitude": -6.079225289,
     "latitude": 53.3865384,
     "addressLocality": "Howth",
-    "tags": "Covid Safety Charter,Golf,Walking,Historic Houses and Castle,Castle",
+    "tags": "Covid Safety Charter, Golf, Walking, Historic Houses and Castle, Castle",
     "img": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Howth_Castle_and_Environs.jpg"
   },
   {
@@ -696,7 +696,7 @@
     "longitude": -6.250557,
     "latitude": 53.338964,
     "addressLocality": "Dublin",
-    "tags": "Learning,Historic Houses and Castle,Food Shops,Shopping,Tour",
+    "tags": "Learning, Historic Houses and Castle, Food Shops, Shopping, Tour",
     "img": "https://cdn.shopify.com/s/files/1/2110/7099/files/High_res_IGS_logo.jpg?height=628&pad_color=fff&v=1519043038&width=1200"
   },
   {
@@ -706,7 +706,7 @@
     "longitude": -6.229030364,
     "latitude": 53.36303247,
     "addressLocality": "Clontarf",
-    "tags": "Activity Operator,Museums and Attraction,Literary Ireland,Venue,Music,Food Shops,Shopping",
+    "tags": "Activity Operator, Museums and Attraction, Literary Ireland, Venue, Music, Food Shops, Shopping",
     "img": "https://media-cdn.tripadvisor.com/media/photo-m/1280/14/88/94/82/welcome-to-castle-dracula.jpg"
   },
   {
@@ -716,7 +716,7 @@
     "longitude": -6.2475417,
     "latitude": 53.3336867,
     "addressLocality": "",
-    "tags": "Public Sculpture,Literary Ireland",
+    "tags": "Public Sculpture, Literary Ireland",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/0f/7b/f1/4c/patrick-kavanagh-statue.jpg"
   },
   {
@@ -726,7 +726,7 @@
     "longitude": -6.2679431,
     "latitude": 53.3546532,
     "addressLocality": "",
-    "tags": "Historic Houses and Castle,Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Historic Houses and Castle, Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://upload.wikimedia.org/wikipedia/commons/e/ec/St._Marys_Chapel_of_Ease%2C_Dublin.JPG"
   },
   {
@@ -736,7 +736,7 @@
     "longitude": -6.2548351,
     "latitude": 53.3507932,
     "addressLocality": "Dublin",
-    "tags": "Covid Safety Charter,Restaurant,Food and Drink,Activity Operator,Historic Houses and Castle,Traditionally Irish,Venue,Music,Local Produce,Pubs and Bar,Food Shops,Shopping",
+    "tags": "Covid Safety Charter, Restaurant, Food and Drink, Activity Operator, Historic Houses and Castle, Traditionally Irish, Venue, Music, Local Produce, Pubs and Bar, Food Shops, Shopping",
     "img": "https://www.irishdanceparty.com/wp-content/uploads/2019/09/BB9I1089.jpg"
   },
   {
@@ -746,7 +746,7 @@
     "longitude": -6.331008,
     "latitude": 53.366091,
     "addressLocality": "Phoenix Park",
-    "tags": "Covid Safety Charter,Walking,Activity Operator,Castle,Historic Houses and Castle,Gardens,Garden,Cafe,Food and Drink,Food Shops,Shopping",
+    "tags": "Covid Safety Charter, Walking, Activity Operator, Castle, Historic Houses and Castle, Gardens, Garden, Cafe, Food and Drink, Food Shops, Shopping",
     "img": "https://heritageireland.ie/assets/uploads/2020/03/Phoenix-Park-Ashtown-Castle-from-above.jpg"
   },
   {
@@ -756,7 +756,7 @@
     "longitude": -6.261854713,
     "latitude": 53.37055995,
     "addressLocality": "Drumcondra",
-    "tags": "Forest Park,Park and Forest Walk,Walking,National Park,National and Forest Park,Public Park,Nature and Wildlife",
+    "tags": "Forest Park, Park and Forest Walk, Walking, National Park, National and Forest Park, Public Park, Nature and Wildlife",
     "img": "https://myguestdiary-cdn-uploads.azureedge.net/uploads/1368/__page__picture1.jpg?width=0&height=0&mode=crop"
   },
   {
@@ -766,7 +766,7 @@
     "longitude": -6.245201297,
     "latitude": 53.34313385,
     "addressLocality": "",
-    "tags": "Learning,Tracing Your Ancestors,Historic Houses and Castle,Museums and Attraction",
+    "tags": "Learning, Tracing Your Ancestors, Historic Houses and Castle, Museums and Attraction",
     "img": "https://www.dublincity.ie/sites/default/files/styles/default/public/media/file-uploads/2018-06/Pearse_Street-exterior.jpg?itok=EwBT6pzg"
   },
   {
@@ -776,7 +776,7 @@
     "longitude": -6.259988,
     "latitude": 53.354157,
     "addressLocality": "",
-    "tags": "Learning,Historic Houses and Castle,Museums and Attraction,Literary Ireland,Food Shops,Shopping,Tour,Walking",
+    "tags": "Learning, Historic Houses and Castle, Museums and Attraction, Literary Ireland, Food Shops, Shopping, Tour, Walking",
     "img": "https://i.pinimg.com/originals/bb/da/a4/bbdaa444e17b5eb3ec1d564464799190.jpg"
   },
   {
@@ -796,7 +796,7 @@
     "longitude": -6.269412,
     "latitude": 53.342932,
     "addressLocality": "Dublin",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://www.irishtimes.com/polopoly_fs/1.2344690.1441731263!/image/image.jpg_gen/derivatives/box_620_330/image.jpg"
   },
   {
@@ -816,7 +816,7 @@
     "longitude": -6.255966,
     "latitude": 53.34108,
     "addressLocality": "",
-    "tags": "Historic Houses and Castle,Museums and Attraction,Food Shops,Shopping,Tour",
+    "tags": "Historic Houses and Castle, Museums and Attraction, Food Shops, Shopping, Tour",
     "img": "https://freemason.ie/wp-content/uploads/2019/07/hall.jpg"
   },
   {
@@ -826,7 +826,7 @@
     "longitude": -6.1132572,
     "latitude": 53.2717553,
     "addressLocality": "Mornington",
-    "tags": "Gardening,Nature and Wildlife,Gardens,Garden",
+    "tags": "Gardening, Nature and Wildlife, Gardens, Garden",
     "img": "https://dalkeygardenschool.com/wp-content/uploads/2020/06/50B49C12-58AD-41B8-B30C-A694A43560A4.jpeg"
   },
   {
@@ -836,7 +836,7 @@
     "longitude": -6.266229,
     "latitude": 53.34502,
     "addressLocality": "Dublin City Centre",
-    "tags": "Craft,Shopping,Art Gallery,Activity Operator,Food Shops",
+    "tags": "Craft, Shopping, Art Gallery, Activity Operator, Food Shops",
     "img": "https://projectartscentre.ie/wp-content/uploads/2020/08/theatre-machine-vol-3-project-arts-centre-2013-1024x680.jpeg"
   },
   {
@@ -846,7 +846,7 @@
     "longitude": -6.259333434,
     "latitude": 53.34770323,
     "addressLocality": "Dublin City",
-    "tags": "Public Sculpture,Talking Statue",
+    "tags": "Public Sculpture, Talking Statue",
     "img": "https://i0.wp.com/stairnaheireann.net/wp-content/uploads/2020/02/19123596215_aed4d2c3f8_b.jpg?fit=750%2C500&ssl=1"
   },
   {
@@ -856,7 +856,7 @@
     "longitude": -6.2181267,
     "latitude": 53.4627797,
     "addressLocality": "Swords",
-    "tags": "Learning,Tracing Your Ancestors,Museums and Attraction",
+    "tags": "Learning, Tracing Your Ancestors, Museums and Attraction",
     "img": "https://assets-eu-01.kc-usercontent.com/aa24ba70-9a12-01ae-259b-7ef588a0b2ef/41cb47df-c22c-4b7b-8dd5-df7f84945c73/3e7cb467-3c59-4c5f-a04d-ffc37e46c6ad_90539.jpg"
   },
   {
@@ -866,7 +866,7 @@
     "longitude": -6.262116,
     "latitude": 53.35551,
     "addressLocality": "",
-    "tags": "Literary Ireland,Venue,Music,Food Shops,Shopping",
+    "tags": "Literary Ireland, Venue, Music, Food Shops, Shopping",
     "img": "https://www.oreillytheatre.com/uploads/1/0/1/2/101206686/33778516-10156442452856202-2436786026513956864-n_orig.jpg"
   },
   {
@@ -876,7 +876,7 @@
     "longitude": -6.167107,
     "latitude": 53.526025,
     "addressLocality": "Lusk",
-    "tags": "Historic Houses and Castle,Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Historic Houses and Castle, Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://www.irelandhighlights.com/wp-content/uploads/2017/08/Lusk-Round-Tower-174_2341.jpg"
   },
   {
@@ -886,7 +886,7 @@
     "longitude": -6.259664,
     "latitude": 53.338458,
     "addressLocality": "Dublin City",
-    "tags": "Public Sculpture,Literary Ireland",
+    "tags": "Public Sculpture, Literary Ireland",
     "img": "https://upload.wikimedia.org/wikipedia/commons/4/46/James_Clarence_Mangan.jpg"
   },
   {
@@ -896,7 +896,7 @@
     "longitude": -6.269414,
     "latitude": 53.330748,
     "addressLocality": "South Circular Road",
-    "tags": "Learning,Tracing Your Ancestors,Museums and Attraction,Tour",
+    "tags": "Learning, Tracing Your Ancestors, Museums and Attraction, Tour",
     "img": "https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzL2EwMDg3MmQzNjE1OWRjYzg5ZV9NdXNldW0xLmpwZyJdLFsicCIsImNvbnZlcnQiLCIiXSxbInAiLCJjb252ZXJ0IiwiLXF1YWxpdHkgODEgLWF1dG8tb3JpZW50Il0sWyJwIiwidGh1bWIiLCI3ODB4NTIwIyJdXQ"
   },
   {
@@ -906,7 +906,7 @@
     "longitude": -6.260949959,
     "latitude": 53.34373992,
     "addressLocality": "Dublin",
-    "tags": "Public Sculpture,Talking Statue",
+    "tags": "Public Sculpture, Talking Statue",
     "img": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/Molmalone.jpg/1200px-Molmalone.jpg"
   },
   {
@@ -916,7 +916,7 @@
     "longitude": -6.260654,
     "latitude": 53.349333,
     "addressLocality": "",
-    "tags": "Historic Houses and Castle,Cafe,Food and Drink,Food Shops,Shopping",
+    "tags": "Historic Houses and Castle, Cafe, Food and Drink, Food Shops, Shopping",
     "img": "https://upload.wikimedia.org/wikipedia/commons/a/a4/General_Post_Office_Dublin_20060803.jpg"
   },
   {
@@ -936,7 +936,7 @@
     "longitude": -6.3239661,
     "latitude": 53.336205,
     "addressLocality": "Inchicore",
-    "tags": "Learning,Activity Operator,Museums and Attraction,Tour",
+    "tags": "Learning, Activity Operator, Museums and Attraction, Tour",
     "img": "https://stillgardendistillery.com/wp-content/uploads/2021/05/HOME_DISTILLER_1-1500x630.jpg"
   },
   {
@@ -946,7 +946,7 @@
     "longitude": -6.255503181,
     "latitude": 53.34386166,
     "addressLocality": "",
-    "tags": "Covid Safety Charter,Learning,Activity Operator,Museums and Attraction,Cafe,Food and Drink,Food Shops,Shopping",
+    "tags": "Covid Safety Charter, Learning, Activity Operator, Museums and Attraction, Cafe, Food and Drink, Food Shops, Shopping",
     "img": "https://c2.thejournal.ie/media/2018/02/16334044207_0d8b7089bc_b-2-390x285.jpg"
   },
   {
@@ -956,7 +956,7 @@
     "longitude": -6.25735238,
     "latitude": 53.34455452,
     "addressLocality": "",
-    "tags": "Public Sculpture,Talking Statue,Tour",
+    "tags": "Public Sculpture, Talking Statue, Tour",
     "img": "https://www.irishtimes.com/polopoly_fs/1.4476226.1612453963!/image/image.jpg"
   },
   {
@@ -966,7 +966,7 @@
     "longitude": -6.2595459,
     "latitude": 53.3442059,
     "addressLocality": "Dublin",
-    "tags": "Activity Operator,Museums and Attraction",
+    "tags": "Activity Operator, Museums and Attraction",
     "img": "https://www.whiskeyisland.ie/wp-content/uploads/2018/02/teelings2.jpg"
   },
   {
@@ -976,7 +976,7 @@
     "longitude": -6.25509,
     "latitude": 53.340139,
     "addressLocality": "Dublin City Centre",
-    "tags": "Learning,Tracing Your Ancestors,Museums and Attraction,Cafe,Food and Drink,Food Shops,Shopping",
+    "tags": "Learning, Tracing Your Ancestors, Museums and Attraction, Cafe, Food and Drink, Food Shops, Shopping",
     "img": "https://www.ancestornetwork.ie/wp-content/uploads/2017/05/national-library-of-ireland.jpg"
   },
   {
@@ -986,7 +986,7 @@
     "longitude": -6.152749,
     "latitude": 53.282627,
     "addressLocality": "",
-    "tags": "Transport,Activity Operator,Museums and Attraction,Coach,Road",
+    "tags": "Transport, Activity Operator, Museums and Attraction, Coach, Road",
     "img": "https://www.steamtrainsireland.com/img/rpsi-logo.png"
   },
   {
@@ -996,7 +996,7 @@
     "longitude": -6.26328888,
     "latitude": 53.3467344,
     "addressLocality": "",
-    "tags": "Public Sculpture,Talking Statue",
+    "tags": "Public Sculpture, Talking Statue",
     "img": "https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzLzI0NDZmOTJiLTljNDktNDg4Yi1iMDA3LTVkMGJkNmE1YzRjNWVlYWE4ODNmOTM2MzM0NDc3M19tZWV0aW5nLXBsYWNlLXN0YXR1ZS1kdWJsaW4tMy5qcGciXSxbInAiLCJjb252ZXJ0IiwiIl0sWyJwIiwiY29udmVydCIsIi1xdWFsaXR5IDgxIC1hdXRvLW9yaWVudCJdLFsicCIsInRodW1iIiwiNzgweDUyMCMiXV0/meeting-place-statue-dublin-3.jpg"
   },
   {
@@ -1006,7 +1006,7 @@
     "longitude": -6.282819,
     "latitude": 53.34629,
     "addressLocality": "Dublin City Centre",
-    "tags": "Historic Houses and Castle,Literary Ireland",
+    "tags": "Historic Houses and Castle, Literary Ireland",
     "img": "https://www.irishtimes.com/polopoly_fs/1.4382984.1602860187!/image/image.jpg_gen/derivatives/box_620_330/image.jpg"
   },
   {
@@ -1016,7 +1016,7 @@
     "longitude": -6.2594127,
     "latitude": 53.3450832,
     "addressLocality": "Dublin City",
-    "tags": "Learning,Museums and Attraction,Literary Ireland",
+    "tags": "Learning, Museums and Attraction, Literary Ireland",
     "img": "https://pbs.twimg.com/media/DgIIt_SXUAAhTD5.jpg"
   },
   {
@@ -1026,7 +1026,7 @@
     "longitude": -6.2473358,
     "latitude": 53.3399625,
     "addressLocality": "",
-    "tags": "Walking,Activity Operator,Historic Houses and Castle,Tour",
+    "tags": "Walking, Activity Operator, Historic Houses and Castle, Tour",
     "img": "http://www.dublincivictrust.ie/uploads/rows/999.jpg"
   },
   {
@@ -1036,7 +1036,7 @@
     "longitude": -6.258885,
     "latitude": 53.351138,
     "addressLocality": "Dublin City",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery,Venue,Music,Food Shops,Shopping",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery, Venue, Music, Food Shops, Shopping",
     "img": "https://procathedral.dublindiocese.ie/wp-content/uploads/sites/7/2015/10/PRO-34-300x200.jpg"
   },
   {
@@ -1046,7 +1046,7 @@
     "longitude": -6.4222378,
     "latitude": 53.3794206,
     "addressLocality": "Castleknock",
-    "tags": "Falconry,Nature and Wildlife,Learning,Activity Operator,Castle,Historic Houses and Castle,Cafe,Food and Drink",
+    "tags": "Falconry, Nature and Wildlife, Learning, Activity Operator, Castle, Historic Houses and Castle, Cafe, Food and Drink",
     "img": "http://www.sacredsites.ie/wp-content/uploads/2012/10/Hawk.jpg"
   },
   {
@@ -1056,7 +1056,7 @@
     "longitude": -6.066380923,
     "latitude": 53.38800343,
     "addressLocality": "Howth",
-    "tags": "Walking,Forest Park,Park and Forest Walk,Marina,Venue,Natural Landscape",
+    "tags": "Walking, Forest Park, Park and Forest Walk, Marina, Venue, Natural Landscape",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/11/0f/bd/76/bog-of-frogs-hike-cliffs.jpg"
   },
   {
@@ -1066,7 +1066,7 @@
     "longitude": -6.267149169,
     "latitude": 53.34392243,
     "addressLocality": "",
-    "tags": "Historic Houses and Castle,Museums and Attraction,Cafe,Food and Drink",
+    "tags": "Historic Houses and Castle, Museums and Attraction, Cafe, Food and Drink",
     "img": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/39/81/63.jpg"
   },
   {
@@ -1076,7 +1076,7 @@
     "longitude": -6.254641,
     "latitude": 53.341081,
     "addressLocality": "Dublin City",
-    "tags": "Learning,Museums and Attraction,Literary Ireland,Cafe,Food and Drink,Food Shops,Shopping",
+    "tags": "Learning, Museums and Attraction, Literary Ireland, Cafe, Food and Drink, Food Shops, Shopping",
     "img": "http://www.libraryasincubatorproject.org/wp-content/uploads/2012/01/Screen-shot-2012-01-06-at-8.32.13-AM.png"
   },
   {
@@ -1086,7 +1086,7 @@
     "longitude": -6.1055397,
     "latitude": 53.2779072,
     "addressLocality": "Dalkey",
-    "tags": "Covid Safety Charter,Historic Houses and Castle,Castle,Museums and Attraction,Literary Ireland,Food Shops,Shopping,Tour",
+    "tags": "Covid Safety Charter, Historic Houses and Castle, Castle, Museums and Attraction, Literary Ireland, Food Shops, Shopping, Tour",
     "img": "https://www.irelandhighlights.com/wp-content/uploads/2018/04/dalkey-castle-1668147.jpg"
   },
   {
@@ -1106,7 +1106,7 @@
     "longitude": -6.2856618,
     "latitude": 53.3436766,
     "addressLocality": "Dublin",
-    "tags": "Food and Drink,Restaurant,Activity Operator,Museums and Attraction,Cafe,Pubs and Bar,Food Shops,Shopping,Tour",
+    "tags": "Food and Drink, Restaurant, Activity Operator, Museums and Attraction, Cafe, Pubs and Bar, Food Shops, Shopping, Tour",
     "img": "https://i1.wp.com/www.thewhiskeytrail.ie/wp-content/uploads/2019/06/RoeCo-Exterior-2.jpg?resize=1024%2C683&ssl=1"
   },
   {
@@ -1136,7 +1136,7 @@
     "longitude": -6.239626,
     "latitude": 53.341925,
     "addressLocality": "",
-    "tags": "Craft,Shopping,Shopping Centres and Department Store,Art Gallery,Food Shops",
+    "tags": "Craft, Shopping, Shopping Centres and Department Store, Art Gallery, Food Shops",
     "img": "https://elizabethokane.com/wp-content/uploads/2019/11/TheDesignTower_134500-300x300.jpg"
   },
   {
@@ -1146,7 +1146,7 @@
     "longitude": -6.271646073,
     "latitude": 53.35287142,
     "addressLocality": "",
-    "tags": "Covid Safety Charter,Photography,Learning,Walking,Historic Houses and Castle,Food Shops,Shopping",
+    "tags": "Covid Safety Charter, Photography, Learning, Walking, Historic Houses and Castle, Food Shops, Shopping",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/16/68/a6/ca/king-s-inns.jpg"
   },
   {
@@ -1156,7 +1156,7 @@
     "longitude": -6.261219,
     "latitude": 53.344479,
     "addressLocality": "Dublin City Centre",
-    "tags": "Learning,Historic Houses and Castle,Museums and Attraction",
+    "tags": "Learning, Historic Houses and Castle, Museums and Attraction",
     "img": "https://warsawtour.pl/wp-content/uploads/2019/05/Muzeum-Geologiczne_fot.-Filip-Kwiatkowski-6.jpg"
   },
   {
@@ -1166,7 +1166,7 @@
     "longitude": -6.311431,
     "latitude": 53.361618,
     "addressLocality": "Phoenix Park",
-    "tags": "Historic Houses and Castle,Gardens,Garden,Tour",
+    "tags": "Historic Houses and Castle, Gardens, Garden,Tour",
     "img": "https://president.ie/images/made/af17a586498c2ae3/Virtual-Tour_482_262_45.jpg"
   },
   {
@@ -1176,7 +1176,7 @@
     "longitude": -6.252428,
     "latitude": 53.361245,
     "addressLocality": "Dublin City",
-    "tags": "Restaurant,Gaa,Stadium,Sports Venue,Venue,Music,Sports Venues,Cafe,Food and Drink,Fast Food,Activity Operator,Food Shops,Shopping,Tour",
+    "tags": "Restaurant, Gaa, Stadium, Sports Venue, Venue, Music, Sports Venues, Cafe, Food and Drink, Fast Food, Activity Operator, Food Shops, Shopping, Tour",
     "img": "https://crokepark.ie/BlankSite/media/optimised/Matchday/stad.jpg?ext=.jpg"
   },
   {
@@ -1186,7 +1186,7 @@
     "longitude": -6.255943265,
     "latitude": 53.33839461,
     "addressLocality": "",
-    "tags": "Public Sculpture,Talking Statue",
+    "tags": "Public Sculpture, Talking Statue",
     "img": "https://www.irishtimes.com/polopoly_fs/1.2393330.1444922995!/image/image.jpg_gen/derivatives/box_620_330/image.jpg"
   },
   {
@@ -1196,7 +1196,7 @@
     "longitude": -6.281587822,
     "latitude": 53.28293774,
     "addressLocality": "Rathfarnham",
-    "tags": "Covid Safety Charter,Walking,Historic Houses and Castle,Gardens,Garden,Museums and Attraction,Public Park,Nature and Wildlife,Cafe,Food and Drink,Tour",
+    "tags": "Covid Safety Charter, Walking, Historic Houses and Castle, Gardens, Garden, Museums and Attraction, Public Park, Nature and Wildlife, Cafe, Food and Drink, Tour",
     "img": "https://assets-eu-01.kc-usercontent.com/aa24ba70-9a12-01ae-259b-7ef588a0b2ef/11fed247-f0fb-40d6-9a1e-e828c1790691/bb52d363-c0e5-44e5-87d4-5d2ff22ed8fa_31270.jpg"
   },
   {
@@ -1206,7 +1206,7 @@
     "longitude": -6.159029692,
     "latitude": 53.58716314,
     "addressLocality": "Balbriggan",
-    "tags": "Learning,Walking,Gardens,Garden,Historic Houses and Castle,Public Park,Nature and Wildlife,Cafe,Food and Drink,Food Shops,Shopping,Tour",
+    "tags": "Learning, Walking, Gardens, Garden, Historic Houses and Castle, Public Park, Nature and Wildlife, Cafe, Food and Drink, Food Shops, Shopping, Tour",
     "img": "https://s.inyourpocket.com/gallery/22575.jpg"
   },
   {
@@ -1216,7 +1216,7 @@
     "longitude": -6.141688518,
     "latitude": 53.43744165,
     "addressLocality": "Portmarnock",
-    "tags": "Gaa,Learning,Activity Operator",
+    "tags": "Gaa, Learning, Activity Operator",
     "img": "https://images.squarespace-cdn.com/content/v1/56524acde4b0c307d5974e0f/1453480498891-MUE63HJN6DW9PBLO4PQM/Clash+Gaelic+Games+clash+of+hurls.JPG"
   },
   {
@@ -1226,7 +1226,7 @@
     "longitude": -6.27185819,
     "latitude": 53.37265435,
     "addressLocality": "Glasnevin",
-    "tags": "Learning,Photography,Walking,Gardens,Garden,Public Park,Nature and Wildlife,Cafe,Food and Drink,Food Shops,Shopping,Tour",
+    "tags": "Learning, Photography, Walking, Gardens, Garden, Public Park, Nature and Wildlife, Cafe, Food and Drink, Food Shops, Shopping, Tour",
     "img": "https://i0.wp.com/www.courses.ie/wp-content/uploads/2020/05/Botanic-Gardens-.jpg"
   },
   {
@@ -1236,7 +1236,7 @@
     "longitude": -6.189413,
     "latitude": 53.298931,
     "addressLocality": "Blackrock",
-    "tags": "Gardening,Nature and Wildlife,Gardens,Garden,Tour",
+    "tags": "Gardening, Nature and Wildlife, Gardens, Garden, Tour",
     "img": "https://www.independent.ie/life/travel/33e62/37167084.ece/AUTOCROP/w1240h700/Mount%20Usher%20Gardens.jpg"
   },
   {
@@ -1246,7 +1246,7 @@
     "longitude": -6.253916569,
     "latitude": 53.3409606,
     "addressLocality": "Dublin City Centre",
-    "tags": "Craft,Shopping,Learning,Photography,Activity Operator,Art Gallery,Cafe,Food and Drink",
+    "tags": "Craft, Shopping, Learning, Photography, Activity Operator, Art Gallery, Cafe, Food and Drink",
     "img": "https://educationireland.files.wordpress.com/2017/09/galleryweb.jpg?w=736"
   },
   {
@@ -1256,7 +1256,7 @@
     "longitude": -6.250583758,
     "latitude": 53.34083824,
     "addressLocality": "",
-    "tags": "Public Sculpture,Talking Statue,Literary Ireland",
+    "tags": "Public Sculpture, Talking Statue, Literary Ireland",
     "img": "https://media-cdn.tripadvisor.com/media/photo-s/0f/b2/1d/15/photo0jpg.jpg"
   },
   {
@@ -1266,7 +1266,7 @@
     "longitude": -6.2244591,
     "latitude": 53.4576831,
     "addressLocality": "Swords",
-    "tags": "Historic Houses and Castle,Church Abbey,Monastery,Churches,Abbeys and Monastery",
+    "tags": "Historic Houses and Castle, Church Abbey, Monastery, Churches, Abbeys and Monastery",
     "img": "https://live.staticflickr.com/7551/15584342023_6b592abb1b_b.jpg"
   },
   {
@@ -1276,7 +1276,7 @@
     "longitude": -6.251858,
     "latitude": 53.343181,
     "addressLocality": "",
-    "tags": "Learning,Museums and Attraction,Food Shops,Shopping",
+    "tags": "Learning, Museums and Attraction, Food Shops, Shopping",
     "img": "https://www.museeum.com/wp-content/uploads/2017/05/ZooMuseum-870x425.jpg"
   },
   {
@@ -1286,7 +1286,7 @@
     "longitude": -6.2721,
     "latitude": 53.34117,
     "addressLocality": "Dublin",
-    "tags": "Craft,Shopping,Shopping Centres and Department Store,Art Gallery,Food Shops",
+    "tags": "Craft, Shopping, Shopping Centres and Department Store, Art Gallery, Food Shops",
     "img": "https://jamartfactory.com/wp-content/uploads/2012/10/patrick-street-jam-art-factory-1.jpg"
   },
   {
@@ -1296,7 +1296,7 @@
     "longitude": -6.39537391,
     "latitude": 53.32208417,
     "addressLocality": "Clondalkin",
-    "tags": "Covid Safety Charter,Learning,Church Abbey,Monastery,Churches,Abbeys and Monastery,Museums and Attraction,Cafe,Food and Drink,Vegan,Restaurant,Vegetarian,Food Shops,Shopping,Tour",
+    "tags": "Covid Safety Charter ,Learning, Church Abbey, Monastery, Churches, Abbeys and Monastery, Museums and Attraction,Cafe, Tour",
     "img": "https://curiousireland.ie/wp-content/uploads/2012/06/IMG_5139.jpg"
   },
   {
@@ -1306,7 +1306,7 @@
     "longitude": -6.245275,
     "latitude": 53.343092,
     "addressLocality": "Dublin City",
-    "tags": "Learning,Tracing Your Ancestors,Museums and Attraction,Literary Ireland,Cafe,Food and Drink",
+    "tags": "Learning, Tracing Your Ancestors, Museums and Attraction, Literary Ireland, Cafe, Food and Drink",
     "img": "https://www.dublincity.ie/sites/default/files/styles/wallet/public/media/file-uploads/2018-06/pearse-street-interior.jpg?itok=i4_kBsDf"
   },
   {
@@ -1316,7 +1316,7 @@
     "longitude": -6.248247449,
     "latitude": 53.34908681,
     "addressLocality": "",
-    "tags": "Covid Safety Charter,Restaurant,Food and Drink,Museums and Attraction,Historic Houses and Castle,Local Produce,Pubs and Bar,Activity Operator,Food Shops,Shopping,Tour",
+    "tags": "Covid Safety Charter, Restaurant, Food and Drink, Museums and Attraction, Local Produce, Pubs and Bar, Food Shops, Shopping, Tour",
     "img": "https://images.squarespace-cdn.com/content/v1/5981ec6417bffc86d1fdc805/1620140061592-DFY3I6QTISRKFEAL09SW/Stack+A+Restaurant+-+Setup.jpg"
   },
   {
@@ -1336,7 +1336,7 @@
     "longitude": -6.2491694,
     "latitude": 53.3396402,
     "addressLocality": "",
-    "tags": "Craft,Shopping,Shopping Centres and Department Store,Art Gallery,Food Shops",
+    "tags": "Craft, Shopping, Shopping Centres and Department Store, Art Gallery, Food Shops",
     "img": "http://2.bp.blogspot.com/-m8fieuBezNQ/T6vL09ISxPI/AAAAAAAACAc/NSRN3q8lrp4/s1600/Ireland+June+2011+199+%25282%2529.jpg"
   },
   {
@@ -1346,7 +1346,7 @@
     "longitude": -6.2624532,
     "latitude": 53.34199229,
     "addressLocality": "",
-    "tags": "Craft,Shopping,Historic Houses and Castle,Art Gallery,Museums and Attraction,Food Shops",
+    "tags": "Craft, Shopping, Historic Houses and Castle, Art Gallery, Museums and Attraction, Food Shops",
     "img": "https://d3uvl1rpthf1kr.cloudfront.net/igs-uploads/CAH_2.jpg?mtime=20210212134044&focal=none"
   },
   {
@@ -1356,7 +1356,7 @@
     "longitude": -6.258085,
     "latitude": 53.340716,
     "addressLocality": "Dublin City Centre",
-    "tags": "Learning,Historic Houses and Castle,Museums and Attraction",
+    "tags": "Learning, Historic Houses and Castle, Museums and Attraction",
     "img": "https://www.ria.ie/sites/default/files/reading-room-1.jpg"
   },
   {
@@ -1366,7 +1366,7 @@
     "longitude": -6.093727731,
     "latitude": 53.27486714,
     "addressLocality": "Dalkey",
-    "tags": "Kayaking,Activity Operator,River,Discovery Point,Boat,Tour",
+    "tags": "Kayaking, Activity Operator, River, Discovery Point, Boat, Tour",
     "img": "https://kayaking.ie/wp-content/uploads/2015/09/GUIDED-TOURS-18.jpg"
   },
   {
@@ -1376,7 +1376,7 @@
     "longitude": -6.2968957,
     "latitude": 53.2641499,
     "addressLocality": "Rathfarnham",
-    "tags": "Covid Safety Charter,Food and Drink,Restaurant,Activity Operator,Historic Houses and Castle,Traditionally Irish,Venue,Music,Local Produce,Pubs and Bar,Food Shops,Shopping",
+    "tags": "Food and Drink, Restaurant, Activity Operator, Historic Houses and Castle, Traditionally Irish, Venue, Music, Local Produce, Pubs and Bar, Food Shops, Shopping",
     "img": "https://www.mpbpub.com/trad-show-shuttle-dublin-city-centre_files/gallery_image_435.jpg"
   },
   {
@@ -1386,7 +1386,7 @@
     "longitude": -6.25002,
     "latitude": 53.3388,
     "addressLocality": "",
-    "tags": "Forest Park,Park and Forest Walk,Walking,National Park,National and Forest Park,Public Park,Nature and Wildlife",
+    "tags": "Forest Park, Park and Forest Walk, Walking, National Park, National and Forest Park, Public Park, Nature and Wildlife",
     "img": "https://wp.eghn.org/wp-content/uploads/2017/01/Merrion-Square-EGHN-30-1-1200x800.jpg"
   },
   {
@@ -1396,7 +1396,7 @@
     "longitude": -6.251773105,
     "latitude": 53.32570019,
     "addressLocality": "Ranelagh",
-    "tags": "Craft,Shopping,Art Gallery,Food Shops",
+    "tags": "Craft,Shopping, Art Gallery, Food Shops",
     "img": "https://artlogic-res.cloudinary.com/w_850,c_limit,f_auto,fl_lossy,q_auto/ws-gerardbyrneartist/usr/images/exhibitions/main_image_override/27/the-gerard-byrne-studio-dalkey-official-opening-by-mr-louis-walsh_cover_photo.jpg"
   },
   {
@@ -1406,7 +1406,7 @@
     "longitude": -6.065795119,
     "latitude": 53.38799393,
     "addressLocality": "Howth",
-    "tags": "Walking,Marina,Venue,Natural Landscape",
+    "tags": "Walking, Marina, Venue, Natural Landscape",
     "img": "https://assets-eu-01.kc-usercontent.com/aa24ba70-9a12-01ae-259b-7ef588a0b2ef/571e3a59-f19d-40ff-960d-5df754fdd47b/817ffcc3-81e4-4c66-8225-fa4c2622fb8a_71516.jpg"
   },
   {
@@ -1416,7 +1416,7 @@
     "longitude": -6.066380923,
     "latitude": 53.38800343,
     "addressLocality": "Howth",
-    "tags": "Walking,Natural Landscape,Public Park,Nature and Wildlife",
+    "tags": "Walking, Natural Landscape, Public Park, Nature and Wildlife",
     "img": "https://cdn-assets.alltrails.com/static-map/production/at-map/60842521/trail-ireland-county-dublin-howth-tramline-loop-at-map-60842521-1610702616-414x200-2.png"
   },
   {
@@ -1426,7 +1426,7 @@
     "longitude": -6.384194116,
     "latitude": 53.39496052,
     "addressLocality": "Blanchardstown",
-    "tags": "Forest Park,Park and Forest Walk,Walking,National Park,National and Forest Park,Public Park,Nature and Wildlife",
+    "tags": "Forest Park, Park and Forest Walk, Walking, National Park, National and Forest Park, Public Park, Nature and Wildlife",
     "img": "https://tolkavalley.ie/wp-content/uploads/2020/06/tolka-valley-pitch-and-putt-1.jpg"
   },
   {
@@ -1436,7 +1436,7 @@
     "longitude": -6.2528309,
     "latitude": 53.33805,
     "addressLocality": "Dublin",
-    "tags": "Food and Drink,Restaurant,Historic Houses and Castle,Pubs and Bar",
+    "tags": "Food and Drink, Restaurant, Historic Houses and Castle, Pubs and Bar",
     "img": "https://www.irishtimes.com/polopoly_fs/1.4087063.1574099352!/image/image.jpg"
   },
   {
@@ -1446,7 +1446,7 @@
     "longitude": -6.179085881,
     "latitude": 53.41542455,
     "addressLocality": "",
-    "tags": "Church Abbey,Monastery,Churches,Abbeys and Monastery,Tour",
+    "tags": "Church Abbey, Monastery, Churches, Abbeys and Monastery, Tour",
     "img": "https://www.fingal.ie/sites/default/files/styles/square/public/2019-05/son2164_0019.jpg?h=d7b248c3&itok=JFQ5bTKt"
   },
   {
@@ -1456,7 +1456,7 @@
     "longitude": -6.18208,
     "latitude": 53.2478,
     "addressLocality": "Carrickmines",
-    "tags": "Gardening,Nature and Wildlife,Gardens,Garden",
+    "tags": "Gardening, Nature and Wildlife, Gardens, Garden",
     "img": "https://add.eventland.eu/uploads/1560108650-40uO4.jpg"
   },
   {
@@ -1466,7 +1466,7 @@
     "longitude": -6.27569,
     "latitude": 53.2796,
     "addressLocality": "Rathfarnham",
-    "tags": "Cycling,Golf,Walking,Gardens,Garden,Historic Houses and Castle,Public Park,Nature and Wildlife,Venue,Music,Sports Venues,Cafe,Food and Drink,Local Produce,Restaurant,Food Shops,Shopping,Tour",
+    "tags": "Cycling, Golf, Walking, Gardens, Garden, Historic Houses and Castle, Public Park, Nature and Wildlife, Venue, Tour",
     "img": "https://assets-eu-01.kc-usercontent.com/aa24ba70-9a12-01ae-259b-7ef588a0b2ef/23458055-b038-4c75-8fa1-211f71ec061c/96328346-1357-45a6-9c3e-0065231f4faa_48180.jpg"
   },
   {
