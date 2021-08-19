@@ -238,7 +238,7 @@ const RouteDescription = ({ route_object }) => {
 
   return (
     <Box
-      boxShadow={isMobile ? 0 : 1}
+      boxShadow={isMobile ? 0 : 0}
       borderRadius={7}
       style={{
         width: "100%",
@@ -255,7 +255,7 @@ const RouteDescription = ({ route_object }) => {
           <Typography variant="h6">Route Description</Typography>
         )}
 
-        {RouteSummary(route_summary)}
+        {route_summary ? RouteSummary(route_summary) : null}
 
         <Typography
           style={{ marginLeft: "2px", fontWeight: "bold", color: "#003366" }}

@@ -38,9 +38,7 @@ const Sidebar = ({
   useEffect(() => {
     setToggleDisplay(toggle_display);
 
-    if (menu_type == "thumb") {
-      setControlDisplay("route_planner");
-    }
+    setControlDisplay("route_planner");
   }, [toggle_display, toggle_display_updated]);
 
   const [controlDisplay, setControlDisplay] = useState("route_planner");
@@ -564,7 +562,7 @@ const Sidebar = ({
 
               zIndex: "1000",
               minHeight: "100%",
-              maxHeight: "100%",
+              maxHeight: controlDisplay != "route_planner" ? "100%" : null,
               overflow: "scroll",
             }}
           >
@@ -580,6 +578,7 @@ const Sidebar = ({
                 quick_location={quick_location}
                 current_location={current_location}
               />
+              <RouteDescription route_object={route_object} />
             </div>
             <div
               id="activity-option-groceries"

@@ -25,7 +25,28 @@ from datetime import timezone
 
 gmaps = googlemaps.Client(key='AIzaSyBdUcgbXHzxHB_UbYZmd7R2R6XaEO078WA')
 
-# Create your views here.  
+# Create your views here.    
+
+
+
+def get_rf_models():
+
+    dir1 = os.path.join(*[settings.MODELS_DIR, "randomForestsModels", "dir1"])
+    dir2 = os.path.join(*[settings.MODELS_DIR, "randomForestsModels", "dir2"]) 
+
+    all_model_paths = {}
+
+    for model in os.listdir(dir1):
+
+        all_model_paths[model] = os.path.join(dir1, model)
+
+    for model in os.listdir(dir2): 
+
+        all_model_paths[model] = os.path.join(dir2, model) 
+
+    return all_model_paths
+
+rf_models = get_rf_models()
 
 def generate_stop_pair(model_name): 
 
@@ -60,7 +81,7 @@ def get_path_db(route, from_stop, to_stop):
 
     route_id = RoutesStatic.objects.filter(route_short_name=route)[0].route_id
 
-    print("Route id is {0}".format(route_id))
+    
 
     trip_id_dir_0 = TripsStatic.objects.filter(route_id=route_id, direction_id=0)[0].trip_id
     trip_id_dir_1 = TripsStatic.objects.filter(route_id=route_id, direction_id=1)[0].trip_id  
@@ -122,7 +143,17 @@ def get_models_array(path_route, models_directory):
 
     for step in path_route:
         try:
-            model_name = "FROM_{0}_TO_{1}.sav".format(step[0], step[1])
+            model_name = "FROM_{0}_TO_{1}.sav".format(step[0], step[1]) 
+
+
+            if model_name in rf_models:
+                print("FOUND A RANDOM FOREST MODEL") 
+                with open(rf_models[model_name], 'rb') as f:
+                    model = pickle.load(f) 
+                models.append(model)  
+                print(models)
+                continue
+
             file_path = os.path.join(models_directory, model_name)  
 
             with open(file_path, 'rb') as f:
@@ -883,8 +914,10 @@ class GetRoute(View):
             #parse the directions  
             parsed_directions = parse_directions(directions_result, departure_time)    
 
-            googles_trip_summary = get_google_summary(parsed_directions, directions_result[0]['legs'][0]['departure_time']['text'], directions_result[0]['legs'][0]['arrival_time']['text'])  
-            
+            try:
+                googles_trip_summary = get_google_summary(parsed_directions, directions_result[0]['legs'][0]['departure_time']['text'], directions_result[0]['legs'][0]['arrival_time']['text'])  
+            except:
+                googles_trip_summary = None
             route_bounds = get_route_bounds(parsed_directions)  
 
             origin = directions_result[0]['legs'][0]['start_address'] 
@@ -927,12 +960,19 @@ class GetRoute(View):
 
             parsed_directions.insert(0, {'origin':origin, 'time':trip_departure}) 
             parsed_directions.append({'destination':destination, 'time':trip_arrival})   
+            
+            try:
+                parsed_directions = fix_times(parsed_directions)  
+            except:
+                pass
+            
 
-            parsed_directions = fix_times(parsed_directions) 
-
-            our_summary = get_our_summary(parsed_directions) 
-
-            route_summary = get_route_summary(googles_trip_summary, our_summary) 
+            try:
+                our_summary = get_our_summary(parsed_directions) 
+         
+                route_summary = get_route_summary(googles_trip_summary, our_summary)  
+            except:
+                route_summary = None
 
 
            

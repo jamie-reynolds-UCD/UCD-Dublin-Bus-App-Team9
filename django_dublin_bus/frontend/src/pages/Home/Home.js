@@ -35,7 +35,9 @@ const Home = ({
             toggle_display_updated={toggle_display_updated}
           />
 
-          {isMobile ? null : <RouteDescription route_object={route_object} />}
+          {isMobile ? null : true ? null : (
+            <RouteDescription route_object={route_object} />
+          )}
         </RouteInputDirectionsContainer>
         <FinalMap />
       </MapRouteContainer>
