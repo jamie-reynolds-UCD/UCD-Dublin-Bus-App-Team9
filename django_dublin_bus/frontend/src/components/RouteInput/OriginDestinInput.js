@@ -176,22 +176,33 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
       });
 
       if (response.status == 200) {
-        let start_markers = response.data.route
-          .slice(1, -2)
-          .map((leg) => leg.start_location);
+        let old_route = [...response.data.route];
 
-        let end_markers = response.data.route
-          .slice(1, -2)
-          .map((leg) => leg.end_location);
+        response.data.route.splice(response.data.route.length - 2, 2);
+
+        response.data.route.shift();
+
+        let start_markers = response.data.route.map(
+          (leg) => leg.start_location
+        );
+
+        let end_markers = response.data.route.map((leg) => leg.end_location);
 
         let all_markers = [];
 
-        for (var i = 0; i < start_markers.length; i += 2) {
+        /*for (var i = 0; i < start_markers.length; i += 2) {
           all_markers.push(start_markers[i]);
+          all_markers.push(end_markers[i]);
+        }*/
+
+        all_markers.push(start_markers[0]);
+        all_markers.push(end_markers[0]);
+
+        for (var i = 0; i < end_markers.length; i++) {
           all_markers.push(end_markers[i]);
         }
 
-        let polylines = response.data.route.slice(1, -2).map((leg) => {
+        let polylines = response.data.route.map((leg) => {
           return {
             travelmode: leg.travel_mode,
             path: google.maps.geometry.encoding.decodePath(leg.polyline.points),
@@ -201,7 +212,7 @@ const OriginDestinInput = ({ quick_location, current_location }) => {
         setMapDetails({
           markers: all_markers,
           polylines: polylines,
-          route_object: response.data.route,
+          route_object: old_route,
           route_bounds: response.data.route_bounds,
         });
 
