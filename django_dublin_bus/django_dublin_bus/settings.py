@@ -25,8 +25,10 @@ SECRET_KEY = 'django-insecure-fr*pq4*x4i=zxjs_n__1pyqo&s+(c71anwu2#jf092gzh9(_c!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
+
+CSRF_COOKIE_NAME="dubbuscsrf"
 
 # Application definition
 
@@ -37,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig',
+    'api.apps.ApiConfig', 
+    'spotify.apps.SpotifyConfig',
     'frontend.apps.FrontendConfig',
-    'rest_framework'
+    'rest_framework',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -78,8 +82,12 @@ WSGI_APPLICATION = 'django_dublin_bus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dublinbus9',
+        'USER': 'busadmin',
+        'PASSWORD': 'team_nine?',
+        'HOST': 'dublinbus9.cn5whxwg3cjm.eu-west-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
@@ -114,7 +122,6 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -122,7 +129,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' 
+
+
+MODELS_DIR = "/Users/brianryan/Documents/CollegeWork/summer/Dublin-Bus-App-Team9/django_dublin_bus/api/models"
+
+
+
+STATIC_ROOT="/home/student/apps/Dublin-Bus-App-Team9/django_dublin_bus/static/"

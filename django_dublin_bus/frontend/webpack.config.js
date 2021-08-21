@@ -18,6 +18,11 @@ module.exports = {
       },
 
       {
+        test: /\.(sass|scss|css)$/,
+        use: ['style-loader', 'css-loader']
+      },
+
+      {
         test: /\.js$/,
         enforce: "pre",
         use: ["source-map-loader"],

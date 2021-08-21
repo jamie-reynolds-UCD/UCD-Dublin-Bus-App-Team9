@@ -1,3 +1,6 @@
 node_modules/
 **/db.sqlite3*
 virtualenv/
+*.pyc
+.DS_Store
+**/__pycache__/
